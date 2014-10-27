@@ -1,0 +1,24 @@
+[submodule "dot/vim/bundle/syntastic"]
+	path = dot/vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "dot/vim/bundle/nerdtree"]
+	path = dot/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "dot/vim/bundle/tabular"]
+	path = dot/vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "dot/vim/bundle/tagbar"]
+	path = dot/vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "dot/vim/bundle/youcompleteme"]
+	path = dot/vim/bundle/youcompleteme
+	url = https://github.com/valloric/youcompleteme
+[submodule "dot/vim/bundle/vim-puppet"]
+	path = dot/vim/bundle/vim-puppet
+	url = https://github.com/rodjek/vim-puppet
+[submodule "dot/vim/bundle/vim-fugitive"]
+	path = dot/vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "dot/vim/bundle/vim-colors-solarized"]
+	path = dot/vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
