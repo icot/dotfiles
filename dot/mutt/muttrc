@@ -1,0 +1,54 @@
+
+set query_command= "myldap.py '%s'"
+macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
+macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
+bind editor <TAB> complete
+
+#source ~/.mutt/mailboxes
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/messages
+set editor="vim"
+
+set sendmail="/usr/bin/msmtp"
+
+set realname='XXXXXXXXXXXXX'
+set mail_check=60
+set timeout=10
+set ssl_starttls=yes
+set ssl_force_tls=yes
+unset imap_passive
+set imap_check_subscribed
+set timeout=10
+set net_inc=5
+
+# Display
+set sort=threads
+set sort_aux=last-date-received
+set duplicate_threads
+
+set pager_index_lines=20
+set arrow_cursor
+set folder_format="%2C %t %N %8s %d %f"  # what I settled on
+
+# Sidebar basics.
+set sidebar_width=40
+set sidebar_delim='|'
+
+# color of folders with new mail
+color sidebar_new  yellow default
+
+# ctrl-n, ctrl-p to navigate to the next/previous mailbox with unread mail.
+# ctrl-o to open the selected folder.
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+# Toggle sidebar visibility
+macro index,pager \Cb 'toggle sidebar_visible'
+auto_view text/html
+
+# Multiple Accounts
+source "~/.mutt/account.cern"
