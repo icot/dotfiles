@@ -22,6 +22,6 @@
 [submodule "dot/vim/bundle/vim-colors-solarized"]
 	path = dot/vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
-[submodule "dot/vim/vimwiki"]
-	path = dot/vim/vimwiki
+[submodule "dot/vim/bundle/vimwiki"]
+	path = dot/vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
