@@ -1,0 +1,8 @@
+set from="XXXXXXXXXXX"
+set imap_user=XXXXXXXXXXXX
+set imap_pass=XXXXXXXXXXXX
+set folder="imaps://imap.cern.ch:993/"
+set spoolfile=+INBOX
+set postponed=+Drafts
+set record=+Sent
+set trash=+Trash
