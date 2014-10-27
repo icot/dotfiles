@@ -1,0 +1,24 @@
+[user]
+	name = icoteril
+	email = ignacio.coterillo@cern.ch
+[branch]
+	autosetuprebase = always
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	unstage = reset HEAD --
+	visual = !gitk
+	github = config user.email icot@users.noreply.github.com
+[merge]
+	tool = kdiff3
+[mergetool "vimdiff"]
+	keepBackup = false
+[mergetool "kdiff3"]
+	keepBackup = false
+[core]
+	excludesfile = /home/icoteril/.gitignore_global
+[push]
+	default = simple
