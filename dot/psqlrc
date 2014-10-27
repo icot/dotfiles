@@ -1,0 +1,10 @@
+\pset null 'NULL'
+\set HISTFILE ~/.psql_history- :HOST - :DBNAME
+\set HISTSIZE 2000
+\timing
+\set PROMPT1 '%001%[%033[1;33;40m%]%002%n@%/%R%001%[%033[0m%]%002%# '
+\set PROMPT1 '(%n@%m:%>) [%/(%x)] %# '
+\set PROMPT2 ''
+\encoding unicode
+\set VERBOSITY verbose
+\x auto
