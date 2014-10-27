@@ -1,0 +1,56 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory autocd nomatch
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/icoteril/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# COLORS
+ZLS_COLORS="no=00:fi=00:di=01;32:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;42:ex=01;33:*.tar=01;31:*.tgz=01;31:*.svgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:"
+
+export LS_COLORS=$ZLS_COLORS
+
+# Aliases
+alias ls="ls --color"
+alias grep="grep --color"
+alias rm="rm -v"
+alias emacs="emacs -nw"         
+alias sqlplus="rlwrap sqlplus"
+alias kinit="kinit -f"
+alias puppet-lint="puppet-lint --no-80chars-check --no-arrow_alignment-check --no-autoloader_layout-check"
+alias dfs="cadaver https://dfs.cern.ch/dfs"
+
+# PROMPT
+
+fg_black=%{"$(echo -n '\e[1;30m')"%}
+fg_green=%{"$(echo -n '\e[01;32m')"%}
+fg_dblue=%{"$(echo -n '\e[00;34m')"%}
+fg_red=%{"$(echo -n '\e[01;31m')"%}
+fg_blue=%{"$(echo -n '\e[01;34m')"%}
+fg_white=%{"$(echo -n '\e[0;0m')"%}
+
+PROMPT="${fg_white}%h %(! ${fg_red}%m ${fg_green}%n@%m)${fg_white}:${fg_green}%~${fg_white}%# "
+PS1="[%*] ${fg_white}%h %(! ${fg_red}%m ${fg_green}%n@%m)${fg_white}:${fg_green}%~${fg_white}%# "
+
+#PATH
+
+PATH=/usr/lib/oracle/11.2/client64/bin:$PATH
+PATH=$PWD/bin:$PATH
+PATH=$HOME/apps/percona-toolkit/bin:$PATH
+
+export PATH
+
+export ORACLE_HOME=/usr/lib/oracle/11.2/client64
+
+# Added for zsh-git-prompt
+source $HOME/.zsh/git-prompt/zsh-git-prompt/zshrc.sh
+PROMPT='%B%m%~%b$(git_super_status) %# '
+
+export TERM="xterm"
