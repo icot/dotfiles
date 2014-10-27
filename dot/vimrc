@@ -1,0 +1,56 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set nocompatible
+set guioptions=i
+
+" Solarized
+let g:solarized_termtrans=1
+set background=dark
+colorscheme solarized
+set autoindent
+
+" Python
+set ts=4
+set shiftwidth=4
+set et
+set softtabstop=4
+
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+
+function! Mosh_Tab_Or_Complete()
+    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+        return "\<C-N>"
+    else
+        return "\<Tab>"
+endfunction
+
+:inoremap <Tab> <C-R>=Mosh_Tab_Or_Complete()<CR>
+
+" Nerdtree
+:map <C-t> :NERDTreeToggle<CR>
+
+" Navigation
+:nnoremap <C-p> :tabprevious<CR>
+:nnoremap <C-n> :tabnext<CR>
+
+" switch window mappings /*{{{*/
+:nnoremap <A-Up> :normal <c-r>=SwitchWindow('+')<CR><CR>
+:nnoremap <A-Down> :normal <c-r>=SwitchWindow('-')<CR><CR>
+:nnoremap <A-Left> :normal <c-r>=SwitchWindow('<')<CR><CR>
+:nnoremap <A-Right> :normal <c-r>=SwitchWindow('>')<CR><CR>
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_compact=1
+
+" Syntastic
+let g:syntastic_enable_perl_checker = 1
+
+" Highlight parts of lines longer than 79 columns
+au filetype * highlight OverLength ctermbg=black ctermfg=white guibg=black
+au filetype * match OverLength /\%80v.\+/
+          
+" Puppet detection
+au BufNewFile,BufRead *.pp setf puppet
