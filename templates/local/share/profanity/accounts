@@ -1,8 +1,8 @@
 [gtalk]
 enabled=true
-jid=XXXXXXXXXXXXXXX@gmail.com
-resource=desktop
-muc.nick=XXXXXXXXX
+jid=<%= @gtalk_jid =>@gmail.com
+resource=<%= @jabber_resource =>
+muc.nick=<%= @gtalk_nick =>
 presence.last=away
 presence.login=away
 priority.online=10
@@ -12,15 +12,15 @@ priority.xa=0
 priority.dnd=-1
 server=talk.google.com
 port=5222
-password=
+password=<%= @gtalk_1time_password =>
 muc.service=conference.gmail.com
 
 [cern]
 enabled=true
-jid=XXXXXXXXXX@jabber.cern.ch
-resource=laptop
+jid=<%= @cern_jid =>@jabber.cern.ch
+resource=<%= @jabber_resource =>
 muc.service=conference.jabber.cern.ch
-muc.nick=XXXXXXXXX
+muc.nick=<%= @cern_nick =>
 presence.last=away
 presence.login=away
 priority.online=10

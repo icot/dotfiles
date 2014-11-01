@@ -6,7 +6,7 @@ setopt appendhistory autocd nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/<%= $user_name %>/.zshrc'
+zstyle :compinstall filename '/home/<%= @username %>/.zshrc'
 
 autoload -Uz compinit
 compinit

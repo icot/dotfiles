@@ -1,6 +1,6 @@
-set from="XXXXXXXXXXX"
-set imap_user=XXXXXXXXXXXX
-set imap_pass=XXXXXXXXXXXX
+set from=<%= @cern_email =>
+set imap_user=<%= @cern_user =>
+set imap_pass=<%= @cern_password =>
 set folder="imaps://imap.cern.ch:993/"
 set spoolfile=+INBOX
 set postponed=+Drafts
