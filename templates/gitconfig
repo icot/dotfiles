@@ -18,6 +18,6 @@
 [mergetool "kdiff3"]
 	keepBackup = false
 [core]
-	excludesfile = /home/<%= @username =>/.gitignore_global
+	excludesfile = /home/<%= @username %>/.gitignore_global
 [push]
 	default = simple
