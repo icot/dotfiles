@@ -3,7 +3,7 @@ dotfiles
 
 My  personal collection of dotfiles
 
-Fill dotfiles.yaml and put it on the appropiate foler.
+Fill dotfiles.yaml and put it on the appropiate folder.
 In my case (Debian Jessy):
 
     /home/<username>/.puppet/hieradata/dotfiles.yaml
