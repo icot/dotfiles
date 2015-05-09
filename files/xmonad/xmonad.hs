@@ -47,6 +47,7 @@ myApps =
     , "feh --bg-center ~/Documents/wallpapers/kanagawa.jpg"
     , "./dropbox-dist/dropboxd"
     , "conky"
+    , "volti"
     ]
 
 main = do
