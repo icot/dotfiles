@@ -43,8 +43,10 @@ let g:tagbar_compact=1
 " Highlight parts of lines longer than 79 columns
 au filetype * highlight OverLength ctermbg=darkgreen ctermfg=white guibg=black
 au filetype * match OverLength /\%80v.\+/
-
 au BufNewFile,BufRead *.pp setf puppet
+
+" Autosave
+:au FocusLost * silent! wa
 
 set laststatus=2
 "let g:airline_powerline_fonts = 1
