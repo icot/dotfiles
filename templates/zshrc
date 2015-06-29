@@ -108,3 +108,6 @@ source $HOME/.zsh/zsh-git-prompt/zshrc.sh
 export PATH=$PATH:$HOME/apps/android-studio-sdk/platform-tools
 source ~/perl5/perlbrew/etc/bashrc
 
+# Set WMNAME for JAVA Apps compatibilty
+wmname LG3D
+
