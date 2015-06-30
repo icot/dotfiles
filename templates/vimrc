@@ -2,11 +2,16 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 
+let mapleader = ","
+
 set background=dark
 set guioptions=i
 let g:solarized_termtrans=1
-colorscheme solarized
-"colorscheme distinguished
+if has("gui_running")
+    colorscheme solarized
+else
+    colorscheme Tomorrow-Night
+endif
 
 set autoindent
 
@@ -49,7 +54,19 @@ au BufNewFile,BufRead *.pp setf puppet
 :au FocusLost * silent! wa
 
 set laststatus=2
-"let g:airline_powerline_fonts = 1
-let g:airline_theme='lucius'
+if has("gui_running")
+    let g:airline_theme='solarized'
+else
+    let g:airline_theme='tomorrow'
+endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = '>'
+
+"" Syntastic
+map <silent> <Leader>e :Errors<CR>
+map <Leader>s :SyntasticToggleMode<CR>
+let g:syntastic_auto_loc_list=0
+
+"" Trying to fix Slow start for YouCompleteMe
+let g:ycm_register_as_syntastic_checker = 0
+
