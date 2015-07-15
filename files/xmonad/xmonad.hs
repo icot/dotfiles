@@ -48,6 +48,7 @@ myApps =
     , "./dropbox-dist/dropboxd"
     , "conky"
     , "volti"
+    , "cernbox"
     ]
 
 main = do
@@ -93,19 +94,24 @@ myTabConfig = defaultTheme
 
 myKeys conf@(XConfig {modMask = modm}) = 
     M.fromList $
-        [ ((modm, xK_r), spawn "xfrun4")
-        , ((modm, xK_s), spawn "urxvtc -e byobu")
-        , ((modm, xK_f), spawn "iceweasel")
-        , ((modm, xK_m), spawn "icedove")
-        , ((modm, xK_v), spawn "vlc")
-        , ((modm, xK_g), spawn "gvim")
-        , ((modm, xK_b), do
-            sendMessage ToggleStruts
-            sendMessage ToggleGaps)
-        , ((shiftMask, xK_h), prevWS)
-        , ((shiftMask, xK_l), nextWS)
-        , ((modm .|. shiftMask , xK_Right), nextScreen)
-        , ((modm .|. shiftMask , xK_Left), prevScreen)
-        , ((modm .|. shiftMask , xK_o), shiftNextScreen)
-        , ((modm, xK_Tab), toggleWS)
-        ]
+          [ ((modm, xK_r), spawn "xfrun4")
+          , ((modm, xK_d), spawn "dmenu")
+          , ((modm, xK_s), spawn "urxvtc -e tmux")
+          , ((modm, xK_t), spawn "urxvtc")
+          , ((modm, xK_f), spawn "iceweasel")
+          , ((modm, xK_m), spawn "icedove")
+          , ((modm, xK_v), spawn "vlc")
+          , ((modm, xK_g), spawn "gvim")
+          , ((shiftMask .|. controlMask , xK_l), spawn "xscreensaver-command -lock")
+          , ((modm, xK_b), do
+              sendMessage ToggleStruts
+              sendMessage ToggleGaps)
+          , ((controlMask, xK_h), prevWS)
+          , ((controlMask, xK_l), nextWS)
+          , ((controlMask, xK_Down), windows W.focusDown)
+          , ((controlMask, xK_Up), windows W.focusUp)
+          , ((modm, xK_Right), nextScreen)
+          , ((modm, xK_Left), prevScreen)
+          , ((modm, xK_Tab), toggleWS)
+          ]
+
