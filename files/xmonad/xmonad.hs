@@ -106,8 +106,8 @@ myKeys conf@(XConfig {modMask = modm}) =
           , ((modm, xK_b), do
               sendMessage ToggleStruts
               sendMessage ToggleGaps)
-          , ((controlMask, xK_h), prevWS)
-          , ((controlMask, xK_l), nextWS)
+          , ((controlMask, xK_Left), prevWS)
+          , ((controlMask, xK_Right), nextWS)
           , ((controlMask, xK_Down), windows W.focusDown)
           , ((controlMask, xK_Up), windows W.focusUp)
           , ((modm, xK_Right), nextScreen)
