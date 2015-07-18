@@ -111,3 +111,5 @@ source ~/perl5/perlbrew/etc/bashrc
 # Set WMNAME for JAVA Apps compatibilty
 wmname LG3D
 
+bindkey '^R' history-incremental-search-backward
+
