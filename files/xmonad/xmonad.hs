@@ -95,7 +95,7 @@ myTabConfig = defaultTheme
 myKeys conf@(XConfig {modMask = modm}) = 
     M.fromList $
           [ ((modm, xK_r), spawn "xfrun4")
-          , ((modm, xK_d), spawn "dmenu")
+          , ((modm, xK_d), spawn "dmenu_run")
           , ((modm, xK_s), spawn "urxvtc -e tmux")
           , ((modm, xK_t), spawn "urxvtc")
           , ((modm, xK_f), spawn "iceweasel")
