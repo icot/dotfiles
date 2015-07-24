@@ -11,3 +11,45 @@ cern_user:
 cern_password:
 mysql_user:dod_mysql
 mysql_password:
+
+packages:
+  'haskell-platform':
+    ensure: present
+  'xmonad':
+    ensure: present
+  'rxvt-unicode-256color':
+    ensure: present
+  'tint2':
+    ensure: present
+  'conky':
+    ensure: present
+  'feh':
+    ensure: present
+  'nm-applet':
+    ensure: present
+  'xscreensaver':
+    ensure: present
+  'python-virtualenv':
+    ensure: present
+  'perlbrew':
+    ensure: present
+  'npm':
+    ensure: present
+  'tmux':
+    ensure: present
+  'mysql-client':
+    ensure: present
+  'postgresql-client':
+    ensure: present
+  'mutt':
+    ensure: present
+  'profanity':
+    ensure: present
+  'irssi':
+    ensure: present
+  'irssi-plugin-otr':
+    ensure: present
+  'irssi-plugin-xmpp':
+    ensure: present
+  'gnupg2':
+    ensure: present
