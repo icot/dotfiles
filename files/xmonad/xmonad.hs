@@ -55,7 +55,7 @@ main = do
     mapM spawnPipe myApps
     xmonad $ ewmh defaultConfig
             { workspaces = ["1:Web","2:Cons","3:VLC","4:","5:","6:","7:","8:Torrent","9:Mail"]
-            , terminal = "urxvtc -tr"
+            , terminal = "urxvtc"
             , manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
             , layoutHook = showWName' mySWNConfig myLayout
             , logHook = ewmhDesktopsLogHook
@@ -94,9 +94,7 @@ myTabConfig = defaultTheme
 
 myKeys conf@(XConfig {modMask = modm}) = 
     M.fromList $
-          [ ((modm, xK_r), spawn "xfrun4")
-          , ((modm, xK_d), spawn "dmenu_run")
-          , ((modm, xK_s), spawn "urxvtc -e tmux")
+          [ ((modm, xK_s), spawn "urxvtc -e tmux")
           , ((modm, xK_t), spawn "urxvtc")
           , ((modm, xK_f), spawn "iceweasel")
           , ((modm, xK_m), spawn "icedove")
