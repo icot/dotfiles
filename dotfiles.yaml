@@ -25,8 +25,6 @@ packages:
     ensure: present
   'feh':
     ensure: present
-  'nm-applet':
-    ensure: present
   'xscreensaver':
     ensure: present
   'python-virtualenv':
@@ -52,4 +50,23 @@ packages:
   'irssi-plugin-xmpp':
     ensure: present
   'gnupg2':
+    ensure: present
+  'apt-file':
+    ensure: present
+  #Tex
+  'texlive-xetex':
+    ensure: present
+  'texlive-latex-extra':
+    ensure: present
+  'texlive-latex-recommended':
+    ensure: present
+  'latex-beamer':
+    ensure: present
+  'textlive-fonts-extra':
+    ensure: present
+  'texlive-fonts-recommended':
+    ensure: present
+  'texlive-extra-utils':
+    ensure: present
+  'pandoc':
     ensure: present
