@@ -6,14 +6,18 @@ My  personal collection of dotfiles
 Fill dotfiles.yaml and put it on the appropiate folder.
 In my case (Debian Testing):
 
-First copy *hiera.yaml* and *dotfiles.yaml* to ~/.puppet/
-and ~/.pupet/hieradata/ respectively:
+First edit *hiera.yaml* and copy it to one of this locations to
+configure the hiera installation:
+- /etc/hiera/
+- /etc/puppet/
+- ~/.puppet/
 
-    /home/<username>/.puppet/hiera.yaml
-    /home/<username>/.puppet/hieradata/dotfiles.yaml
+and copy *dotfiles.yaml* to 
+- /home/<username>/.puppet/hieradata/dotfiles.yaml
 
 Then run:
 
-    $ puppet apply --modulepath=<PARENT_FOLDER> deploy.pp
+    $ sudo puppet apply manifests/packages.pp # To install packages
+    $ puppet apply --modulepath=<PARENT_FOLDER> deploy.pp # To set conf files
 
 
