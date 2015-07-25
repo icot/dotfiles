@@ -93,10 +93,6 @@ class dotfiles ($home = '/tmp/test') {
 
   create_resources(file, $files)
 
-  # Install packages
-  $packages = hiera('packages')
-  create_resources(package, $packages)
-
 }
 
 
