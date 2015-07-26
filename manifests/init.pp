@@ -125,6 +125,24 @@ class dotfiles ($home = '/tmp/test') {
         mode               => 0644,
         path               => "${home}/.config/profanity/profrc",
         source             => 'puppet:///modules/dotfiles/config/profanity/profrc'},
+    'xmonad-session-rc '   => {
+        owner              => $username,
+        group              => $username,
+        mode               => 0644,
+        path               => "${home}/.xmonad/xmonad-session-rc",
+        source             => 'puppet:///modules/dotfiles/xmonad/xmonad-session-rc'},
+    'xmonad-session '   => {
+        owner              => root,
+        group              => root,
+        mode               => 0644,
+        path               => "/usr/bin/xmonad-session",
+        source             => 'puppet:///modules/dotfiles/xmonad/xmonad-session'},
+    'xmonad.desktop '   => {
+        owner              => root,
+        group              => root,
+        mode               => 0644,
+        path               => "/usr/share/xsessions/xmonad.desktop",
+        source             => 'puppet:///modules/dotfiles/xmonad/xmonad-desktop'},
   }
 
   create_resources(file, $files)
