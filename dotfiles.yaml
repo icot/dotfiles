@@ -70,3 +70,7 @@ packages:
     ensure: present
   'pandoc':
     ensure: present
+  'vim-nox':
+    ensure: present
+  'vim-gtk':
+    ensure: present
