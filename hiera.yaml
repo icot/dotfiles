@@ -1,8 +1,0 @@
----
-:backends: yaml
-:yaml:   
-    :datadir: /home/<username>/.puppet/hieradata
-:hierarchy: 
-    - dotfiles
-    - common
-:logger: console
