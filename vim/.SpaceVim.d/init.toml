@@ -26,6 +26,8 @@
     enable_statusline_mode = false
     filetree_direction = "left"
     filemanager = "nerdtree"
+    bootstratp_before ="myspacevim#before"
+    bootstratp_after ="myspacevim#after"
 
 # Enable autocomplete layer
 [[layers]]
