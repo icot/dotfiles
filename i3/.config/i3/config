@@ -14,8 +14,8 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 bindsym $mod+t exec kitty
-bindsym $mod+Return exec "~/bin/alacritty"
-#bindsym $mod+Return exec kitty
+#bindsym $mod+Return exec "~/bin/alacritty"
+bindsym $mod+Return exec kitty
 
 # Window kill command
 bindsym $mod+Shift+q kill
@@ -205,10 +205,13 @@ mode "resize" {
 }
 
 
+#foreground = #ecefc1
+#background = #0a1e24
+#trans-background = #dd0a1e24
 
 # Theme colors
 # client.focused          #272827 #272827 #657b83 #272827 #272827
-client.focused          #272827 #13bf9d #657b83 #272827 #13bf9d
+client.focused          #0a1e24 #ecefc1 #657b83 #0a1e24 #ecefc1
 #client.focused_inactive #272827 #272827 #657b83 #272827 #272827
 #client.unfocused        #272827 #272827 #657b83 #272827 #272827
 #client.urgent           #272827 #272827 #657b83 #272827 #272827
@@ -237,7 +240,6 @@ exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
 exec --no-startup-id "xrandr --output HDMI-0 --mode 1920x1080 --left-of DP-0"
-exec --no-startup-id "xrandr --DP-0 --mode 25600x1440 --right-of DP-0"
 exec --no-startup-id "feh --bg-scale ~/cernbox/moebius/3100712.png"
 exec --no-startup-id "/usr/bin/xset -b"
 exec --no-startup-id "/usr/bin/xmodmap ~/.speedswapper"
