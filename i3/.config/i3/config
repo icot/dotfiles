@@ -14,8 +14,13 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 bindsym $mod+t exec kitty
+<<<<<<< HEAD
 #bindsym $mod+Return exec "~/bin/alacritty"
 bindsym $mod+Return exec kitty
+=======
+bindsym $mod+Return exec kitty
+#bindsym $mod+Return exec kitty
+>>>>>>> 26b648d (tachi customizations)
 
 # Window kill command
 bindsym $mod+Shift+q kill
@@ -231,15 +236,13 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 ## icot custom
 exec_always --no-startup-id /$HOME/.config/polybar/i3bar.sh
 exec_always picom --inactive-dim 0.15 -b
-exec --no-startup-id xfce4-power-manager
+exec --no-startup-id lxqt-powermanagement
 exec --no-startup-id clipit
 exec --no-startup-id "sudo dhclient"
-exec --no-startup-id urxvtd
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
-exec --no-startup-id "xrandr --output HDMI-0 --mode 1920x1080 --left-of DP-0"
 exec --no-startup-id "feh --bg-scale ~/cernbox/moebius/3100712.png"
 exec --no-startup-id "/usr/bin/xset -b"
 exec --no-startup-id "/usr/bin/xmodmap ~/.speedswapper"
