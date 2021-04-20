@@ -9,9 +9,15 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
-(package! puppet-mode)
+;; Utils, Emacs
+(package! auto-compile)
+(package! benchmark-init)
 
+;; Tools
+(package! puppet-mode)
 (package! org-static-blog)
+
+
 
 ;; SLIME instead of SLY
 ;(package! sly :disable t)

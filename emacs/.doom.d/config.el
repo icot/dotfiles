@@ -3,10 +3,17 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(map! :leader :nv "d" #'dired)
+(map! :leader :desc "Dired fuzzy search" :nv "d" #'dired)
 
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
+
+;; Auto-compile
+(setq load-prefer-newer t)
+(require 'auto-compile)
+(after! auto-compile
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -61,6 +68,17 @@
 ;; Load custom functions
 (load! "+functions")
 
+;; Elfeed configuration
+(load! "+elfeed")
+;;(map! :leader
+      ;;(:prefix-map ("o" . "open")
+       ;;(:prefix ("e" . "elfeed")
+        ;;:desc "Elfeed" "e" #'elfeed)))
+
+(map! :leader
+       (:prefix ("o" . "open")
+        :desc "Elfeed" "e" #'elfeed))
+
 ;; mu4e Configuration
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (after! mu4e
@@ -95,8 +113,9 @@
 (setq org-startup-folded "fold")
 
 ;; Org-Jira
-(use-package org-jira
-  :load-path "lisp/org-jira")
+(use-package! org-jira
+  :load-path "lisp/org-jira"
+  :hook (prog-mode . org-mode))
 (setq org-jira-cloud nil)
 (setq jiralib-url "https://its.cern.ch/jira")
 

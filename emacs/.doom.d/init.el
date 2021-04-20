@@ -50,7 +50,7 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+       zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -85,7 +85,7 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
-       ansible
+       ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
@@ -177,9 +177,13 @@
        :app
        ;;calendar
        ;;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       (rss)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
        ;;literate
        (default +bindings +smartparens))
+
+(when doom-debug-p
+  (require 'benchmark-init)
+  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
