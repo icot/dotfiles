@@ -26,3 +26,36 @@
 (defun my/gitlab-ci ()
   (interactive)
   (message (my/find-url (file-name-directory buffer-file-name) 0)))
+
+
+;; From https://github.com/nbarrientos/dotfiles/blob/master/.emacs.d/init.el
+
+;;(use-package magit
+;;  :bind (("C-x g" . magit-status)
+;;         ("C-x G" . magit-dispatch))
+;;  :config
+;;  (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
+;;  (transient-append-suffix 'magit-push "-n"
+;;    '(1 "-M" "Create MR in Gitlab" "--push-option=merge_request.create"))
+;;  :custom
+;;  (magit-save-repository-buffers 'dontask)
+;;  (magit-clone-default-directory "~/dev/")
+;;  (magit-clone-url-format "https://%h/%n.git")
+;;  (magit-clone-set-remote.pushDefault t))
+;;
+;;(defun my/clone-module (module-name)
+;;  "Clone a Puppet module from gitlab.cern.ch/ai"
+;;  (interactive "sModule name: ")
+;;  (magit-clone-internal
+;;   ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
+;;   (magit-clone--name-to-url (concat "it-puppet-module-" module-name))
+;;   magit-clone-default-directory
+;;   nil))
+;;
+;;(defun my/clone-hostgroup (hostgroup-name)
+;;  "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
+;;  (interactive "sTop-level hostgroup name: ")
+;;  (magit-clone-internal
+;;   (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
+;;   magit-clone-default-directory
+;;   nil))
