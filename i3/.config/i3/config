@@ -14,13 +14,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 bindsym $mod+t exec kitty
-<<<<<<< HEAD
-#bindsym $mod+Return exec "~/bin/alacritty"
 bindsym $mod+Return exec kitty
-=======
-bindsym $mod+Return exec kitty
-#bindsym $mod+Return exec kitty
->>>>>>> 26b648d (tachi customizations)
 
 # Window kill command
 bindsym $mod+Shift+q kill
