@@ -134,6 +134,10 @@
 (add-to-list '+evil-collection-disabled-list 'go-mode)
 (add-to-list '+evil-collection-disabled-list 'apropos)
 (add-to-list '+evil-collection-disabled-list 'sly)
+(add-to-list '+evil-collection-disabled-list 'ivy)
+(add-to-list '+evil-collection-disabled-list 'dired)
+(add-to-list '+evil-collection-disabled-list 'grep)
+(add-to-list '+evil-collection-disabled-list 'compile)
 
 ;;
 (after! 'magit
