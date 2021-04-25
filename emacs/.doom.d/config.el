@@ -123,17 +123,17 @@
 (add-to-list 'interpreter-mode-alist '("bb" . clojure-mode))
 
 ;; Fix Doom doctor early-init warnings
-;;(add-to-list '+evil-collection-disabled-list 'ibuffer)
-;;(add-to-list '+evil-collection-disabled-list 'rtags)
-;;(add-to-list '+evil-collection-disabled-list 'bookmark)
-;;(add-to-list '+evil-collection-disabled-list 'popup)
-;;(add-to-list '+evil-collection-disabled-list 'arc-mode)
-;;(add-to-list '+evil-collection-disabled-list 'xref)
-;;(add-to-list '+evil-collection-disabled-list 'racer) ; Rust
-;;(add-to-list '+evil-collection-disabled-list 'flycheck)
-;;(add-to-list '+evil-collection-disabled-list 'go-mode)
-;;(add-to-list '+evil-collection-disabled-list 'apropos)
-;;(add-to-list '+evil-collection-disabled-list 'sly)
+(add-to-list '+evil-collection-disabled-list 'ibuffer)
+(add-to-list '+evil-collection-disabled-list 'rtags)
+(add-to-list '+evil-collection-disabled-list 'bookmark)
+(add-to-list '+evil-collection-disabled-list 'popup)
+(add-to-list '+evil-collection-disabled-list 'arc-mode)
+(add-to-list '+evil-collection-disabled-list 'xref)
+(add-to-list '+evil-collection-disabled-list 'racer) ; Rust
+(add-to-list '+evil-collection-disabled-list 'flycheck)
+(add-to-list '+evil-collection-disabled-list 'go-mode)
+(add-to-list '+evil-collection-disabled-list 'apropos)
+(add-to-list '+evil-collection-disabled-list 'sly)
 
 ;;
 (after! 'magit
