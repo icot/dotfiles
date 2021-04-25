@@ -17,7 +17,8 @@
 (package! puppet-mode)
 (package! org-static-blog)
 
-
+;; Gemini
+(package! elpher)
 
 ;; SLIME instead of SLY
 ;(package! sly :disable t)
