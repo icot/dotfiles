@@ -102,7 +102,7 @@ alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
 alias cp2="rsync -avz"
 alias vi="unset PYTHONPATH;vi"
 alias bat="bat -p"
-alias ec="emacsclient -nw"
+alias ec="emacs -nw"
 
 alias l='exa -l --group-directories-first --git'
 alias ll='exa -l --all --all --group-directories-first --git'
@@ -163,6 +163,23 @@ fi
 export PATH=~/.rakudobrew/bin:$PATH
 export PATH="$HOME/workspace/esp/xtensa-esp32-elf/bin:$PATH"
 export IDF_PATH=~/workspace/esp/esp-idf
+
+# GUIX
+export GUIX_PROFILE="/home/spike/.guix-profile"
+source $GUIX_PROFILE/etc/profile
+export PATH=$PATH:$GUIX_PROFILE/bin
+export PATH=$HOME/.config/guix/current/bin:$PATH
+
+# NIX
+source /home/spike/.nix-profile/etc/profile.d/nix.sh
+
+export PATH=$PATH:$HOME/.roswell/bin
+export PATH=$PATH:$HOME/.emacs.d/bin
+
+
+#NPM
+export NPM_PACKAGES=$HOME/.npm-pkgs
+export PATH=$PATH:$NPM_PACKAGES/bin
 
 eval "$(starship init zsh)"
 
