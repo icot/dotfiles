@@ -129,7 +129,6 @@ export KEYTIMEOUT=1
 
 # ENVIRONMENT
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-source $HOME/.zsh/zsh-git-prompt/zshrc.sh
 export PATH=$PATH:$HOME/Android/Sdk/platform-tools
 export PATH=$PATH:~/.rakudobrew/bin
 export PATH=$PATH:~/.cabal/bin
@@ -138,10 +137,12 @@ export GOPATH=~/workspace/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/home/spike/.cargo/bin
 export PATH=$PATH:/home/spike/apps/graalvm-ce-java11-20.3.0/bin
-#source ~/perl5/perlbrew/etc/bashrc
 
 # Set WMNAME for JAVA Apps compatibilty
-wmname LG3D
+which wmname > /dev/null
+if [ $? -eq 0 ]; then
+        wmname LG3D
+fi
 
 bindkey '^R' history-incremental-search-backward
 
@@ -171,17 +172,23 @@ export PATH=$PATH:$GUIX_PROFILE/bin
 export PATH=$HOME/.config/guix/current/bin:$PATH
 
 # NIX
-source /home/spike/.nix-profile/etc/profile.d/nix.sh
+which nix > /dev/null
+if [ $? -eq 0 ]; then
+        source /home/spike/.nix-profile/etc/profile.d/nix.sh
+fi
 
 export PATH=$PATH:$HOME/.roswell/bin
 export PATH=$PATH:$HOME/.emacs.d/bin
-
 
 #NPM
 export NPM_PACKAGES=$HOME/.npm-pkgs
 export PATH=$PATH:$NPM_PACKAGES/bin
 
-eval "$(starship init zsh)"
+
+which starship > /dev/null
+if [ $? -eq 0 ]; then
+        eval "$(starship init zsh)"
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/spike/.sdkman"
