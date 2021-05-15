@@ -1,4 +1,4 @@
-#!/bin/vsh
+#!/bin/sh
 
 pkill polybar
 
