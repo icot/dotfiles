@@ -7,7 +7,7 @@ trans-background = #dd0a1e24
 
 [bar/i3bar]
 bottom = true
-monitor = DP-0
+monitor = eDP-1
 width = 100%
 height = 30
 ;radius = 5
