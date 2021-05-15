@@ -247,8 +247,8 @@ exec --no-startup-id "feh --bg-scale ~/.dotfiles/artifacts/wallpapers/moebius/31
 exec --no-startup-id "/usr/bin/xset -b"
 
 # Only to be enabled with i3-gaps
-smart_gaps on
-smart_borders on
-gaps inner 2
-gaps outer 2
-gaps horizontal 2
+#smart_gaps on
+#smart_borders on
+#gaps inner 2
+#gaps outer 2
+#gaps horizontal 2
