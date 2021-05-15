@@ -49,6 +49,8 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(wd fzf colorize z zsh-syntax-highlighting zsh-autosuggestions)
 
 export FZF_COMPLETION_TRIGGER='~~'
+export FZF_BASE=/gnu/store/8kmwxb560dz5xfy94r7s302x744jqry5-fzf-0.25.0/src/github.com/junegunn/fzf/shell/
+
 
 source $ZSH/oh-my-zsh.sh
 
