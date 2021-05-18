@@ -1,0 +1,6 @@
+export BUF=xsession:$BUF
+
+# Rofi setup
+export GUIX_PROFILE="$HOME/.guix-profile"
+PATH=$HOME/bin:$PATH
+PATH=$GUIX_PROFILE/bin:$PATH
