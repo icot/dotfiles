@@ -25,6 +25,9 @@ bindsym $mod+Ctrl+l exec i3lock -c 0f0f0f
 
 # start program launcher
 bindsym $mod+p exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Delete exec --no-startup-id export > /tmp/i3-export
+
 
 # change focus
 bindsym $mod+h focus left
