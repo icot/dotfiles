@@ -168,6 +168,7 @@ export IDF_PATH=~/workspace/esp/esp-idf
 # GUIX
 export GUIX_PROFILE="/home/spike/.guix-profile"
 source $GUIX_PROFILE/etc/profile
+export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
 export PATH=$PATH:$GUIX_PROFILE/bin
 export PATH=$HOME/.config/guix/current/bin:$PATH
 
