@@ -165,6 +165,19 @@ export PATH=~/.rakudobrew/bin:$PATH
 export PATH="$HOME/workspace/esp/xtensa-esp32-elf/bin:$PATH"
 export IDF_PATH=~/workspace/esp/esp-idf
 
+# Emacs vterm
+vterm_printf(){
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
 # GUIX
 export GUIX_PROFILE="/home/spike/.guix-profile"
 source $GUIX_PROFILE/etc/profile
