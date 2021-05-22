@@ -132,11 +132,11 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:$HOME/Android/Sdk/platform-tools
 export PATH=$PATH:~/.rakudobrew/bin
 export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:/home/icoteril/.gem/ruby/2.1.0/bin
+export PATH=$PATH:/home/$USER/.gem/ruby/2.1.0/bin
 export GOPATH=~/workspace/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/home/spike/.cargo/bin
-export PATH=$PATH:/home/spike/apps/graalvm-ce-java11-20.3.0/bin
+export PATH=$PATH:/home/$USER/.cargo/bin
+export PATH=$PATH:/home/$USER/apps/graalvm-ce-java11-20.3.0/bin
 
 # Set WMNAME for JAVA Apps compatibilty
 which wmname > /dev/null
@@ -179,7 +179,7 @@ vterm_printf(){
 }
 
 # GUIX
-export GUIX_PROFILE="/home/spike/.guix-profile"
+export GUIX_PROFILE="/home/$USER/.guix-profile"
 source $GUIX_PROFILE/etc/profile
 export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
 export PATH=$PATH:$GUIX_PROFILE/bin
@@ -188,7 +188,7 @@ export PATH=$HOME/.config/guix/current/bin:$PATH
 # NIX
 which nix > /dev/null
 if [ $? -eq 0 ]; then
-        source /home/spike/.nix-profile/etc/profile.d/nix.sh
+        source /home/$USER/.nix-profile/etc/profile.d/nix.sh
 fi
 
 export PATH=$PATH:$HOME/.roswell/bin
@@ -205,7 +205,7 @@ if [ $? -eq 0 ]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/spike/.sdkman"
-[[ -s "/home/spike/.sdkman/bin/sdkman-init.sh" ]] && source "/home/spike/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/home/$USER/.sdkman"
+[[ -s "/home/$USER/.sdkman/bin/sdkman-init.sh" ]] && source "/home/$USER/.sdkman/bin/sdkman-init.sh"
 
 
