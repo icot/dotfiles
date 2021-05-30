@@ -1,0 +1,41 @@
+[user]
+	name = icot
+  email = icot@users.noreply.github.com
+[includeIf "gitdir:~/workspace/puppet/*/"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:~/workspace/cerndb/**"]
+  path = ~/.gitconfig-cern
+
+[branch]
+	autosetuprebase = always
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	unstage = reset HEAD --
+	visual = !gitk
+	br = branch -av
+[diff]
+	tool = kdiff3
+[merge]
+	tool = kdiff3
+[mergetool "vimdiff"]
+    keepBackup = false
+[mergetool "kdiff3"]
+	keepBackup = false
+[core]
+	excludesfile = /home/spike/.gitignore_global
+	editor = vi
+[push]
+	default = simple
+[http]
+	sslCAPath = /etc/ssl/certs/
+[credential]
+  helper = cache --timeout=3600
+[credential "https://git.overleaf.com"]
+  username = ignacio.coterillo.coz@cern.ch
+  helper = store
+[init]
+	defaultBranch = main
