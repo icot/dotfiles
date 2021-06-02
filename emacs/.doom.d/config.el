@@ -40,7 +40,7 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-material)
 
-(setq doom-theme 'doom-homage-white)
+(setq doom-theme 'doom-palenight)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -153,3 +153,17 @@
    (list
     (cfw:org-create-source "Green")
     (cfw:ical-create-source "Moon" "~/.calendars/Y2FsOi8vMC8yMjg.ics" "Blue"))))
+
+
+;; IRC
+(load! "+irc")
+
+;; MISC
+
+;; Set Auth Source to use pass
+;;   https://www.gnu.org/software/emacs/manual/html_mono/auth.html#Top
+(setq auth-sources '(password-store))
+
+(map! :leader :desc "eshell" :nv "ft" #'eshell)
+
+(setq geiser-active-implementations '(guile))

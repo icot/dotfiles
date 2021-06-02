@@ -20,6 +20,9 @@
 ;; Gemini
 (package! elpher)
 
+;; Guix
+(package! guix)
+
 ;; SLIME instead of SLY
 ;(package! sly :disable t)
 ;(package! sly-macrostep :disable t)

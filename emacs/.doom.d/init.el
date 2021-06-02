@@ -78,7 +78,7 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       ;;eshell            ; the elisp shell that works everywhere
+       eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
@@ -164,7 +164,7 @@
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       scheme            ; a fully conniving family of lisps
+       (scheme +guile +chez)     ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
@@ -179,8 +179,8 @@
        ;;(wanderlust +gmail)
 
        :app
-       calendar
-       ;;irc               ; how neckbeards socialize
+       ;; calendar
+       ;; irc               ; how neckbeards socialize
        (rss)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
