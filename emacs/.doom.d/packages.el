@@ -23,6 +23,9 @@
 ;; Guix
 (package! guix)
 
+;; Mail Notmuch
+(package! notmuch)
+
 ;; SLIME instead of SLY
 ;(package! sly :disable t)
 ;(package! sly-macrostep :disable t)

@@ -16,7 +16,7 @@
  '(jdee-db-requested-breakpoint-face-colors (cons "#100E23" "#95FFA4"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#100E23" "#565575"))
  '(objed-cursor-color "#FF8080")
- '(package-selected-packages '(guix ercn slime))
+ '(package-selected-packages '(notmuch guix ercn slime))
  '(pdf-view-midnight-colors (cons "#CBE3E7" "#1E1C31"))
  '(rustic-ansi-faces
    ["#1E1C31" "#FF8080" "#95FFA4" "#FFE9AA" "#91DDFF" "#C991E1" "#AAFFE4" "#CBE3E7"])
