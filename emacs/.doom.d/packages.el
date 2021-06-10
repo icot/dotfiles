@@ -26,6 +26,17 @@
 ;; Mail Notmuch
 (package! notmuch)
 
+;; ERC
+(package! emojify)
+
+;; EXWM
+(package! exwm)
+
+;; dired
+;; (package! dired-open)
+;; (package! all-the-icons-dired)
+
+
 ;; SLIME instead of SLY
 ;(package! sly :disable t)
 ;(package! sly-macrostep :disable t)

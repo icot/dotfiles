@@ -1,17 +1,17 @@
 ;;; ../.dotfiles/emacs/.doom.d/+irc.el -*- lexical-binding: t; -*-
 
 ;; IRC
+;;  Mostly taken from:
+;;  https://github.com/nbarrientos/dotfiles/blob/master/.emacs.d/init.el
 
 ;; erc-networks
 (use-package! erc-networks
-  :ensure nil
   :config
   (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
   (add-to-list 'erc-server-alist
                '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6697)))
 
 (use-package erc
-  :ensure nil
   :config
   (erc-spelling-mode)
   :custom
@@ -32,13 +32,11 @@
   (erc-server "irc.libera.chat"))
 
 (use-package! erc-join
-  :ensure nil
   :custom
   (erc-autojoin-timing 'ident)
   (erc-autojoin-channels-alist '(("libera.chat" "#x3"))))
 
 (use-package! erc-track
-  :ensure nil
   :config
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
     (add-to-list 'erc-track-exclude-types msg))
@@ -56,7 +54,6 @@
 
 (defvar my/libera-spikot-password (+pass-get-secret "liberachat/spikot"))
 (use-package! erc-services
-  :ensure nil
   :config
   (erc-services-mode 1)
   ;; This will be part of Emacs28
@@ -84,3 +81,13 @@
       (erc-track-switch-buffer 1)
       (erc-tls :server "irc.libera.chat" :port 6697 :nick "spikot")))
 
+;; From System Crafters https://www.youtube.com/watch?v=Qci8t_jpVGA
+;;
+;; erc-fools
+;; Inline images: (add-to-list 'erc-modules 'image)
+;;
+;; TODO: Take a look to (svg-lib)
+
+(use-package! emojify
+  :hook (erc-mode . emojify-mode)
+  :commands emojify-mode)

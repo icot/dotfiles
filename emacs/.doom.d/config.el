@@ -67,9 +67,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Load custom functions
-(load! "+functions")
-
 ;; Elfeed configuration
 (load! "+elfeed")
 ;;(map! :leader
@@ -141,9 +138,8 @@
 (add-to-list '+evil-collection-disabled-list 'grep)
 (add-to-list '+evil-collection-disabled-list 'compile)
 
-;;
-(after! 'magit
-  (push '("gitlab.cern.ch" "gitlab.cern.ch.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository) forge-alist))
+;; Gitlab
+(load! "+gitlab")
 
 ;; Calendar
 (defun my-open-calendar()
@@ -164,6 +160,15 @@
 ;;   https://www.gnu.org/software/emacs/manual/html_mono/auth.html#Top
 (setq auth-sources '(password-store))
 
-(map! :leader :desc "eshell" :nv "ft" #'eshell)
 
 (setq geiser-active-implementations '(guile))
+
+;; eshell: binding + popup rule
+(map! :leader :desc "eshell" :nv "ft" #'eshell)
+(set-popup-rule! "^\\*eshell" :side 'right :size 0.33 :slot 1 :select t :quit nil :ttl 0)
+
+(set-popup-rule! "^\\*vterm" :size 0.33 :vslot -4 :slot -4 :select t :quit nil :ttl 0)
+
+;; Load EXWM when on aoi host
+(if (string= "aoi" (system-name))
+    (load! "+exwm"))

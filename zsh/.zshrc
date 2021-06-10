@@ -115,6 +115,8 @@ alias talacritty='tabbed -c alacritty --embed'
 alias sbcl='rlwrap sbcl'
 alias clisp='rlwrap clisp'
 
+alias vi='vim'
+
 # Vi Mode
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
@@ -182,8 +184,14 @@ vterm_printf(){
 export GUIX_PROFILE="/home/$USER/.guix-profile"
 source $GUIX_PROFILE/etc/profile
 export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
+
 export PATH=$PATH:$GUIX_PROFILE/bin
 export PATH=$HOME/.config/guix/current/bin:$PATH
+
+export INFOPATH="${HOME}/.config/guix/current/share/info:${INFOPATH}"
+export MANPATH="${HOME}/.guix-profile/share/man:/usr/share/man:${MANPATH}"
+export XDG_CONFIG_DIRS="${HOME}/.desktop-profile/etc/xdg:${HOME}/.guix-profile/etc/xdg:$XDG_CONFIG_DIRS"
+export XDG_DATA_DIRS="${HOME}/.desktop-profile/share:${HOME}/.guix-profile/share:$XDG_DATA_DIRS"
 
 # NIX
 which nix > /dev/null
