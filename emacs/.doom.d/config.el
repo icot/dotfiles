@@ -40,7 +40,7 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-material)
 
-(setq doom-theme 'doom-palenight)
+(setq doom-theme (if (display-graphic-p) 'doom-palenight 'doom-1337))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
