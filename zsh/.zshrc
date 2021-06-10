@@ -102,7 +102,7 @@ alias mutt-gmail="mutt -F ~/.mutt/muttrc-gmail"
 alias mutt-cern="mutt -F ~/.mutt/muttrc-cern"
 alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
 alias cp2="rsync -avz"
-alias vi="unset PYTHONPATH;vi"
+alias vi="unset PYTHONPATH;vim"
 alias bat="bat -p"
 alias ec="emacs -nw"
 
@@ -116,6 +116,8 @@ alias talacritty='tabbed -c alacritty --embed'
 
 alias sbcl='rlwrap sbcl'
 alias clisp='rlwrap clisp'
+alias herd='sudo herd'
+alias reconfigure='sudo guix system reconfigure /home/spike/workspace/myguix/config.scm --verbosity=2'
 
 alias vi='vim'
 
