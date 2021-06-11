@@ -21,18 +21,18 @@
       exwm-input-prefix-keys '(?\M-x
                                ?\M-:)
       ;; Rebind
-      exwm-simulation  '(([?\C-a] . [home])
-                         ([?\C-e] . [end])
-                         ([?\C-d] . [delete])
-                         ([?\C-k] . [S-end delete]))
+      exwm-input-simulation-keys '(([?\C-a] . [home])
+                                   ([?\C-e] . [end])
+                                   ([?\C-d] . [delete])
+                                   ([?\C-k] . [S-end delete]))
       ;; EXWM bindings
-      exwm-input-global-keys '(([s-t . eshell])
-                               ([s-h . split-window-below])
-                               ([s-v . split-window-right])
-                               ([s-k . delete-window])
-                               ([s-b . balance-windows])
-                               ([s-p .
+      exwm-input-global-keys '(([s-t] . eshell)
+                               ([s-h] . split-window-below)
+                               ([s-v] . split-window-right)
+                               ([s-k] . delete-window)
+                               ([s-b] . balance-windows)
+                               ([s-p] .
                                      (lambda ()
                                        (interactive)
-                                       (start-process "" nil "rofi -show run"))])
-                               ([s-r . exwm-reset])))
+                                       (start-process "" nil "rofi -show run")))
+                               ([s-r] . exwm-reset)))
