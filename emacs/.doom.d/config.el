@@ -152,7 +152,7 @@
 
 
 ;; IRC
-(load! "+irc")
+;; (load! "+irc")
 
 ;; MISC
 
@@ -170,5 +170,5 @@
 (set-popup-rule! "^\\*vterm" :size 0.33 :vslot -4 :slot -4 :select t :quit nil :ttl 0)
 
 ;; Load EXWM when on aoi host
-(if (string= "aoi" (system-name))
-    (load! "+exwm"))
+;;(if (string= "aoi" (system-name))
+;;    (load! "+exwm"))
