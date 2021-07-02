@@ -1,0 +1,180 @@
+# Defaults
+Create Near
+Sync All
+Expunge Both
+SyncState *
+
+IMAPAccount gmail
+# Address to connect to
+Host imap.gmail.com
+User ignacio.coterillo@gmail.com
+# To store the password in an encrypted file use PassCmd instead of Pass
+PassCmd "pass gmail/apptoken"
+SSLType IMAPS
+AuthMechs LOGIN
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+Timeout 60
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/Inbox
+SubFolders Verbatim
+
+Channel gmail-inbox
+Far :gmail-remote:INBOX
+Near :gmail-local:INBOX
+
+Channel gmail-user
+Far :gmail-remote:
+Near :gmail-local:
+Patterns "\[Gmail\]/All Mail" "\[Gmail\]/Drafts" "\[Gmail\]/Sent Mail" "\[Gmail\]/Trash"
+
+Group gmail
+Channel gmail-user
+
+################################
+# CERN
+###############################
+IMAPAccount CERN
+Host cernmail.cern.ch
+User icoteril
+PassCmd "pass cern/icoteril"
+SSLType IMAPS
+AuthMechs LOGIN
+#AuthMechs GSSAPI
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+Timeout 60
+
+IMAPStore cern-remote
+Account CERN
+
+MaildirStore cern-local
+Path ~/mail/CERN/
+Inbox ~/mail/CERN/INBOX
+# Required for Archives/
+SubFolders Verbatim
+
+Channel INBOX
+Far :cern-remote:INBOX
+Near :cern-local:INBOX
+
+Channel AccountManagement
+Far ":cern-remote:ACCOUNT MANAGEMENT"
+Near :cern-local:Accounts
+
+Channel Archive
+Far ":cern-remote:Archives/2020"
+Near ":cern-local:Archives/2020"
+
+channel DBOD
+Far :cern-remote:DBOD
+Near :cern-local:DBOD
+
+Channel Trash
+Far ":cern-remote:Deleted Items"
+Near :cern-local:Trash
+
+Channel Drafts
+Far ":cern-remote:Drafts"
+Near :cern-local:Drafts
+
+Channel SNOW
+Far ":cern-remote:CERN Service Desk"
+Near :cern-local:SNOW
+
+Channel GNI
+Far ":cern-remote:GNI"
+Near :cern-local:GNI
+
+Channel root
+Far ":cern-remote:root"
+Near :cern-local:root
+
+Channel OSS
+Far ":cern-remote:OSS-Security"
+Near :cern-local:OSS
+
+Channel racmon
+Far ":cern-remote:RACMon2"
+Near :cern-local:RACMon
+
+Channel DBR
+Far ":cern-remote:DBR"
+Near :cern-local:DBR
+
+Channel JIRA
+Far ":cern-remote:CERN-JIRA"
+Near :cern-local:JIRA
+
+Channel Sent
+Far :cern-remote:Sent
+Near :cern-local:Sent
+
+Channel Sent-Items
+Far ":cern-remote:Sent Items"
+Near ":cern-local:SentItems"
+
+Channel Gitlab
+Far :cern-remote:Gitlab
+Near :cern-local:Gitlab
+
+Channel Hardware
+Far ":cern-remote:Hardware"
+Near :cern-local:Hardware
+
+Channel Junk
+Far ":cern-remote:Junk E-mail"
+Near :cern-local:JUNK
+
+Channel protodune
+Far :cern-remote:ProtoDUNE
+Near :cern-local:Protodune
+
+Channel RedHat
+Far :cern-remote:RedHat
+Near :cern-local:RedHat
+
+Channel ResourcePortal
+Far :cern-remote:ResourcePortal
+Near :cern-local:ResourcePortal
+
+Channel Storage
+Far :cern-remote:Storage
+Near :cern-local:Storage
+
+Channel TODELETE
+Far :cern-remote:TODELETE
+Near :cern-local:TODELETE
+
+## Group Definition
+Group cern
+Channel INBOX
+Channel AccountManagement
+Channel Archive
+Channel SNOW
+Channel JIRA
+Channel DBOD
+Channel DBR
+Channel Drafts
+# EDH
+# EM
+Channel GNI
+Channel Gitlab
+Channel Hardware
+Channel Junk
+# Junk
+Channel OSS
+# Outbox
+Channel protodune
+Channel racmon
+Channel RedHat
+Channel ResourcePortal
+Channel Sent
+Channel Sent-Items
+Channel Storage
+Channel TODELETE
+Channel Trash
+
