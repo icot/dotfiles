@@ -180,6 +180,7 @@ vterm_printf(){
     fi
 }
 
+
 # GUIX
 export GUIX_PROFILE="/home/$USER/.guix-profile"
 source $GUIX_PROFILE/etc/profile
@@ -192,6 +193,9 @@ export INFOPATH="${HOME}/.config/guix/current/share/info:${INFOPATH}"
 export MANPATH="${HOME}/.guix-profile/share/man:/usr/share/man:${MANPATH}"
 export XDG_CONFIG_DIRS="${HOME}/.desktop-profile/etc/xdg:${HOME}/.guix-profile/etc/xdg:$XDG_CONFIG_DIRS"
 export XDG_DATA_DIRS="${HOME}/.desktop-profile/share:${HOME}/.guix-profile/share:$XDG_DATA_DIRS"
+
+# raco pkg
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # NIX
 which nix > /dev/null
