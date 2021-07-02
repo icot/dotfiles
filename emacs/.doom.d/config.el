@@ -40,7 +40,7 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-material)
 
-(setq doom-theme (if (display-graphic-p) 'doom-sourcerer 'doom-1337))
+(setq doom-theme (if (display-graphic-p) 'doom-palenight 'doom-1337))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -106,7 +106,7 @@
    (interactive "nTransparency Value 0 - 100 opaque:")
    (set-frame-parameter (selected-frame) 'alpha value))
 
-(transparency 100)
+(transparency 99)
 
 ;;
 (setq org-startup-folded "fold")
@@ -160,15 +160,23 @@
 ;;   https://www.gnu.org/software/emacs/manual/html_mono/auth.html#Top
 (setq auth-sources '(password-store))
 
-
 (setq geiser-active-implementations '(guile))
 
 ;; eshell: binding + popup rule
 (map! :leader :desc "eshell" :nv "ft" #'eshell)
 (set-popup-rule! "^\\*eshell" :side 'right :size 0.33 :slot 1 :select t :quit nil :ttl 0)
-
 (set-popup-rule! "^\\*vterm" :size 0.33 :vslot -4 :slot -4 :select t :quit nil :ttl 0)
 
 ;; Load EXWM when on aoi host
 (if (string= "aoi" (system-name))
     (load! "+exwm"))
+
+;; PDF recommendations
+;; hlissner - https://www.reddit.com/r/emacs/comments/gshn9c/doom_emacs_as_a_pdf_viewer/
+;;(use-package! pdf-view
+  ;;:hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
+  ;;:hook (pdf-tools-enabled . hide-mode-line-mode)
+  ;;:config
+  ;;(setq pdf-view-midnight-colors '("#ABB2BF" . "#282C35")))
+
+(map! :leader :desc "Dired fuzzy search" :nv "d" #'dired)
