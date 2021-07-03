@@ -1,9 +1,9 @@
 [colors]
 
 ; Colors from Kitty Spacedust theme
-foreground = #ecefc1
-background = #0a1e24
-trans-background = #dd0a1e24
+trans-background = #dd282420
+foreground = #e5c6a8
+background = #282420
 
 [bar/i3bar]
 bottom = true
