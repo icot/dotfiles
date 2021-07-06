@@ -1,0 +1,32 @@
+[SpamFilter]
+[DKIMValidityFilter]
+[KillThreadsFilter]
+[ListMailsFilter]
+[ArchiveSentMailsFilter]
+
+[FolderNameFilter]
+folder_lowercases = true
+maildir_separator = /
+
+[HeaderMatchingFilter.1]
+message = GitLab message
+header = X-Gitlab-Project-Id
+pattern = "^(\d)+"
+tags = +gitlab
+
+[HeaderMatchingFilter.2]
+message = JIRA message
+header = X-JIRA-FingerPrint
+pattern = "^[a-zA-Z0-9]{32}"
+tags = +jira
+
+[HeaderMatchingFilter.3]
+message = SNOW Notification
+header = X-ServiceNow-Source
+pattern = "^Notification-"
+tags = +gni
+
+[InboxFilter]
+
+[MailMover]
+rename = True
