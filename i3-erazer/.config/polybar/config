@@ -1,9 +1,9 @@
 [colors]
 
 ; Colors from Kitty Spacedust theme
-foreground = #ecefc1
-background = #0a1e24
-trans-background = #dd0a1e24
+foreground = #e5c6a8
+background = #282420
+trans-background = #dd282420
 
 [bar/i3bar]
 bottom = true
@@ -39,11 +39,7 @@ modules-right = battery eth date powermenu
 tray-position = right
 tray-padding = 1
 tray-scale = 1.0
-tray-transparent = true
 tray-background = ${colors.trans-background}
-;tray-maxsize = 10
-;tray-offset-x = 80%
-;tray-detached = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
