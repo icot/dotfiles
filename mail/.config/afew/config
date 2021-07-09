@@ -7,26 +7,27 @@
 [FolderNameFilter]
 folder_lowercases = true
 maildir_separator = /
+folder_transforms = [gmail]:gmail
+
+[InboxFilter]
 
 [HeaderMatchingFilter.1]
 message = GitLab message
 header = X-Gitlab-Project-Id
 pattern = "^(\d)+"
-tags = +gitlab
+tags = +gitlab;-inbox
 
 [HeaderMatchingFilter.2]
 message = JIRA message
 header = X-JIRA-FingerPrint
 pattern = "^[a-zA-Z0-9]{32}"
-tags = +jira
+tags = +jira;-inbox
 
 [HeaderMatchingFilter.3]
 message = SNOW Notification
 header = X-ServiceNow-Source
 pattern = "^Notification-"
-tags = +gni
-
-[InboxFilter]
+tags = +gni;-inbox
 
 [MailMover]
 rename = True
