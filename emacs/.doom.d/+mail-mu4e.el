@@ -44,28 +44,7 @@
          (user-full-name "Ignacio Coterillo Coz"))
        ))
 
-;; Incompatible with doom-emacs? Is this coming from the spacemacs layer?
-;; (mu4e/mail-account-reset)
-
-
-;; From https://gist.github.com/adamrt/168dd81f2a1b6b363469
-(defun my-mu4e-set-msmtp-account ()
-  (if (message-mail-p)
-      (save-excursion
-        (let*
-            ((from (save-restriction
-                     (message-narrow-to-headers)
-                     (message-fetch-field "from")))
-             (account
-              (cond
-               ((string-match "gmail.com" from) "gmail")
-               ((string-match "cern.ch" from) "cern"))))
-          (setq message-sendmail-extra-arguments (list '"-a" account))))))
-(add-hook 'message-send-mail-hook 'my-mu4e-set-msmtp-account)
-
 ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts-example.html
-
-
 (setq mu4e-contexts
    `(,(make-mu4e-context
         :name "CERN"
@@ -147,19 +126,28 @@
 ;; Thread folding
 ;; https://github.com/rougier/mu4e-thread-folding
 
-;;(load! "mail/mu4e-thread-folding")
+(load! "mail/mu4e-thread-folding")
 
-;(add-to-list 'mu4e-header-info-custom
-;             '(:empty . (:name "Empty"
-;                         :shortname ""
-;                         :function (lambda (msg) "  "))))
-;(setq mu4e-headers-fields '((:empty         .    2)
-;                            (:human-date    .   12)
-;                            (:flags         .    6)
-;                            (:mailing-list  .   20)
-;                            (:from          .   28)
-;                            (:subject       .   nil)))
-;
-;(define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
-;(define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
-;(define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
+(add-to-list 'mu4e-header-info-custom
+             '(:empty . (:name "Empty"
+                         :shortname ""
+                         :function (lambda (msg) "  "))))
+
+(setq mu4e-headers-fields '((:empty         .    2)
+                            (:human-date    .   12)
+                            (:flags         .    6)
+                            (:mailing-list  .   20)
+;                            (:decryption  .   20)
+;                            (:signature  .   20)
+                            (:from          .   28)
+                            (:subject       .   nil)))
+
+(define-key mu4e-headers-mode-map (kbd "<tab>")     'mu4e-headers-toggle-at-point)
+(define-key mu4e-headers-mode-map (kbd "<left>")    'mu4e-headers-fold-at-point)
+(define-key mu4e-headers-mode-map (kbd "<right>")   'mu4e-headers-unfold-at-point)
+
+;; Signature verification on S/MIME emails can freeze due
+;; to CRL verification: See https://github.com/djcb/mu/issues/1501
+
+;;  Fix: disable-crl-checks on ./gnupg/gpgsm.conf
+

@@ -4,7 +4,6 @@
 ;; sync' after modifying this file!
 
 (map! :leader :desc "Dired fuzzy search" :nv "d" #'dired)
-
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
 
@@ -14,6 +13,9 @@
 (after! auto-compile
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
+
+;; Start server
+(server-start)
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -78,10 +80,33 @@
        (:prefix ("o" . "open")
         :desc "Elfeed" "e" #'elfeed))
 
-;; mu4e Configuration
+;; Mail configuration
+
+(setq message-send-mail-function 'message-send-mail-with-sendmail
+      message-sendmail-envelope-from 'header
+      message-kill-buffer-on-exit t
+      sendmail-program "/usr/bin/msmtp")
+
+(defun my-set-msmtp-account ()
+  (if (message-mail-p)
+      (save-excursion
+        (let*
+            ((from (save-restriction
+                     (message-narrow-to-headers)
+                     (message-fetch-field "from")))
+             (account
+              (cond
+               ((string-match "gmail.com" from) "gmail")
+               ((string-match "cern.ch" from) "cern"))))
+          (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+(add-hook 'message-send-mail-hook 'my-set-msmtp-account)
+
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (after! mu4e
-  (load! "+mail"))
+  (load! "+mail-mu4e"))
+(after! notmuch
+  (load! "+mail-notmuch"))
 
 ;; org-static-blog configuration
 (load! "+blog")
