@@ -102,7 +102,7 @@ alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
 alias cp2="rsync -avz"
 alias vi="unset PYTHONPATH;vi"
 alias bat="bat -p"
-alias ec="emacs -nw"
+alias ec="emacsclient -nw"
 
 alias l='exa -l --group-directories-first --git'
 alias ll='exa -l --all --all --group-directories-first --git'
