@@ -1,0 +1,2 @@
+#!/bin/sh
+$HOME/.guix-profile/bin/afew --tag --new

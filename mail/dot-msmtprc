@@ -1,0 +1,32 @@
+defaults
+domain cern.ch
+tls on
+# log file
+logfile ~/.msmtp.log
+
+# CERN Account
+account cern
+host cernsmtp.cern.ch
+from ignacio.coterillo.coz@cern.ch
+auth login
+#auth gssapi
+tls_starttls on
+tls_certcheck on
+port 587
+user icoteril
+passwordeval pass cern/icoteril
+
+# GMAIL Account
+account gmail
+host smtp.gmail.com
+from ignacio.coterillo@gmail.com
+auth login
+tls_starttls on
+tls_certcheck off
+port 587
+user ignacio.coterillo@gmail.com
+passwordeval pass gmail/apptoken
+
+# Set a default account
+account default : cern
+
