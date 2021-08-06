@@ -1,6 +1,4 @@
 [colors]
-
-; Colors from Kitty Spacedust theme
 foreground = #e5c6a8
 background = #282420
 trans-background = #dd282420
@@ -10,7 +8,7 @@ bottom = true
 monitor = DP-0
 width = 100%
 height = 30
-;radius = 5
+radius = 5
 
 background = ${colors.trans-background}
 foreground = ${colors.foreground}
@@ -27,12 +25,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Source Code Pro Semibold:size=10;1"
+font-0 = "Source Code Pro Semibold:size=12;1"
 font-1 = "Font Awesome 5 Free:style=Solid:size=10;1"
 font-2 = "Font Awesome 5 Brands:size=10;1"
 
 modules-left = i3
-modules-center = cpu memory 
+modules-center = cpu memory temperature
 modules-right = battery eth date powermenu
 
 
@@ -43,6 +41,11 @@ tray-background = ${colors.trans-background}
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/temperature]
+type = internal/temperature
+base-temperature = 20
+warn-temperature = 60
 
 [module/i3]
 type = internal/i3
