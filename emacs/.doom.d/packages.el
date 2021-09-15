@@ -32,6 +32,9 @@
 ;; EXWM
 (package! exwm)
 
+;; Graphviz
+(package! graphviz-dot-mode)
+
 ;; dired
 ;; (package! dired-open)
 ;; (package! all-the-icons-dired)
