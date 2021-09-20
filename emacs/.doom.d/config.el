@@ -109,7 +109,8 @@
   (load! "+mail-notmuch"))
 
 ;; org-static-blog configuration
-(load! "+blog")
+(if (file-exists-p "./+blog.el")
+    (load! "+blog"))
 
 ;;(map! :leader :desc "magit" "g s" #'magit)
 
