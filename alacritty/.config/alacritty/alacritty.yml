@@ -87,16 +87,16 @@
   #multiplier: 3
 
 # Font configuration
-font:
+#font:
   # Normal (roman) font face
-  normal:
+  #normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -135,7 +135,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 11.0
+  #size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -275,7 +275,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.96
+#background_opacity: 1.0
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -645,33 +645,31 @@ background_opacity: 0.96
 
   # Print all received window events.
   #print_events: false
-# Colors (Gruvbox dark)
+# Colors (Snazzy)
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '0x1d2021'
-    background: '0x282828'
-    # soft contrast: background = '0x32302f'
-    foreground: '0xebdbb2'
+    background: '0x282a36'
+    foreground: '0xeff0eb'
 
   # Normal colors
   normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0xa89984'
+    black:   '0x282a36'
+    red:     '0xff5c57'
+    green:   '0x5af78e'
+    yellow:  '0xf3f99d'
+    blue:    '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan:    '0x9aedfe'
+    white:   '0xf1f1f0'
 
   # Bright colors
   bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
+    black:   '0x686868'
+    red:     '0xff5c57'
+    green:   '0x5af78e'
+    yellow:  '0xf3f99d'
+    blue:    '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan:    '0x9aedfe'
+    white:   '0xf1f1f0'
