@@ -13,8 +13,7 @@ font xft:URWGothic-Book 12
 
 floating_modifier $mod
 
-bindsym $mod+t exec kitty
-#bindsym $mod+Return exec "~/bin/alacritty"
+bindsym $mod+t exec alacritty
 bindsym $mod+Return exec kitty
 
 # Window kill command
