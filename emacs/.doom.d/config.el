@@ -206,3 +206,8 @@
   ;;(setq pdf-view-midnight-colors '("#ABB2BF" . "#282C35")))
 
 (map! :leader :desc "Dired fuzzy search" :nv "d" #'dired)
+
+;; TRAMP
+
+(setq tramp-default-method "sshx")
+(setq tramp-verbose 10)
