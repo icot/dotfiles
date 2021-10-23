@@ -199,7 +199,6 @@ bar {
   workspace_buttons yes
 }
 
-# swaymsg -t get_inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_options caps:swapescape
 }
@@ -207,10 +206,10 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 # Autostart applications
 ## icot custom
 exec --no-startup-id "swaybg -i ~/dotfiles/artifacts/wallpapers/moebius/3100712.png"
-exec --no-startup-id lxqt-powermanagement
-exec --no-startup-id clipit
-exec --no-startup-id "sudo dhclient"
-exec --no-startup-id nm-applet
+#exec --no-startup-id lxqt-powermanagement
+#exec --no-startup-id clipit # clipman/wl-clipboard
+#exec --no-startup-id "sudo dhclient"
+# exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
