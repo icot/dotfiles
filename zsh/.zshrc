@@ -130,15 +130,10 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 # ENVIRONMENT
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:$HOME/Android/Sdk/platform-tools
-export PATH=$PATH:~/.rakudobrew/bin
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:/home/$USER/.gem/ruby/2.1.0/bin
 export GOPATH=~/workspace/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/home/$USER/.cargo/bin
-export PATH=$PATH:/home/$USER/apps/graalvm-ce-java11-20.3.0/bin
+#export PATH=$PATH:/home/$USER/apps/graalvm-ce-java11-20.3.0/bin
 
 # Set WMNAME for JAVA Apps compatibilty
 which wmname > /dev/null
