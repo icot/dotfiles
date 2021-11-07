@@ -28,6 +28,23 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
+;; Theme
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
+;; Add MELPA Repository
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+;;; Install nano-theme
+;(use-package nano-theme
+;  :ensure nil
+;  :defer t
+;  :quelpa (nano-theme
+;           :fetcher github
+;           :repo "rougier/nano-theme"))
 
 ;;; init.el ends here
