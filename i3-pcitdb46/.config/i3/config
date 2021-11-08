@@ -92,16 +92,36 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
+# Bars
+bar {
+    i3bar_command i3bar --transparency
+    strip_workspace_numbers yes
+    strip_workspace_name no
+    output DP-1
+    tray_output none
+}
+
+bar {
+    strip_workspace_numbers yes
+    strip_workspace_name no
+    status_command i3status
+    output DP-2
+}
+
 # workspaces
-set $ws1 1
-set $ws2 2
+set $ws1 "1: λ"
+set $ws2 "2: "
 set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
-set $ws8 8
-set $ws9 9
+set $ws8 "8: "
+set $ws9 "9: "
+
+workspace $ws1 output DP-2
+workspace $ws8 output DP-2
+workspace $ws9 output DP-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -207,7 +227,6 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 # Autostart applications
 ## icot custom
 exec_always --no-startup-id setxkbmap -option caps:swapescape
-exec_always --no-startup-id /$HOME/.config/polybar/i3bar.sh
 exec_always picom --inactive-dim 0.15 -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
