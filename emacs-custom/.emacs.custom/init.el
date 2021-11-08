@@ -19,7 +19,8 @@
 ;;
 ;;; Code:
 
-
+;; https://github.com/anderspollack/emacs-straight/blob/main/init.el
+;; https://systemcrafters.cc/advanced-package-management/using-straight-el/
 
 (provide 'init)
 
@@ -54,11 +55,35 @@
 
 (straight-use-package 'use-package)
 
-(straight-use-package '(nano-theme :type git :host github
-				   :repo "rougier/nano-theme"))
+; ensure use-package installs all packages without requiring :straight t (ex: (use-package evil :straight t))
+(setq straight-use-package-by-default t)
 
-        
-;;; Install nano-theme
+;; install packages
+(use-package org
+  :defer t)
+
+(use-package magit
+  :defer t)
+
+(use-package which-key
+  :config
+  (which-key-mode))
+
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil) ;; necessary for evil-collection
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  ;; (setq evil-want-C-u-scroll t)
+  :config
+  (evil-mode))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+;; Install nano-theme
 ;(use-package nano-theme
 ;  :ensure nil
 ;  :defer t
