@@ -24,21 +24,14 @@
 
 (provide 'init)
 
-;; Disable menu bar and scroll bar
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
-
-;; Theme
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
-
-;; Add MELPA Repository
+;; Add Repositories
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -57,8 +50,49 @@
 
 ; ensure use-package installs all packages without requiring :straight t (ex: (use-package evil :straight t))
 (setq straight-use-package-by-default t)
+(setq use-package-always-ensure t)
 
-;; install packages
+;;; Theme, Fonts, UI
+
+;; Disable menu bar and scroll bar
+(setq inhibit-startup-message t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+(set-fringe-mode 10)
+
+;; visible bell
+(setq visible-bell t)
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+
+(set-face-attribute 'default nil :height 120)
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+	 :map ivy-minibuffer-map
+	 ("TAB" . ivy-alt-done)
+	 ("C-l" . ivy-alt-done)
+	 ("C-j" . ivy-next-line)
+	 ("C-k" . ivy-previous-line)
+	 :map ivy-switch-buffer-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-l" . ivy-done)
+	 ("C-d" . ivy-switch-buffer-kill)
+	 :map ivy-reverse-i-search-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
+(use-package counsel
+  :defer t)
+
 (use-package org
   :defer t)
 
@@ -68,6 +102,9 @@
 (use-package which-key
   :config
   (which-key-mode))
+
+;;; TODO Evil
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package evil
   :init
@@ -83,13 +120,13 @@
   :config
   (evil-collection-init))
 
-;; Install nano-theme
-;(use-package nano-theme
-;  :ensure nil
-;  :defer t
-;  :quelpa (nano-theme
-;           :fetcher github
-;           :repo "rougier/nano-theme"))
+;; From doom evil config
+;; evil-goggles
+;; evil-nerd-commenter
+;; evil-easymotion
+;; evil-lion
+;; evil-snipe
+;; evil-embrace, evil-surround
 
 ;;; init.el ends here
 (custom-set-variables
