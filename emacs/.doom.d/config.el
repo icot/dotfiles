@@ -42,7 +42,7 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-material)
 
-(setq doom-theme (if (display-graphic-p) 'modus-operandi 'doom-1337))
+(setq doom-theme (if (display-graphic-p) 'doom-material 'doom-1337))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -190,7 +190,7 @@
 
 ;; eshell: binding + popup rule
 (map! :leader :desc "eshell" :nv "ft" #'eshell)
-(set-popup-rule! "^\\*eshell" :side 'right :size 0.33 :slot 1 :select t :quit nil :ttl 0)
+;(set-popup-rule! "^\\*eshell" :side 'right :size 0.33 :slot 1 :select t :quit nil :ttl 0)
 (set-popup-rule! "^\\*vterm" :size 0.33 :vslot -4 :slot -4 :select t :quit nil :ttl 0)
 
 ;; Load EXWM when on aoi host
