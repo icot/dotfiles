@@ -63,13 +63,25 @@
 
 ;; visible bell
 (setq visible-bell t)
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
-
 (set-face-attribute 'default nil :height 120)
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(use-package doom-themes)
+
+;; Line numbers
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		shell-mode-hook
+		eshell-mode-hook
+		help-mode-hook
+		magit-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0)))) 
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
@@ -90,8 +102,22 @@
   :config
   (ivy-mode 1))
 
+
 (use-package counsel
-  :defer t)
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 ("C-h C-t" . counsel-load-theme)
+	 :map minibuffer-local-map
+	 ("C-r" . counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
+
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; helpful -> enhaced help
 
 (use-package org
   :defer t)
@@ -100,8 +126,10 @@
   :defer t)
 
 (use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
   :config
-  (which-key-mode))
+  (setq which-key-idle-delay 0.3))
 
 ;;; TODO Evil
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -127,6 +155,13 @@
 ;; evil-lion
 ;; evil-snipe
 ;; evil-embrace, evil-surround
+
+;;; Languages
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :defer t) 
 
 ;;; init.el ends here
 (custom-set-variables
