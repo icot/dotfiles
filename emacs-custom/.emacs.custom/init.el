@@ -64,13 +64,15 @@
 ;; visible bell
 (setq visible-bell t)
 (set-face-attribute 'default nil :height 120)
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+;(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
+; requires all-the-icons font
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 
-(use-package doom-themes)
+(use-package doom-themes
+  :init (load-theme 'doom-snazzy t))
 
 ;; Line numbers
 (column-number-mode)
@@ -131,15 +133,39 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-;;; TODO Evil
+;;; TODO Evil, Keybindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+(use-package general)
+
+(general-create-definer icot/leader-keys
+			:keymaps '(normal insert visual emacs)
+			:prefix "SPC"
+			:global-prefix "C-SPC")
+
+(icot/leader-keys
+ "t" '(:ignore t :which-key "toggles")
+ "tt" '(counsel-load-theme :which-key "choose theme")
+ "g" '(:ignore t :which-key "git")
+ "gg" '(magit-status :which-key "magit-status"))
+
+; (define-key keymap key def)
+
+(defun icot/evil-hook ()
+  (dolist (mode '(custom-mode
+		  eshell-mode
+		  term-mode))
+    (add-to-list 'evil-emacs-state-modes mode)))
 
 (use-package evil
   :init
   (setq evil-want-keybinding nil) ;; necessary for evil-collection
+  (setq evil-want-integration t)
+  (setq evil-want-C-u-scroll t)
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
   ;; (setq evil-want-C-u-scroll t)
+  ;; :hook (evil-mode . icot/evil-hook)
   :config
   (evil-mode))
 
@@ -147,6 +173,9 @@
   :after evil
   :config
   (evil-collection-init))
+
+
+
 
 ;; From doom evil config
 ;; evil-goggles
