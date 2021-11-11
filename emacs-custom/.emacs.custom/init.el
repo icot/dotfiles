@@ -144,11 +144,18 @@
 			:global-prefix "C-SPC")
 
 (icot/leader-keys
- "t" '(:ignore t :which-key "toggles")
- "tt" '(counsel-load-theme :which-key "choose theme")
- "g" '(:ignore t :which-key "git")
- "gg" '(magit-status :which-key "magit-status"))
-
+  "e" '(:ignore t :which-key "eval")
+  "eb" '(eval-buffer :which-key "eval buffer")
+  "el" '(eval-last-sexp :which-key "eval last sexp")
+  "f" '(:ignore t :which-key "file")
+  "ff" '(counsel-find-file :which-key "find file")
+  "g" '(:ignore t :which-key "git")
+  "gg" '(magit-status :which-key "magit-status")
+  "t" '(:ignore t :which-key "toggles")
+  "tt" '(counsel-load-theme :which-key "choose theme")
+  ";" '(counsel-M-x :which-key "counsel-M-x")
+  ":" '(eval-expression :which-key "eval-expresion")) 
+ 
 ; (define-key keymap key def)
 
 (defun icot/evil-hook ()
@@ -174,11 +181,11 @@
   :config
   (evil-collection-init))
 
-
+;; Hydra -> Transient keybindings
 
 
 ;; From doom evil config
-;; evil-goggles
+;; evil-goggles 
 ;; evil-nerd-commenter
 ;; evil-easymotion
 ;; evil-lion
