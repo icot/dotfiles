@@ -24,6 +24,19 @@
 
 (provide 'init)
 
+;;; Basics
+(setq package-native-compile t)
+(setq comp-deferred-compilation t)
+(setq load-prefer-newer t)
+
+;;;; Auto-compile
+;;(setq load-prefer-newer t)
+;;(require 'auto-compile)
+;;(after! auto-compile
+;;  (auto-compile-on-load-mode)
+;;  (auto-compile-on-save-mode))
+
+
 ;; Store customizations in separate file
 (setq custom-file "~/.emacs.custom/custom.el")
 (load custom-file)
@@ -89,7 +102,22 @@
 		magit-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0)))) 
 
+;; hl-todo
+(use-package hl-todo
+  :config
+  (setq global-hl-todo-mode 1))
+
+;; TODO ligatures 
+;; (use-package ligature) ;; FIXME configure from repo
+
+; TODO posframe
+
+(use-package olivetti)
+
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
+
+;; company
+
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -123,10 +151,15 @@
   :init
   (ivy-rich-mode 1))
 
-;; helpful -> enhaced help
+;; Improved help  
 
+(use-package helpful)
+
+;;; Tools
 (use-package org
-  :defer t)
+  :defer t
+  :init
+  (setq org-directory "~/NextCloud/myorg/"))
 
 (use-package magit
   :defer t)
@@ -137,28 +170,49 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-;;; TODO Evil, Keybindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package general)
-
 (general-create-definer icot/leader-keys
 			:keymaps '(normal insert visual emacs)
 			:prefix "SPC"
 			:global-prefix "C-SPC")
 
 (icot/leader-keys
+  "b" '(:ignore t :which-key "buffer")
+  "bb" '(counsel-ibuffer :which-key "counsel-ibuffer")
   "e" '(:ignore t :which-key "eval")
   "eb" '(eval-buffer :which-key "eval buffer")
   "el" '(eval-last-sexp :which-key "eval last sexp")
   "f" '(:ignore t :which-key "file")
   "ff" '(counsel-find-file :which-key "find file")
+  "fP" '((lambda () ((interactive)
+		     (counsel-find-file nil "~/.emacs.custom"))) :which-key "Config folder") ;; FIXME
   "g" '(:ignore t :which-key "git")
   "gg" '(magit-status :which-key "magit-status")
+  "h" '(:ignore t :which-key "help")
+  "hk" '(helpful-key :which-key "help key")
+  "hf" '(helpful-function :which-key "help function")
+  "hv" '(helpful-variable :which-key "help variable")
+  "p" '(:ignore t :which-key "projectile")
+  "pp" '(projectile-switch-project :which-key "projectile-switch-project")
   "t" '(:ignore t :which-key "toggles")
   "tt" '(counsel-load-theme :which-key "choose theme")
+  "w" '(:ignore t :which-key "window")
+  "wh" '(evil-window-left :which-key "switch to left window")
+  "wj" '(evil-window-down :which-key "switch to bottom window")
+  "wk" '(evil-window-up :which-key "switch to top window")
+  "wl" '(evil-window-right :which-key "switch to right window")
+  "wH" '(evil-window-move-far-left :which-key "move window to the left")
+  "wJ" '(evil-window-move-very-bottom :which-key "move window to bottom")
+  "wK" '(evil-window-move-very-top :which-key "move window to the top")
+  "wL" '(evil-window-move-far-right :which-key "move window to the right")
+  "w_" '(evil-window-split :which-key "window split horizontal")
+  "w|" '(evil-window-vsplit :which-key "window split vertical")
+  "wn" '(evil-window-new :which-key "new window")
   ";" '(counsel-M-x :which-key "counsel-M-x")
-  ":" '(eval-expression :which-key "eval-expresion")) 
+  "/" '(counsel-rg :which-key "counsel-rg") ;; FIXME: effective directory
+  ":" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
 
@@ -187,7 +241,6 @@
 
 ;; Hydra -> Transient keybindings
 
-
 ;; From doom evil config
 (use-package evil-goggles)
 ;; evil-nerd-commenter
@@ -204,14 +257,33 @@
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
   (when (file-directory-p "~/workspace")
-    (setq projectile-project-search-path '("~/workspace")))
-  (setq projectile-switch-project-action '#'counsel-find-file))
+    (setq projectile-project-search-path '("~/workspace"
+					   "~/workspace/cerndb"
+					   "~/workspace/puppet"))))
+;;  (setq projectile-switch-project-action '#'counsel-find-file)) ;; FIXME
 
 ;;; Languages
-
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode)
-  :defer t) 
+  :defer t)
+
+;; FIXME init/config
+(use-package drag-stuff
+  :diminish t
+  :init
+  (setq drag-stuff-global-mode 1)
+  :config
+  (drag-stuff-define-keys))
+
+;; smartparents/peredit?
+
+;;; Terms
+;; TODO vterm
+;; TODO eshell 
+
+;; TRAMP
+(setq tramp-default-method "sshx")
+(setq tramp-verbose 10)
 
 ;;; init.el ends here
