@@ -22,6 +22,18 @@
 
 (provide 'init)
 
+(setq gc-cons-threshold (* 50 1000 1000))
+
+;; Fromh ttps://github.com/daviwil/emacs-from-scratch/blob/master/init.el 
+(defun icot/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                     (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'icot/display-startup-time)
+
 ;;; Basics
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
@@ -115,8 +127,12 @@
   :ensure t
   :hook (prog-mode . hl-todo-mode))
 
-;; TODO ligatures 
-;; (use-package ligature) ;; FIXME configure from repo
+;; TODO ligatures
+;; https://www.masteringemacs.org/article/unicode-ligatures-color-emoji
+(use-package unicode-fonts
+  :ensure t
+  :config
+  (unicode-fonts-setup))
 
 (use-package posframe
   :defer t)
@@ -150,9 +166,6 @@
   :init
   (ivy-posframe-mode 1))
 
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -163,6 +176,11 @@
 	 ("C-r" . counsel-minibuffer-history))
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
+
+(use-package ivy-rich
+  :after counsel
+  :init
+  (ivy-rich-mode 1))
 
 
 ;; Improved help  
@@ -290,12 +308,10 @@
   :hook (prog-mode . rainbow-delimiters-mode)
   :defer t)
 
-;; FIXME init/config
+;; drag-stuff
 (use-package drag-stuff
-  :diminish t
-  :init
-  (setq drag-stuff-global-mode 1)
   :config
+  (drag-stuff-global-mode t)
   (drag-stuff-define-keys))
 
 ;;; Terms
@@ -328,7 +344,7 @@
 ;; (load "+irc.el") ;; FIXME: doom macros (use-package!)
 
 ;; org-blog
-; (load "+blog") ;; FIXME: package installation (manual?)
+(load "+blog.el")
 
 ;; pdf-tools
 (use-package pdf-tools) 
@@ -340,4 +356,5 @@
 ;;; Programming language and tools
 (load "+programming.el")
 
+(setq gc-cons-threshold (* 2 1000 1000))
 ;;; init.el ends here

@@ -1,4 +1,13 @@
-;; Basics
+;;; +blog.el --- Description -*- lexical-binding: t; -*-
+
+(use-package org-static-blog
+  :defer t
+  :straight
+  (org-static-blog :type git
+		   :host github
+		   :repo "bastibe/org-static-blog"))
+
+;; TODO Move following lines to :config
 
 (setq org-static-blog-publish-title "icot.github.io"
       org-static-blog-publish-url "https://icot.github.io/"
