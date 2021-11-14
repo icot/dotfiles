@@ -17,8 +17,6 @@
 ;;
 ;;  Description
 ;;
-;;; Code:
-
 ;; https://github.com/anderspollack/emacs-straight/blob/main/init.el
 ;; https://systemcrafters.cc/advanced-package-management/using-straight-el/
 
@@ -29,8 +27,14 @@
 (setq comp-deferred-compilation t)
 (setq load-prefer-newer t)
 
+;;; Native modes
+;; Recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+
 ;;;; Auto-compile
-;;(setq load-prefer-newer t)
+(setq load-prefer-newer t)
 ;;(require 'auto-compile)
 ;;(after! auto-compile
 ;;  (auto-compile-on-load-mode)
@@ -40,6 +44,11 @@
 ;; Store customizations in separate file
 (setq custom-file "~/.emacs.custom/custom.el")
 (load custom-file)
+
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
+(setq user-full-name "Ignacio Coterillo"
+      user-mail-address "ignacio.coterillo@gmail.com")
 
 ;; Add Repositories
 (require 'package)
@@ -102,17 +111,18 @@
 		magit-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0)))) 
 
-;; hl-todo
 (use-package hl-todo
-  :config
-  (setq global-hl-todo-mode 1))
+  :ensure t
+  :hook (prog-mode . hl-todo-mode))
 
 ;; TODO ligatures 
 ;; (use-package ligature) ;; FIXME configure from repo
 
-; TODO posframe
+(use-package posframe
+  :defer t)
 
-(use-package olivetti)
+(use-package olivetti
+  :defer t)
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 
@@ -136,6 +146,13 @@
   :config
   (ivy-mode 1))
 
+(use-package ivy-posframe
+  :init
+  (ivy-posframe-mode 1))
+
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -147,12 +164,8 @@
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
 
 ;; Improved help  
-
 (use-package helpful)
 
 ;;; Tools
@@ -172,6 +185,8 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;;; Keybindings
+;; Hydra -> Transient keybindings
 (use-package general)
 (general-create-definer icot/leader-keys
 			:keymaps '(normal insert visual emacs)
@@ -186,6 +201,7 @@
   "el" '(eval-last-sexp :which-key "eval last sexp")
   "f" '(:ignore t :which-key "file")
   "ff" '(counsel-find-file :which-key "find file")
+  "fr" '(counsel-recentf :which-key "recent-files")
   "fP" '((lambda () ((interactive)
 		     (counsel-find-file nil "~/.emacs.custom"))) :which-key "Config folder") ;; FIXME
   "g" '(:ignore t :which-key "git")
@@ -197,7 +213,10 @@
   "p" '(:ignore t :which-key "projectile")
   "pp" '(projectile-switch-project :which-key "projectile-switch-project")
   "t" '(:ignore t :which-key "toggles")
+  "tp" '(ivy-pass :which-key "pass")
   "tt" '(counsel-load-theme :which-key "choose theme")
+  "tz" '(olivetti-mode :which-key "olivetti mode")
+  "tZ" '(olivetti-mode :which-key "olivetti full-screen") ;; TODO
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
   "wj" '(evil-window-down :which-key "switch to bottom window")
@@ -239,15 +258,18 @@
   :config
   (evil-collection-init))
 
-;; Hydra -> Transient keybindings
 
-;; From doom evil config
+;; Visually show areas of operation
 (use-package evil-goggles)
-;; evil-nerd-commenter
-;; evil-easymotion
-;; evil-lion
-;; evil-snipe
-;; evil-embrace, evil-surround
+
+;; Text alignment with gl and gL
+(use-package evil-lion
+  :diminish t
+  :ensure t
+  :config
+  (evil-lion-mode))
+
+;; evil-snipe: TODO check evil f/F/t/T
 
 ;;; Projectile
 (use-package projectile
@@ -276,14 +298,46 @@
   :config
   (drag-stuff-define-keys))
 
-;; smartparents/peredit?
-
 ;;; Terms
 ;; TODO vterm
 ;; TODO eshell 
 
+;;; TOOLS 
+
+(add-to-list 'load-path "~/.emacs.custom/lisp")
+
+;;; Auth/pass
+(use-package pass
+  :defer t)
+(use-package password-store
+  :defer t)
+(use-package ivy-pass
+  :defer t)
+
+;; Set Auth Source to use pass
+;;   https://www.gnu.org/software/emacs/manual/html_mono/auth.html#Top
+(setq auth-sources '(password-store))
+
+;; RSS
+(load "+elfeed.el")
+
+;; Mail
+(load "+mail-notmuch.el")
+
+;; IRC
+;; (load "+irc.el") ;; FIXME: doom macros (use-package!)
+
+;; org-blog
+; (load "+blog") ;; FIXME: package installation (manual?)
+
+;; pdf-tools
+(use-package pdf-tools) 
+
 ;; TRAMP
 (setq tramp-default-method "sshx")
 (setq tramp-verbose 10)
+
+;;; Programming language and tools
+(load "+programming.el")
 
 ;;; init.el ends here
