@@ -8,12 +8,15 @@
 
 ;; FIXME: straigh error: Could not find package erc-networks
 (use-package erc-networks
+  :defer t
+  :straight t
   :config
   (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
   (add-to-list 'erc-server-alist
                '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6697)))
 
 (use-package erc
+  :defer t
   :config
   (erc-spelling-mode)
   :custom
@@ -33,11 +36,13 @@
   (erc-nick "spikot")
   (erc-server "irc.libera.chat"))
 
+;; FIXME
 (use-package! erc-join
   :custom
   (erc-autojoin-timing 'ident)
   (erc-autojoin-channels-alist '(("libera.chat" "#x3"))))
 
+;; FIXME
 (use-package! erc-track
   :config
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
@@ -90,6 +95,6 @@
 ;;
 ;; TODO: Take a look to (svg-lib)
 
-(use-package! emojify
+(use-package emojify
   :hook (erc-mode . emojify-mode)
-  :commands emojify-mode)
+  :commands emojify-mode) 
