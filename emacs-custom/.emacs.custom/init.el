@@ -105,9 +105,9 @@
 ;; https://github.com/dholm/benchmark-init-el
 ;; FIXME Error (use-package): benchmark-init/:catch: Wrong number of arguments: (3 . 4), 2 Disable showing Disable logging
 ;;(use-package benchmark-init
-;;  :ensure t
+;; :ensure f
 ;;  :config
-;;  ;; To disable collection of benchmark data after init is done.
+  ;; To disable collection of benchmark data after init is done.
 ;;  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;;; Theme, Fonts, UI
@@ -161,9 +161,14 @@
 (use-package writeroom-mode
   :defer t
   :init
-  (setq writeroom-width 120))
-;  :config
-;  (add-hook 'writeroom-mode-hook #'(lambda () (text-scale-increase 1))))
+  (setq writeroom-width 120)
+  :config
+  (add-hook 'writeroom-mode-hook #'text-scale-increase)
+  (add-hook 'change-major-mode-hook #'text-scale-decrease))
+
+
+(use-package rg
+  :defer t)
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
@@ -239,6 +244,10 @@
 			:prefix "SPC"
 			:global-prefix "C-SPC")
 
+(defun icot/open-config-folder ()
+  (interactive)
+  (counsel-find-file nil "~/.emacs.custom"))
+  
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
@@ -248,8 +257,7 @@
   "f" '(:ignore t :which-key "file")
   "ff" '(counsel-find-file :which-key "find file")
   "fr" '(counsel-recentf :which-key "recent-files")
-  "fP" '((lambda () ((interactive)
-		     (counsel-find-file nil "~/.emacs.custom"))) :which-key "Config folder") ;; FIXME
+  "fP" '(icot/open-config-folder :which-key "Open config folder")
   "g" '(:ignore t :which-key "git")
   "gg" '(magit-status :which-key "magit-status")
   "h" '(:ignore t :which-key "help")
@@ -259,6 +267,7 @@
   "p" '(:ignore t :which-key "projectile")
   "pp" '(projectile-switch-project :which-key "projectile-switch-project")
   "t" '(:ignore t :which-key "toggles")
+  "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
   "tt" '(counsel-load-theme :which-key "choose theme")
   "tz" '(writeroom-mode :which-key "writeroom mode")
@@ -275,7 +284,7 @@
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
   ":" '(counsel-M-x :which-key "counsel-M-x")
-  "/" '(counsel-rg :which-key "counsel-rg") ;; FIXME: effective directory
+  "/" '(projectile-ripgrep :which-key "counsel-rg") ;; TODO copy doom behaviour
   ";" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
@@ -342,14 +351,18 @@
   (drag-stuff-define-keys))
 
 ;;; Terms
-;; TODO vterm
 (use-package vterm
-  :defer t)
+  :ensure t
+  :defer t
+  :config
+  (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
 
-;; TODO eshell 
+;; eshell start in new window
+(setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
+;; (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-frame)))
+
 
 ;;; TOOLS 
-
 (add-to-list 'load-path "~/.emacs.custom/lisp")
 
 ;;; Auth/pass
