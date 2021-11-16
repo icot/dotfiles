@@ -187,10 +187,10 @@
 (use-package ivy-posframe
   :init
   (ivy-posframe-mode 1))
-
-;; TODO Missing mapping to commands
-(use-package all-the-icons-ivy
-  :hook (after-init . all-the-icons-ivy-setup))
+;  :config
+;  (setq ivy-posframe-parameters
+;	'((left-fringe . 8)
+;	  (right-fring . 8))))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -206,6 +206,10 @@
   :after counsel
   :init
   (ivy-rich-mode 1))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
 
 ;; Improved help  
 (use-package helpful)
@@ -237,7 +241,7 @@
 
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
-  "bb" '(counsel-ibuffer :which-key "counsel-ibuffer")
+  "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
   "e" '(:ignore t :which-key "eval")
   "eb" '(eval-buffer :which-key "eval buffer")
   "el" '(eval-last-sexp :which-key "eval last sexp")
