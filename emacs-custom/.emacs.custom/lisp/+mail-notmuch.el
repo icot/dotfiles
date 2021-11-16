@@ -11,9 +11,25 @@
 ;;   - Doesn't seem possible via customization. The item to be display
 ;;   is a plist (or spec list) with :tags propoerty
 
-(setq mail-user-agent 'mu4e-user-agent
-      message-send-mail-function 'message-send-mail-with-sendmail
+(defun my-set-msmtp-account ()
+  (if (message-mail-p)
+      (save-excursion
+        (let*
+            ((from (save-restriction
+                     (message-narrow-to-headers)
+                     (message-fetch-field "from")))
+             (account
+              (cond
+               ((string-match "gmail.com" from) "gmail")
+               ((string-match "cern.ch" from) "cern"))))
+          (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+(add-hook 'message-send-mail-hook 'my-set-msmtp-account)
+
+(setq message-send-mail-function 'message-send-mail-with-sendmail
       message-sendmail-envelope-from 'header
+      message-kill-buffer-on-exit t
+      mail-user-agent 'mu4e-user-agent
       sendmail-program "/usr/bin/msmtp")
 
 (use-package notmuch

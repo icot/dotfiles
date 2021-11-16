@@ -34,6 +34,18 @@
 
 (add-hook 'emacs-startup-hook #'icot/display-startup-time)
 
+
+;; https://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs
+(defun icot/package-reinstall-all-activated-packages ()
+  "Refresh and reinstall all activated packages."
+  (interactive)
+  (package-refresh-contents)
+  (dolist (package-name package-activated-list)
+    (when (package-installed-p package-name)
+      (unless (ignore-errors                   ;some packages may fail to install
+                (package-reinstall package-name))
+        (warn "Package %s failed to reinstall" package-name)))))
+
 ;;; Basics
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
@@ -44,13 +56,6 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-
-;;;; Auto-compile
-(setq load-prefer-newer t)
-;;(require 'auto-compile)
-;;(after! auto-compile
-;;  (auto-compile-on-load-mode)
-;;  (auto-compile-on-save-mode))
 
 
 ;; Store customizations in separate file
@@ -89,6 +94,21 @@
 ; ensure use-package installs all packages without requiring :straight t (ex: (use-package evil :straight t))
 (setq straight-use-package-by-default t)
 (setq use-package-always-ensure t)
+
+;;;; Auto-compile
+(setq load-prefer-newer t)
+(use-package auto-compile
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
+
+;; https://github.com/dholm/benchmark-init-el
+;; FIXME Error (use-package): benchmark-init/:catch: Wrong number of arguments: (3 . 4), 2 Disable showing Disable logging
+;;(use-package benchmark-init
+;;  :ensure t
+;;  :config
+;;  ;; To disable collection of benchmark data after init is done.
+;;  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;;; Theme, Fonts, UI
 
@@ -137,13 +157,15 @@
 (use-package posframe
   :defer t)
 
-(use-package olivetti
-  :defer t)
+;; FIXME font-size increase/decrease
+(use-package writeroom-mode
+  :defer t
+  :init
+  (setq writeroom-width 120))
+;  :config
+;  (add-hook 'writeroom-mode-hook #'(lambda () (text-scale-increase 1))))
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
-
-;; company
-
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -166,6 +188,9 @@
   :init
   (ivy-posframe-mode 1))
 
+;; TODO Missing mapping to commands
+(use-package all-the-icons-ivy
+  :hook (after-init . all-the-icons-ivy-setup))
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -181,7 +206,6 @@
   :after counsel
   :init
   (ivy-rich-mode 1))
-
 
 ;; Improved help  
 (use-package helpful)
@@ -233,8 +257,7 @@
   "t" '(:ignore t :which-key "toggles")
   "tp" '(ivy-pass :which-key "pass")
   "tt" '(counsel-load-theme :which-key "choose theme")
-  "tz" '(olivetti-mode :which-key "olivetti mode")
-  "tZ" '(olivetti-mode :which-key "olivetti full-screen") ;; TODO
+  "tz" '(writeroom-mode :which-key "writeroom mode")
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
   "wj" '(evil-window-down :which-key "switch to bottom window")
@@ -247,9 +270,9 @@
   "w_" '(evil-window-split :which-key "window split horizontal")
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
-  ";" '(counsel-M-x :which-key "counsel-M-x")
+  ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg") ;; FIXME: effective directory
-  ":" '(eval-expression :which-key "eval-expresion"))
+  ";" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
 
@@ -316,6 +339,9 @@
 
 ;;; Terms
 ;; TODO vterm
+(use-package vterm
+  :defer t)
+
 ;; TODO eshell 
 
 ;;; TOOLS 
@@ -347,7 +373,10 @@
 (load "+blog.el")
 
 ;; pdf-tools
-(use-package pdf-tools) 
+(use-package pdf-tools
+  :defer t
+  :config
+  (pdf-tools-install))
 
 ;; TRAMP
 (setq tramp-default-method "sshx")
