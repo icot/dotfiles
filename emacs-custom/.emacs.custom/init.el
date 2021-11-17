@@ -22,8 +22,6 @@
 
 (provide 'init)
 
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;; Fromh ttps://github.com/daviwil/emacs-from-scratch/blob/master/init.el 
 (defun icot/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
@@ -134,7 +132,6 @@
 
 ;; Line numbers
 (column-number-mode)
-(global-display-line-numbers-mode t)
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		shell-mode-hook
@@ -161,14 +158,15 @@
 (use-package writeroom-mode
   :defer t
   :init
-  (setq writeroom-width 120)
-  :config
-  (add-hook 'writeroom-mode-hook #'text-scale-increase)
-  (add-hook 'change-major-mode-hook #'text-scale-decrease))
+  (setq writeroom-width 120))
+;;  :config
+;;  (add-hook 'writeroom-mode-hook #'text-scale-increase)
+;;  (add-hook 'writeroom-mode-hook #'global-display-line-numbers-mode)
+;;  (add-hook 'change-major-mode-hook #'text-scale-decrease)
+;;  (add-hook 'change-major-mode-hook #'global-display-line-numbers-mode))
 
-
-(use-package rg
-  :defer t)
+;;(use-package rg
+;;  :defer t)
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
@@ -223,7 +221,9 @@
 (use-package org
   :defer t
   :init
-  (setq org-directory "~/NextCloud/myorg/"))
+  (setq org-directory "~/Nextcloud/myorg/")
+  (setq org-agenda-files `(,org-directory)))
+			  
 
 (use-package magit
   :defer t)
@@ -264,6 +264,8 @@
   "hk" '(helpful-key :which-key "help key")
   "hf" '(helpful-function :which-key "help function")
   "hv" '(helpful-variable :which-key "help variable")
+  "o" '(:ignore t :which-key "org")
+  "ot" '(org-todo-list :which-key "org TODO list")
   "p" '(:ignore t :which-key "projectile")
   "pp" '(projectile-switch-project :which-key "projectile-switch-project")
   "t" '(:ignore t :which-key "toggles")
@@ -284,7 +286,7 @@
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
   ":" '(counsel-M-x :which-key "counsel-M-x")
-  "/" '(projectile-ripgrep :which-key "counsel-rg") ;; TODO copy doom behaviour
+;;  "/" '(projectile-ripgrep :which-key "counsel-rg") ;; TODO copy doom behaviour
   ";" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
@@ -402,5 +404,6 @@
 ;;; Programming language and tools
 (load "+programming.el")
 
+;;; Reset gc-cons-threshold
 (setq gc-cons-threshold (* 2 1000 1000))
 ;;; init.el ends here
