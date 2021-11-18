@@ -2,14 +2,13 @@
 ;;
 ;; Copyright (C) 2021 Ignacio Coterillo
 ;;
-;; Author: Ignacio Coterillo <https://github.com/spike>
+;; Author: Ignacio Coterillo <https://github.com/icot>
 ;; Maintainer: Ignacio Coterillo <ignacio.coterillo@gmail.com>
 ;; Created: November 07, 2021
-;; Modified: November 07, 2021
-;; Version: 0.0.1
-;; Keywords: abbrev bib c calendar comm convenience data docs emulations extensions faces files frames games hardware help hypermedia i18n internal languages lisp local maint mail matching mouse multimedia news outlines processes terminals tex tools unix vc wp
-;; Homepage: https://github.com/spike/init
-;; Package-Requires: ((emacs "24.3"))
+;; Modified: November 18, 2021
+;; Version: 0.1
+;; Homepage: https://github.com/icot/dotfiles
+;; Package-Requires: ((emacs "28.5"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -21,6 +20,8 @@
 ;; https://systemcrafters.cc/advanced-package-management/using-straight-el/
 
 (provide 'init)
+
+(add-to-list 'load-path "~/.emacs.custom/lisp")
 
 ;; Fromh ttps://github.com/daviwil/emacs-from-scratch/blob/master/init.el 
 (defun icot/display-startup-time ()
@@ -100,13 +101,19 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;;; Init benchmarking
 ;; https://github.com/dholm/benchmark-init-el
-;; FIXME Error (use-package): benchmark-init/:catch: Wrong number of arguments: (3 . 4), 2 Disable showing Disable logging
-;;(use-package benchmark-init
-;; :ensure f
-;;  :config
-  ;; To disable collection of benchmark data after init is done.
-;;  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+;; Error (use-package): benchmark-init/:catch: Wrong number of arguments: (3 . 4), 2 Disable showing Disable logging
+;; https://github.com/hlissner/doom-emacs/issues/4534
+;; https://gist.github.com/hlissner/175c21000114d1dba7a47678191a888a
+(load "wrong-args-fix.el")
+
+(use-package benchmark-init
+ :ensure f
+  :config
+;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;;; Theme, Fonts, UI
 
@@ -338,7 +345,6 @@
     (setq projectile-project-search-path '("~/workspace"
 					   "~/workspace/cerndb"
 					   "~/workspace/puppet"))))
-;;  (setq projectile-switch-project-action '#'counsel-find-file)) ;; FIXME
 
 ;;; Languages
 (use-package rainbow-delimiters
@@ -365,9 +371,8 @@
 
 
 ;;; TOOLS 
-(add-to-list 'load-path "~/.emacs.custom/lisp")
 
-;;; Auth/pass
+;; Auth/pass
 (use-package pass
   :defer t)
 (use-package password-store
