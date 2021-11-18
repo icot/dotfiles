@@ -4,16 +4,6 @@
 ;;  Mostly taken from:
 ;;  https://github.com/nbarrientos/dotfiles/blob/master/.emacs.d/init.el
 
-;; erc-networks
-
-;; FIXME: straigh error: Could not find package erc-networks
-(use-package erc-networks
-  :defer t
-  :straight t
-  :config
-  (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
-  (add-to-list 'erc-server-alist
-               '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6697)))
 
 (use-package erc
   :defer t
@@ -36,65 +26,59 @@
   (erc-nick "spikot")
   (erc-server "irc.libera.chat"))
 
-;; FIXME
-(use-package! erc-join
-  :custom
-  (erc-autojoin-timing 'ident)
-  (erc-autojoin-channels-alist '(("libera.chat" "#x3"))))
+(require 'erc-networks)
+(add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
+(add-to-list 'erc-server-alist
+	    '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6697))
 
-;; FIXME
-(use-package! erc-track
-  :config
-  (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
-    (add-to-list 'erc-track-exclude-types msg))
-  :custom
-  (erc-format-query-as-channel-p nil)
-  (erc-track-priority-faces-only 'all)
-  (erc-track-faces-priority-list
-   '(erc-error-face
-     erc-current-nick-face
-     erc-keyword-face
-     erc-nick-msg-face
-     erc-direct-msg-face
-     erc-notice-face
-     erc-prompt-face)))
+(require 'erc-join)
+(setq erc-autojoin-timing 'ident)
+(setq erc-autojoin-channels-alist '(("libera.chat" "#x3")))
 
-(defvar my/libera-spikot-password (+pass-get-secret "liberachat/spikot"))
-(use-package! erc-services
-  :config
-  (erc-services-mode 1)
-  ;; This will be part of Emacs28
-  (add-to-list 'erc-nickserv-alist
-               '(Libera.Chat
-                 "NickServ!NickServ@services.libera.chat"
-                 "This\\s-nickname\\s-is\\s-registered.\\s-Please\\s-choose"
-                 "NickServ"
-                 "IDENTIFY" nil nil
-                 "You\\s-are\\s-now\\s-identified\\s-for\\s-"))
-  :custom
-  (erc-prompt-for-nickserv-password nil)
-  (erc-nickserv-passwords
-   `((Libera.Chat
-      (("spikot" . ,my/libera-spikot-password))))))
+(require 'erc-track)
+(dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
+  (add-to-list 'erc-track-exclude-types msg))
 
-(defun my/erc-identify ()
+(setq erc-format-query-as-channel-p nil)
+(setq erc-track-priority-faces-only 'all)
+(setq erc-track-faces-priority-list
+      '(erc-error-face
+	erc-current-nick-face
+	erc-keyword-face
+	erc-nick-msg-face
+	erc-direct-msg-face
+	erc-notice-face
+	erc-prompt-face))
+
+(defvar icot/libera-spikot-password (password-store-get "liberachat/spikot"))
+
+(require 'erc-services)
+(erc-services-mode 1)
+;; This will be part of Emacs28
+(add-to-list 'erc-nickserv-alist
+	    '(Libera.Chat
+		"NickServ!NickServ@services.libera.chat"
+		"This\\s-nickname\\s-is\\s-registered.\\s-Please\\s-choose"
+		"NickServ"
+		"IDENTIFY" nil nil
+		"You\\s-are\\s-now\\s-identified\\s-for\\s-"))
+(setq erc-prompt-for-nickserv-password nil)
+(setq erc-nickserv-passwords
+`((Libera.Chat
+    (("spikot" . ,icot/libera-spikot-password)))))
+
+(defun icot/erc-identify ()
   (interactive)
-  (erc-nickserv-identify (+pass-get-secret "liberachat/spikot")))
+  (erc-nickserv-identify (password-store-copy "liberachat/spikot")))
 
-(defun my/erc-start-or-switch ()
+(defun icot/erc-start-or-switch ()
   "Connects to ERC, or switch to last active buffer."
   (interactive)
   (if (get-buffer "irc.libera.chat:6697")
       (erc-track-switch-buffer 1)
       (erc-tls :server "irc.libera.chat" :port 6697 :nick "spikot")))
 
-;; From System Crafters https://www.youtube.com/watch?v=Qci8t_jpVGA
-;;
-;; erc-fools
-;; Inline images: (add-to-list 'erc-modules 'image)
-;;
-;; TODO: Take a look to (svg-lib)
-
 (use-package emojify
+  :defer t
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode) 

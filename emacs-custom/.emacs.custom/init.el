@@ -391,7 +391,7 @@
 (load "+mail-notmuch.el")
 
 ;; IRC
-;; (load "+irc.el") ;; FIXME: doom macros (use-package!)
+(load "+irc.el")
 
 ;; org-blog
 (load "+blog.el")
