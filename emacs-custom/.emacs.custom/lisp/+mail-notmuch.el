@@ -36,26 +36,23 @@
   :defer t
   :config
   (setq
-        ;; Syncing (manage externally)
-        +notmuch-sync-backend 'custom
-        +notmuch-get-sync-command "true"
-        ;; General UI
-        notmuch-show-logo nil
-        notmuch-column-control t
-        notmuch-hello-auto-refresh t
-        notmuch-hello-recent-searches-max 20
-        notmuch-hello-thousands-separator ""
-        notmuch-show-all-tags-list nil
-        ;;; Search
-        notmuch-search-oldest-first nil
-        notmuch-saved-searches `(
-                (:name "inbox" :query "tag:inbox not tag:trash" :key "i")
-                (:name "recent" :query "tag:inbox date:15_days..  not tag:trash" :key "r")
-                (:name "flagged" :query "tag:flagged" :key "f")
-                (:name "todo" :query "tag:todo not tag:archived" :key "t")
-                (:name "events" :query "attachment:ics not tag:trash" :key "e")
-                (:name "sent" :query "tag:sent" :key "s")
-                (:name "drafts" :query "tag:draft" :key "d")))
+    ;; General UI
+    notmuch-show-logo nil
+    notmuch-column-control t
+    notmuch-hello-auto-refresh t
+    notmuch-hello-recent-searches-max 20
+    notmuch-hello-thousands-separator ""
+    notmuch-show-all-tags-list nil
+    ;;; Search
+    notmuch-search-oldest-first nil
+    notmuch-saved-searches `(
+	    (:name "inbox" :query "tag:inbox not tag:trash" :key "i" :sort-order newest-first)
+	    (:name "recent" :query "tag:inbox date:15_days..  not tag:trash" :key "r" :sort-order newest-first)
+	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first)
+	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first)
+	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first)
+	    (:name "sent" :query "tag:sent" :key "s" :sort-order newest-first)
+	    (:name "drafts" :query "tag:draft" :key "d" :sort-order newest-first)))
   ;; Separate the sections override so it takes our modified saved searches
   (setq notmuch-hello-sections '(
                           notmuch-hello-insert-saved-searches
@@ -66,8 +63,4 @@
           ("count" . "%-7s ")
           ("authors" . "%-30s ")
           ("subject" . "%-72s ")
-          ("tags" . "(%s)")))
-  ;; Override home function
-  ;; TODO: something off in switch-back
-  (setq +notmuch-home-function (lambda () (notmuch-search "date:15_days.."))))
-
+          ("tags" . "(%s)"))))
