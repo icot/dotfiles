@@ -278,7 +278,8 @@
   "t" '(:ignore t :which-key "toggles")
   "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
-  "tt" '(counsel-load-theme :which-key "choose theme")
+  "tc" '(counsel-load-theme :which-key "choose color theme")
+  "ts" '(eshell :which-key "toggle terminal (eshell)")
   "tz" '(writeroom-mode :which-key "writeroom mode")
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
@@ -365,10 +366,8 @@
   :config
   (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
 
-;; eshell start in new window
+;; For new frame: display-buffer-pop-up-frame
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
-;; (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-frame)))
-
 
 ;;; TOOLS 
 
