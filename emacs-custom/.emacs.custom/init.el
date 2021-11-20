@@ -1,4 +1,5 @@
 ;;; init.el --- Description -*- lexical-binding: t; -*-
+
 ;;
 ;; Copyright (C) 2021 Ignacio Coterillo
 ;;
@@ -68,6 +69,7 @@
 
 ;; Add Repositories
 (require 'package)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -127,15 +129,12 @@
 ;; visible bell
 (setq visible-bell t)
 (set-face-attribute 'default nil :height 120)
-;(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-vivendi)))
 
 ; requires all-the-icons font
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
-
-(use-package doom-themes
-  :init (load-theme 'modus-operandi t))
 
 ;; Line numbers
 (column-number-mode)
