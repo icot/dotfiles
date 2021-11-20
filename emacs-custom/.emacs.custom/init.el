@@ -129,6 +129,7 @@
 ;; visible bell
 (setq visible-bell t)
 (set-face-attribute 'default nil :height 120)
+(global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-vivendi)))
 
 ; requires all-the-icons font
