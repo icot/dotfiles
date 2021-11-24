@@ -21,12 +21,12 @@
                     ,@%slot-default%))))
 
 ;;setting new buffer url and having nyxt start full screen
-(defmethod nyxt::startup ((browser browser) urls)
-  "Home"
-  (window-make browser)
-  (let ((window (current-window)))
-    (window-set-buffer window (make-buffer :url (quri:uri "https://nyxt.atlas.engineer/")))
-    (toggle-fullscreen window)))
+;(defmethod nyxt::startup ((browser browser) urls)
+;  "Home"
+;  (window-make browser)
+;  (let ((window (current-window)))
+;    (window-set-buffer window (make-buffer :url (quri:uri "https://nyxt.atlas.engineer/")))
+;    (toggle-fullscreen window)))
 
 ;;when reloading init.lisp file shows in message bar once finished
 (echo "Loaded config.")

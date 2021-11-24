@@ -271,8 +271,9 @@
   "hk" '(helpful-key :which-key "help key")
   "hf" '(helpful-function :which-key "help function")
   "hv" '(helpful-variable :which-key "help variable")
-  "o" '(:ignore t :which-key "org")
+  "o" '(:ignore t :which-key "open")
   "ot" '(org-todo-list :which-key "org TODO list")
+  "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
   "p" '(:ignore t :which-key "projectile")
   "pp" '(projectile-switch-project :which-key "projectile-switch-project")
   "t" '(:ignore t :which-key "toggles")
@@ -298,7 +299,6 @@
   ";" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
-
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
 		  eshell-mode
