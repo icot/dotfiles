@@ -2,10 +2,10 @@
 
 ;;loading of config files
 ;;add theme here
-(nyxt::load-lisp "~/.config/nyxt/themes/standard-dark.lisp")
+;;(nyxt::load-lisp "~/.config/nyxt/themes/standard-dark.lisp")
 ;;base
 (nyxt::load-lisp "~/.config/nyxt/base/keybindings.lisp")
-(nyxt::load-lisp "~/.config/nyxt/base/urlprompt.lisp")
+;(nyxt::load-lisp "~/.config/nyxt/base/urlprompt.lisp")
 (nyxt::load-lisp "~/.config/nyxt/base/commands.lisp")
 (nyxt::load-lisp "~/.config/nyxt/base/glyphs.lisp")
 ;;extending
@@ -14,6 +14,10 @@
 ;;configuration for browser
 (define-configuration browser
   ((session-restore-prompt :never-restore)))
+
+;; Configurign Keybindings
+(define-configuration buffer
+  ((default-modes (append '(vi-normal-mode) %slot-default%))))
 
 ;;configuration for buffer and nosave buffer to have reduce tracking by default
 (define-configuration (web-buffer nosave-buffer)
