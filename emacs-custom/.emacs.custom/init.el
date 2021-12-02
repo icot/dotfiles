@@ -65,7 +65,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Ignacio Coterillo"
-      user-mail-address "ignacio.coterillo@gmail.com")
+      user-mail-address "ignacio.coterillo.coz@cern.ch")
 
 ;; Add Repositories
 (require 'package)
@@ -131,6 +131,9 @@
 (set-face-attribute 'default nil :height 120)
 (global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-vivendi)))
+
+;; Enable electric-pair-mode
+(electric-pair-mode 1)
 
 ; requires all-the-icons font
 (use-package doom-modeline
@@ -224,13 +227,28 @@
 ;; Improved help  
 (use-package helpful)
 
-;;; Tools
+;;;; Tools
+
+;;; ORG
+
+;; https://emacs.stackexchange.com/questions/10029/org-mode-how-to-create-an-org-mode-markup-keybinding
+
+(defvar org-electric-pairs '((?\* . ?\*) (?/ . ?/) (?= . ?=)
+                             (?\_ . ?\_) (?~ . ?~) (?+ . ?+)) "Electric pairs for org-mode.")
+
+(defun icot/org-add-electric-pairs ()
+  (setq-local electric-pair-pairs (append electric-pair-pairs org-electric-pairs))
+  (setq-local electric-pair-text-pairs electric-pair-pairs))
+
 (use-package org
   :defer t
   :init
+  (setq org-startup-with-inline-images t)
   (setq org-directory "~/Nextcloud/myorg/")
-  (setq org-agenda-files `(,org-directory)))
+  (setq org-agenda-files `(,org-directory))
+  :hook (org-mode . icot/org-add-electric-pairs))
 			  
+;;;
 
 (use-package magit
   :defer t)
@@ -335,7 +353,7 @@
 
 ;; evil-snipe: TODO check evil f/F/t/T
 
-;;; Projectile
+;;; Projectile TODO project discovery, improve search-path load time
 (use-package projectile
   :diminish projectile-mode
   :custom ((projectile-completion-system 'ivy))
