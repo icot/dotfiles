@@ -1,4 +1,4 @@
-;;; init.el --- Description -*- lexical-binding: t; -*-
+ ;;; init.el --- Description -*- lexical-binding: t; -*-
 
 ;;
 ;; Copyright (C) 2021 Ignacio Coterillo
@@ -164,19 +164,29 @@
 (use-package posframe
   :defer t)
 
-;; FIXME font-size increase/decrease
-(use-package writeroom-mode
-  :defer t
-  :init
-  (setq writeroom-width 120))
-;;  :config
-;;  (add-hook 'writeroom-mode-hook #'text-scale-increase)
-;;  (add-hook 'writeroom-mode-hook #'global-display-line-numbers-mode)
-;;  (add-hook 'change-major-mode-hook #'text-scale-decrease)
-;;  (add-hook 'change-major-mode-hook #'global-display-line-numbers-mode))
 
-;;(use-package rg
-;;  :defer t)
+;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
+(use-package olivetti
+  :diminish
+  :config
+  (setq olivetti-body-width 0.65
+	olivetti-minimum-body-width 72
+	olivetti-recall-visual-line-mode-entry-state t)
+  (define-minor-mode icot/olivetti-mode
+    "additional olivetti mode parameters"
+    :init-value nil
+    :global nil
+    (if (bound-and-true-p icot/olivetti-mode)
+	(progn
+	  (olivetti-mode 1)
+	  (text-scale-increase 1))
+      (progn
+	(text-scale-decrease 1)
+	(olivetti-mode -1)))))
+
+;; FIXME Uses deprecated cl
+(use-package rg
+  :defer t)
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
@@ -299,7 +309,7 @@
   "tp" '(ivy-pass :which-key "pass")
   "tc" '(counsel-load-theme :which-key "choose color theme")
   "ts" '(eshell :which-key "toggle terminal (eshell)")
-  "tz" '(writeroom-mode :which-key "writeroom mode")
+  "tz" '(icot/olivetti-mode :which-key "Olivetti Mode")
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
   "wj" '(evil-window-down :which-key "switch to bottom window")
