@@ -166,6 +166,15 @@
 
 
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
+
+;; https://gist.github.com/rnkn/a522429ed7e784ae091b8760f416ecf8
+(defun icot/toggle-hide-mode-line ()
+  "Toggle mode-line visibility in current buffer."
+  (interactive)
+  (if mode-line-format
+      (setq-local mode-line-format nil)
+    (kill-local-variable 'mode-line-format)))
+
 (use-package olivetti
   :diminish
   :config
@@ -179,14 +188,12 @@
     (if (bound-and-true-p icot/olivetti-mode)
 	(progn
 	  (olivetti-mode 1)
-	  (text-scale-increase 1))
+	  (icot/toggle-hide-mode-line)
+	  (text-scale-increase 2))
       (progn
-	(text-scale-decrease 1)
+	(text-scale-decrease 2)
+	(icot/toggle-hide-mode-line)
 	(olivetti-mode -1)))))
-
-;; FIXME Uses deprecated cl
-(use-package rg
-  :defer t)
 
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
