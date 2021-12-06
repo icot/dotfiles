@@ -289,7 +289,7 @@
 (defun icot/open-config-folder ()
   (interactive)
   (counsel-find-file nil "~/.emacs.custom"))
-  
+
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
@@ -370,7 +370,7 @@
   :config
   (evil-lion-mode))
 
-;; evil-snipe: TODO check evil f/F/t/T
+;; evil-snipe: TODO check evil f/F/t/T and ~avy~
 
 ;;; Projectile TODO project discovery, improve search-path load time
 (use-package projectile
