@@ -323,7 +323,7 @@
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
   ":" '(counsel-M-x :which-key "counsel-M-x")
-;;  "/" '(projectile-ripgrep :which-key "counsel-rg") ;; TODO copy doom behaviour
+  "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
  
 ; (define-key keymap key def)
