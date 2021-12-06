@@ -126,6 +126,9 @@
 (toggle-scroll-bar -1)
 (set-fringe-mode 10)
 
+;; prettify symbols
+(global-prettify-symbols-mode 1)
+
 ;; visible bell
 (setq visible-bell t)
 (set-face-attribute 'default nil :height 120)
@@ -154,7 +157,6 @@
   :ensure t
   :hook (prog-mode . hl-todo-mode))
 
-;; TODO ligatures
 ;; https://www.masteringemacs.org/article/unicode-ligatures-color-emoji
 (use-package unicode-fonts
   :ensure t
