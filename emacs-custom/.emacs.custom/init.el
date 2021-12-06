@@ -306,6 +306,8 @@
   "hk" '(helpful-key :which-key "help key")
   "hf" '(helpful-function :which-key "help function")
   "hv" '(helpful-variable :which-key "help variable")
+  "n" '(:ignore n :which-key "new")
+  "nm" '(notmuch-mua-mail :which-key "New mail")
   "o" '(:ignore t :which-key "open")
   "ot" '(org-todo-list :which-key "org TODO list")
   "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
