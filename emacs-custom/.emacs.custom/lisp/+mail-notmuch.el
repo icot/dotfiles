@@ -25,7 +25,7 @@
 	  ("cern"
 	    nil
 	    "Ignacio Coterillo Coz <ignacio.coterillo.coz@cern.ch>"
-	    "CERN"
+	    nil
 	    nil ;; No extra headers
 	    nil ;; No extra body text
 	    nil)); "~/.signature.work"))
@@ -59,11 +59,10 @@
       message-sendmail-envelope-from 'header
       mail-envelope-from 'header
       message-kill-buffer-on-exit t
-      mail-user-agent 'message-user-agent
+      mail-user-agent 'gnus-user-agent
       sendmail-program "/usr/bin/msmtp")
 
 (use-package notmuch
-  :defer t
   :commands (notmuch-jump-search notmuch-hello)
   :config
   (setq
