@@ -63,7 +63,8 @@
       sendmail-program "/usr/bin/msmtp")
 
 (use-package notmuch
-  :commands (notmuch-jump-search notmuch-hello)
+  :defer t
+  :commands (notmuch-jump-search notmuch-hello notmuch-mua-mail)
   :config
   (setq
     ;; General UI
