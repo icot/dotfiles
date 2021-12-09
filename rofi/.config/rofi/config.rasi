@@ -1,6 +1,5 @@
 configuration {
  modi: "window,drun,run,ssh,combi";
- theme: "Paper";
  font: "hack 12";
  combi-modi: "window,drun,ssh";
  icon-theme: "Papirus";
