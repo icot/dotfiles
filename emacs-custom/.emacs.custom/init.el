@@ -249,24 +249,8 @@
 ;;;; Tools
 
 ;;; ORG
+(load "+org.el")
 
-;; https://emacs.stackexchange.com/questions/10029/org-mode-how-to-create-an-org-mode-markup-keybinding
-
-(defvar org-electric-pairs '((?\* . ?\*) (?/ . ?/) (?= . ?=)
-                             (?\_ . ?\_) (?~ . ?~) (?+ . ?+)) "Electric pairs for org-mode.")
-
-(defun icot/org-add-electric-pairs ()
-  (setq-local electric-pair-pairs (append electric-pair-pairs org-electric-pairs))
-  (setq-local electric-pair-text-pairs electric-pair-pairs))
-
-(use-package org
-  :defer t
-  :init
-  (setq org-startup-with-inline-images t)
-  (setq org-directory "~/Nextcloud/myorg/")
-  (setq org-agenda-files `(,org-directory))
-  :hook (org-mode . icot/org-add-electric-pairs))
-			  
 ;;;
 
 (use-package magit
@@ -311,6 +295,7 @@
   "n" '(:ignore n :which-key "new")
   "nm" '(notmuch-mua-mail :which-key "New mail")
   "o" '(:ignore t :which-key "open")
+  "oc" '(org-capture :which-key "org capture")
   "ot" '(org-todo-list :which-key "org TODO list")
   "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
   "p" '(:ignore t :which-key "projectile")
@@ -399,11 +384,11 @@
   (drag-stuff-define-keys))
 
 ;;; Terms
-(use-package vterm
-  :ensure t
-  :defer t
-  :config
-  (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
+;(use-package vterm
+;  :ensure t
+;  :defer t
+;  :config
+;  (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
 
 ;; For new frame: display-buffer-pop-up-frame
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
@@ -446,6 +431,12 @@
 
 ;;; Programming language and tools
 (load "+programming.el")
+
+(with-eval-after-load "persp-mode-autoloads"
+    (setq wg-morph-on nil) ;; switch off animation
+    (setq persp-autokill-buffer-on-remove 'kill-weak)
+    (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
+
 
 ;;; Reset gc-cons-threshold
 (setq gc-cons-threshold (* 2 1000 1000))
