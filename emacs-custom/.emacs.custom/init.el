@@ -299,7 +299,10 @@
   "ot" '(org-todo-list :which-key "org TODO list")
   "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
   "p" '(:ignore t :which-key "projectile")
-  "pp" '(projectile-switch-project :which-key "projectile-switch-project")
+  "pb" '(counsel-projectile-switch-to-buffer :which-key "counsel-projectile-buffer")
+  "pc" '(counsel-projectile :which-key "counsel-projectile")
+  "pp" '(counsel-projectile-switch-project :which-key "counsel-projectile-switch-project")
+  "p/" '(counsel-projectile-rg :which-key "counsel-projectile-rg")
   "t" '(:ignore t :which-key "toggles")
   "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
@@ -371,6 +374,10 @@
 					   "~/workspace/cerndb"
 					   "~/workspace/puppet"))))
 
+(use-package counsel-projectile
+  :ensure t
+  :after (counsel projectile))
+
 ;;; Languages
 (use-package rainbow-delimiters
   :ensure t
@@ -431,12 +438,6 @@
 
 ;;; Programming language and tools
 (load "+programming.el")
-
-(with-eval-after-load "persp-mode-autoloads"
-    (setq wg-morph-on nil) ;; switch off animation
-    (setq persp-autokill-buffer-on-remove 'kill-weak)
-    (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
-
 
 ;;; Reset gc-cons-threshold
 (setq gc-cons-threshold (* 2 1000 1000))
