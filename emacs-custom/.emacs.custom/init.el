@@ -167,6 +167,12 @@
   :defer t)
 
 
+;; Workspaces
+(use-package eyebrowse
+  :ensure t)
+;; eyebrowse-restore https://github.com/FrostyX/eyebrowse-restore
+
+
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
 
 ;; https://gist.github.com/rnkn/a522429ed7e784ae091b8760f416ecf8
@@ -321,6 +327,17 @@
   "w_" '(evil-window-split :which-key "window split horizontal")
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
+  "w0" '(eyebrowse-switch-to-window-config-0 :which-key "WS 0")
+  "w1" '(eyebrowse-switch-to-window-config-1 :which-key "WS 1")
+  "w2" '(eyebrowse-switch-to-window-config-2 :which-key "WS 2")
+  "w3" '(eyebrowse-switch-to-window-config-3 :which-key "WS 3")
+  "w4" '(eyebrowse-switch-to-window-config-4 :which-key "WS 4")
+  "w5" '(eyebrowse-switch-to-window-config-5 :which-key "WS 5")
+  "w6" '(eyebrowse-switch-to-window-config-6 :which-key "WS 6")
+  "w7" '(eyebrowse-switch-to-window-config-7 :which-key "WS 7")
+  "w8" '(eyebrowse-switch-to-window-config-8 :which-key "WS 8")
+  "w9" '(eyebrowse-switch-to-window-config-9 :which-key "WS 9")
+  "wr" '(eyebrowse-rename-window-config :which-key "Rename window config")
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
