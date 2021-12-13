@@ -338,6 +338,7 @@
   "w8" '(eyebrowse-switch-to-window-config-8 :which-key "WS 8")
   "w9" '(eyebrowse-switch-to-window-config-9 :which-key "WS 9")
   "wr" '(eyebrowse-rename-window-config :which-key "Rename window config")
+  "wc" '(eyebrowse-close-window-config :which-key "Close window config")
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
