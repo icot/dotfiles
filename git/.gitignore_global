@@ -1,6 +1,7 @@
 # Temporal files
 ###################
 *.swp
+*~
 
 # Compiled source #
 ###################
