@@ -38,6 +38,10 @@
 
 ;;; Platforms
 
+;; guix
+(use-package guix
+  :defer t)
+
 ;; docker
 (use-package docker
   :defer t)

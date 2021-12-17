@@ -446,7 +446,7 @@
 
 ;; pdf-tools
 (use-package pdf-tools
-  :defer t
+  :ensure t
   :config
   (pdf-tools-install))
 
