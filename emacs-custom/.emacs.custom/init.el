@@ -167,10 +167,15 @@
   :defer t)
 
 
-;; Workspaces
+;; Workspaces FIXME Broken after last emacs update in Guix
 (use-package eyebrowse
   :ensure t)
 ;; eyebrowse-restore https://github.com/FrostyX/eyebrowse-restore
+
+;; frame-bufs
+;; http://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame
+;; ivy-push-view(gt)/ivy-pop-view(gT)
+;; persp-mode
 
 
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
@@ -252,6 +257,13 @@
 ;; Improved help  
 (use-package helpful)
 
+;; ivy-views
+(setq ivy-views
+      `(("ivy.el {}"
+	 (horz
+	  (file ,(find-library-name "ivy"))
+	  (buffer "*scratch*")))))
+
 ;;;; Tools
 
 ;;; ORG
@@ -285,6 +297,9 @@
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
+  "bv" '(ivy-switch-view :which-key "ivy-switch-view")
+  "bt" '(ivy-view-push :which-key "ivy-view-push")
+  "bT" '(ivy-view-pop :which-key "ivy-view-pop")
   "e" '(:ignore t :which-key "eval")
   "eb" '(eval-buffer :which-key "eval buffer")
   "el" '(eval-last-sexp :which-key "eval last sexp")
