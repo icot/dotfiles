@@ -62,6 +62,15 @@
 (setq custom-file "~/.emacs.custom/custom.el")
 (load custom-file)
 
+;; Create and configure auto-save folder and backups
+(let ((savedir (concat user-emacs-directory "auto-save"))
+      (backupdir (concat user-emacs-directory "backup")))
+  (unless (file-exists-p savedir) (make-directory savedir))
+  (unless (file-exists-p backupdir) (make-directory backupdir))
+  (setq auto-save-file-name-transforms `((".*" ,savedir t)))
+  (setq backup-directory-alist `(("." . ,backupdir))))
+
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Ignacio Coterillo"
@@ -117,6 +126,7 @@
 ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+
 ;;; Theme, Fonts, UI
 
 ;; Disable menu bar and scroll bar
@@ -125,6 +135,19 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (set-fringe-mode 10)
+
+;;; General UI, taken from https://github.com/susam/emfy/blob/main/.emacs
+
+;; Show stray whitespace.
+(setq-default show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+(setq-default indicate-buffer-boundaries 'left)
+
+;; Use spaces, not tabs, for indentation.
+(setq-default indent-tabs-mode nil)
+
+;; Display the distance between two tab stops as 4 characters wide.
+(setq-default tab-width 4)
 
 ;; prettify symbols
 (global-prettify-symbols-mode 1)
@@ -151,7 +174,7 @@
 		eshell-mode-hook
 		help-mode-hook
 		magit-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0)))) 
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (use-package hl-todo
   :ensure t
@@ -176,7 +199,6 @@
 ;; http://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame
 ;; ivy-push-view(gt)/ivy-pop-view(gT)
 ;; persp-mode
-
 
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
 
@@ -329,6 +351,7 @@
   "tp" '(ivy-pass :which-key "pass")
   "tc" '(counsel-load-theme :which-key "choose color theme")
   "ts" '(eshell :which-key "toggle terminal (eshell)")
+  "tw" '(whitespace-mode :which-key "toggle whitespace mode")
   "tz" '(icot/olivetti-mode :which-key "Olivetti Mode")
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
@@ -471,6 +494,11 @@
 
 ;;; Programming language and tools
 (load "+programming.el")
+
+
+;;; Launch Emacs server
+(unless (server-running-p)
+  (server-start))
 
 ;;; Reset gc-cons-threshold
 (setq gc-cons-threshold (* 2 1000 1000))
