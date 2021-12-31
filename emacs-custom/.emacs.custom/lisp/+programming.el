@@ -16,24 +16,24 @@
 (use-package flycheck)
 (use-package flycheck-popup-tip)
 (use-package flycheck-posframe)
-(add-hook 'after-init-hook #'global-company-mode)
 
 ;;; spelling
 ;; ispell
 ;; spell-fu
-;; (use-package flyspell)
-;; (use-package flyspell-correct-ivy)
-;; (use-package flyspell-correct-popup)
+(use-package flyspell
+  :defer t)
+(use-package flyspell-correct-ivy
+  :after (flyspell ivy))
+(use-package flyspell-correct-popup
+  :after (flyspell ivy))
 
 ;;; Grammar
-;; TODO langtool
 ;; TODO writegood-mode
 
 ;;;; Code editing
 
-;; electric
 ;; smartparens
-;; (use-package smartparents
+;;(use-package smartparents
 ;;  :defer t)
 
 ;;; Platforms
@@ -72,7 +72,7 @@
 (setq inferior-lisp-program "sbcl")
 (setq sly-command-switch-to-existing-lisp t)
 
-;; clojure
+;; Clojure
 (use-package cider
   :defer t)
 
