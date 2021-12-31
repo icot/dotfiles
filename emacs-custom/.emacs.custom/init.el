@@ -238,6 +238,19 @@
 	(icot/toggle-hide-mode-line)
 	(olivetti-mode -1)))))
 
+;; TODO Check focus for olivetti mode
+
+(use-package dimmer
+  :ensure t
+  :config
+  (setq dimmer-fraction 0.2)
+  (dimmer-mode))
+
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
 ;;; Completions (Emacs from Scratch #1:https://www.youtube.com/watch?v=74zOY-vgkyw )
 (use-package ivy
   :diminish
@@ -495,6 +508,9 @@
   :ensure t
   :config
   (pdf-tools-install))
+
+(use-package pdf-view-restore
+  :after pdf-tools)
 
 ;; TRAMP
 (setq tramp-default-method "sshx")
