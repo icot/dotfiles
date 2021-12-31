@@ -122,9 +122,17 @@
 
 (use-package benchmark-init
  :ensure f
-  :config
+ :config
 ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+(use-package explain-pause-mode
+  :ensure t
+  :defer t)
+
+(use-package bug-hunter
+  :ensure t
+  :defer t)
 
 
 ;;; Theme, Fonts, UI
