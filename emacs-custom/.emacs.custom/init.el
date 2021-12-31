@@ -198,15 +198,17 @@
   :defer t)
 
 
-;; Workspaces FIXME Broken after last emacs update in Guix
+;; Workspaces
 (use-package eyebrowse
   :ensure t)
 ;; eyebrowse-restore https://github.com/FrostyX/eyebrowse-restore
 
+;; persp-mode 
+;; awesome-tab / centaur-tabs
+
 ;; frame-bufs
 ;; http://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame
 ;; ivy-push-view(gt)/ivy-pop-view(gT)
-;; persp-mode
 
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
 
@@ -297,7 +299,7 @@
   :ensure t
   :init (all-the-icons-ivy-rich-mode 1))
 
-;; Improved help  
+;; Improved help
 (use-package helpful)
 
 ;; ivy-views
@@ -401,7 +403,7 @@
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
- 
+
 ; (define-key keymap key def)
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
@@ -477,7 +479,7 @@
 ;; For new frame: display-buffer-pop-up-frame
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
 
-;;; TOOLS 
+;;; TOOLS
 
 ;; Auth/pass
 (use-package pass
