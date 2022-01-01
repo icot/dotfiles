@@ -166,8 +166,20 @@
 (global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
+(defun icot/cycle-theme ()
+  "Cycle light/dark themes"
+  (interactive)
+  (if (eq (car custom-enabled-themes) 'modus-operandi)
+      (load-theme 'modus-vivendi)
+    (load-theme 'modus-operandi)))
+
 ;; Enable electric-pair-mode
 (electric-pair-mode 1)
+
+(use-package smartparens
+  :defer t)
+
+;; TODO smartparens bindings?
 
 ; requires all-the-icons font
 (use-package doom-modeline
@@ -231,16 +243,14 @@
     :init-value nil
     :global nil
     (if (bound-and-true-p icot/olivetti-mode)
-	(progn
-	  (olivetti-mode 1)
-	  (icot/toggle-hide-mode-line)
-	  (text-scale-increase 2))
+        (progn
+        (olivetti-mode 1)
+          (icot/toggle-hide-mode-line)
+          (text-scale-increase 2))
       (progn
 	(text-scale-decrease 2)
 	(icot/toggle-hide-mode-line)
 	(olivetti-mode -1)))))
-
-;; TODO Check focus for olivetti mode
 
 (use-package dimmer
   :ensure t
@@ -373,6 +383,7 @@
   "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
   "tc" '(counsel-load-theme :which-key "choose color theme")
+  "tt" '(icot/cycle-theme :which-key "cycle theme")
   "ts" '(eshell :which-key "toggle terminal (eshell)")
   "tw" '(whitespace-mode :which-key "toggle whitespace mode")
   "tz" '(icot/olivetti-mode :which-key "Olivetti Mode")
