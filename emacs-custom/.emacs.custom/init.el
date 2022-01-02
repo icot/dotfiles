@@ -166,15 +166,18 @@
 (global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
+(use-package tron-legacy-theme
+  :ensure t
+  :defer t
+  :init
+  (setq tron-legacy-theme-vivid-cursor t))
+
 (defun icot/cycle-theme ()
   "Cycle light/dark themes"
   (interactive)
   (if (eq (car custom-enabled-themes) 'modus-operandi)
       (load-theme 'modus-vivendi)
     (load-theme 'modus-operandi)))
-
-;; Enable electric-pair-mode
-(electric-pair-mode 1)
 
 (use-package smartparens
   :defer t)
