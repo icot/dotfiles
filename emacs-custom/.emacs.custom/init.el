@@ -24,7 +24,7 @@
 
 (add-to-list 'load-path "~/.emacs.custom/lisp")
 
-;; Fromh ttps://github.com/daviwil/emacs-from-scratch/blob/master/init.el 
+;; Fromh ttps://github.com/daviwil/emacs-from-scratch/blob/master/init.el
 (defun icot/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"
@@ -166,6 +166,10 @@
 (global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
+(use-package doom-themes
+  :ensure t
+  :defer t)
+
 (use-package tron-legacy-theme
   :ensure t
   :defer t
@@ -176,8 +180,12 @@
   "Cycle light/dark themes"
   (interactive)
   (if (eq (car custom-enabled-themes) 'modus-operandi)
-      (load-theme 'modus-vivendi)
-    (load-theme 'modus-operandi)))
+      (progn
+        (disable-theme 'modus-operandi)
+        (load-theme 'doom-ir-black))
+    (progn
+      (disable-theme 'doom-ir-black)
+      (load-theme 'modus-operandi))))
 
 (use-package smartparens
   :defer t)
@@ -217,9 +225,6 @@
 (use-package eyebrowse
   :ensure t)
 ;; eyebrowse-restore https://github.com/FrostyX/eyebrowse-restore
-
-;; persp-mode 
-;; awesome-tab / centaur-tabs
 
 ;; frame-bufs
 ;; http://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame

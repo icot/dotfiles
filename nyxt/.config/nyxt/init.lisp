@@ -16,8 +16,8 @@
   ((session-restore-prompt :never-restore)))
 
 ;; Configurign Keybindings
-(define-configuration buffer
-  ((default-modes (append '(vi-normal-mode) %slot-default%))))
+;;(define-configuration buffer
+;;  ((default-modes (append '(vi-normal-mode) %slot-default%))))
 
 ;;configuration for buffer and nosave buffer to have reduce tracking by default
 (define-configuration (web-buffer nosave-buffer)
