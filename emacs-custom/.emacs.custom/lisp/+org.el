@@ -41,20 +41,26 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
 
 (use-package org
   :ensure t
+  :straight (:type built-in)
   :init
-  (setq org-startup-with-inline-images t)
   (setq org-directory "~/Nextcloud/myorg/")
   (setq org-agenda-files `(,org-directory))
-  (setq org-default-notes-file
-	(expand-file-name +org-capture-notes-file org-directory)
-	+org-capture-journal-file
-	(expand-file-name +org-capture-journal-file org-directory))
-  :hook (org-mode . icot/org-add-electric-pairs))
+  (setq org-startup-with-inline-images t)
+  (setq org-todo-keywords
+        '((sequence "TODO" "STARTED" "DONE")))
+  (setq org-agenda-span 'day)
+  (setq
+   org-default-notes-file (expand-file-name +org-capture-notes-file org-directory)
+   +org-capture-journal-file (expand-file-name +org-capture-journal-file org-directory)
+   +org-capture-todo-file (expand-file-name +org-capture-todo-file org-directory)
+   +org-capture-notes-file (expand-file-name +org-capture-todo-file org-directory)))
+
+;  :hook (org-mode . icot/org-add-electric-pairs)
 
 (use-package org-journal
   :ensure t
   :config
-  (setq org-journal-directory org-directory)) 
+  (setq org-journal-directory org-directory))
 
 (setq org-capture-templates
     '(("t" "Todo" entry
