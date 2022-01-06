@@ -220,16 +220,6 @@
 (use-package posframe
   :defer t)
 
-
-;; Workspaces
-(use-package eyebrowse
-  :ensure t)
-;; eyebrowse-restore https://github.com/FrostyX/eyebrowse-restore
-
-;; frame-bufs
-;; http://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame
-;; ivy-push-view(gt)/ivy-pop-view(gT)
-
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
 
 ;; https://gist.github.com/rnkn/a522429ed7e784ae091b8760f416ecf8
@@ -327,6 +317,21 @@
 	  (file ,(find-library-name "ivy"))
 	  (buffer "*scratch*")))))
 
+;; https://github.com/abo-abo/swiper/issues/1079
+(defun icot/save-ivy-views ()
+(interactive)
+(with-temp-file "~/.emacs.d/ivy-views"
+(prin1 ivy-views (current-buffer))
+(message "save ivy-views to ~/.emacs.d/ivy-views")))
+
+(defun icot/load-ivy-views ()
+(interactive)
+(setq ivy-views
+(with-temp-buffer
+(insert-file-contents "~/.emacs.d/ivy-views")
+(read (current-buffer))))
+(message "load ivy-views"))
+
 ;;;; Tools
 
 ;;; ORG
@@ -360,9 +365,6 @@
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
-  "bv" '(ivy-switch-view :which-key "ivy-switch-view")
-  "bt" '(ivy-view-push :which-key "ivy-view-push")
-  "bT" '(ivy-view-pop :which-key "ivy-view-pop")
   "e" '(:ignore t :which-key "eval")
   "eb" '(eval-buffer :which-key "eval buffer")
   "el" '(eval-last-sexp :which-key "eval last sexp")
@@ -395,6 +397,10 @@
   "ts" '(eshell :which-key "toggle terminal (eshell)")
   "tw" '(whitespace-mode :which-key "toggle whitespace mode")
   "tz" '(icot/olivetti-mode :which-key "Olivetti Mode")
+  "v" '(:ignore t :which-key "views")
+  "vp" '(ivy-push-view :which-key "ivy-push view")
+  "vP" '(ivy-pop-view :which-key "ivy-pop view")
+  "vv" '(ivy-switch-view :which-key "ivy-switch-view")
   "w" '(:ignore t :which-key "window")
   "wh" '(evil-window-left :which-key "switch to left window")
   "wj" '(evil-window-down :which-key "switch to bottom window")
@@ -407,18 +413,6 @@
   "w_" '(evil-window-split :which-key "window split horizontal")
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
-  "w0" '(eyebrowse-switch-to-window-config-0 :which-key "WS 0")
-  "w1" '(eyebrowse-switch-to-window-config-1 :which-key "WS 1")
-  "w2" '(eyebrowse-switch-to-window-config-2 :which-key "WS 2")
-  "w3" '(eyebrowse-switch-to-window-config-3 :which-key "WS 3")
-  "w4" '(eyebrowse-switch-to-window-config-4 :which-key "WS 4")
-  "w5" '(eyebrowse-switch-to-window-config-5 :which-key "WS 5")
-  "w6" '(eyebrowse-switch-to-window-config-6 :which-key "WS 6")
-  "w7" '(eyebrowse-switch-to-window-config-7 :which-key "WS 7")
-  "w8" '(eyebrowse-switch-to-window-config-8 :which-key "WS 8")
-  "w9" '(eyebrowse-switch-to-window-config-9 :which-key "WS 9")
-  "wr" '(eyebrowse-rename-window-config :which-key "Rename window config")
-  "wc" '(eyebrowse-close-window-config :which-key "Close window config")
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
