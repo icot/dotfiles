@@ -120,8 +120,16 @@
     (visual-line-mode)
     (view-mode)))
 
+(defun icot/process-ics-event (handle)
+  "Process application/ics type MIME parts"
+  (let ((buffer (get-buffer-create "*processing-ics-event*")))
+    (with-current-buffer buffer
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (mm-insert-part handle)
+      (icalendar-import-buffer))))
 
-(defun icot/notmuch-show-pop-attachment-to-buffer ()
+(defun icot/notmuch-show-process-attachment ()
   ;; "based on notmuch-show-apply-to-current-part-handle"
   (interactive)
   (let ((handle (notmuch-show-current-part-handle)))
@@ -130,10 +138,10 @@
     (pcase (car (nth 1 handle))
       ("application/pdf"
        (icot/mm-pipe-- handle "pdftotext"))
-      ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-       (icot/mm-pipe-- handle "docx2txt.pl"))
+      ("application/ics"
+       (icot/process-ics-event handle))
       (_ (notmuch-show-save-part)))
-      (kill-buffer (mm-handle-buffer handle)))))
+    (kill-buffer (mm-handle-buffer handle)))))
 
 (setq notmuch-show-part-button-default-action
-      #'icot/notmuch-show-pop-attachment-to-buffer)
+      #'icot/notmuch-show-process-attachment)
