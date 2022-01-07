@@ -95,3 +95,45 @@
           ("authors" . "%-30s ")
           ("subject" . "%-72s ")
           ("tags" . "(%s)"))))
+
+;; From https://notmuchmail.org/emacstips/
+;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
+
+(defun icot/mm-pipe-- (handle cmd)
+  ;; conveniently, '-' '-' a args to pdftotext and docx2txt.pl work fine
+  ;; fixme: naming inconsistency (fn name and buffer name)
+  (let ((buffer (get-buffer-create "*attachment-to-text*")))
+    (with-current-buffer buffer
+      (setq buffer-read-only nil)
+      (erase-buffer))
+    (with-temp-buffer
+      ;; "based on mm-pipe-part in mm-decode.el"
+      (mm-with-unibyte-buffer
+    (mm-insert-part handle)
+    (mm-add-meta-html-tag handle)
+    (let ((coding-system-for-write 'binary))
+      (call-process-region (point-min) (point-max)
+                           cmd nil buffer nil "-" "-"))))
+    (pop-to-buffer buffer)
+    (goto-char (point-min))
+    (text-mode)
+    (visual-line-mode)
+    (view-mode)))
+
+
+(defun icot/notmuch-show-pop-attachment-to-buffer ()
+  ;; "based on notmuch-show-apply-to-current-part-handle"
+  (interactive)
+  (let ((handle (notmuch-show-current-part-handle)))
+    ;;(message "%s" handle)
+    (unwind-protect
+    (pcase (car (nth 1 handle))
+      ("application/pdf"
+       (icot/mm-pipe-- handle "pdftotext"))
+      ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+       (icot/mm-pipe-- handle "docx2txt.pl"))
+      (_ (notmuch-show-save-part)))
+      (kill-buffer (mm-handle-buffer handle)))))
+
+(setq notmuch-show-part-button-default-action
+      #'icot/notmuch-show-pop-attachment-to-buffer)
