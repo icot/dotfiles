@@ -53,7 +53,7 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
    org-default-notes-file (expand-file-name +org-capture-notes-file org-directory)
    +org-capture-journal-file (expand-file-name +org-capture-journal-file org-directory)
    +org-capture-todo-file (expand-file-name +org-capture-todo-file org-directory)
-   +org-capture-notes-file (expand-file-name +org-capture-todo-file org-directory)))
+   +org-capture-notes-file (expand-file-name +org-capture-notes-file org-directory)))
 
 ;  :hook (org-mode . icot/org-add-electric-pairs)
 
@@ -62,6 +62,12 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   :config
   (setq org-journal-directory org-directory))
 
+(use-package org-noter
+  :defer t
+  :after org
+  :config
+  (setq org-noter-default-notes-file-names +org-capture-notes-file))
+
 (setq org-capture-templates
     '(("t" "Todo" entry
 	(file+headline +org-capture-todo-file "Inbox")
@@ -69,10 +75,9 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
 	("n" "Notes" entry
 	(file+headline +org-capture-notes-file "Inbox")
 	"* %u %?\n%i\n%a" :prepend t)
-	("j" "Journal" entry
+ 	("j" "Journal" entry
 	(file+olp+datetree +org-capture-journal-file)
 	"* %U %?\n%i\n%a" :prepend t)))
 
-;; org-noter
 ;; org-pdftools
 ;; org-tree-slide
