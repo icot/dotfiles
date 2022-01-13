@@ -88,13 +88,13 @@
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
-      (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-        "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-        'silent 'inhibit-cookies)
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -200,11 +200,11 @@
 ;; Line numbers
 (column-number-mode)
 (dolist (mode '(org-mode-hook
-		term-mode-hook
-		shell-mode-hook
-		eshell-mode-hook
-		help-mode-hook
-		magit-mode-hook))
+                                                		term-mode-hook
+                                                		shell-mode-hook
+                                                		eshell-mode-hook
+                                                		help-mode-hook
+                                                		magit-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (use-package hl-todo
@@ -234,21 +234,21 @@
   :diminish
   :config
   (setq olivetti-body-width 0.65
-	olivetti-minimum-body-width 72
-	olivetti-recall-visual-line-mode-entry-state t)
+                   	olivetti-minimum-body-width 72
+                   	olivetti-recall-visual-line-mode-entry-state t)
   (define-minor-mode icot/olivetti-mode
     "additional olivetti mode parameters"
     :init-value nil
     :global nil
     (if (bound-and-true-p icot/olivetti-mode)
         (progn
-        (olivetti-mode 1)
-          (icot/toggle-hide-mode-line)
-          (text-scale-increase 2))
+         (olivetti-mode 1)
+         (icot/toggle-hide-mode-line)
+         (text-scale-increase 2))
       (progn
-	(text-scale-decrease 2)
-	(icot/toggle-hide-mode-line)
-	(olivetti-mode -1)))))
+                       	(text-scale-decrease 2)
+                       	(icot/toggle-hide-mode-line)
+                       	(olivetti-mode -1)))))
 
 (use-package dimmer
   :ensure t
@@ -265,18 +265,18 @@
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
-	 :map ivy-minibuffer-map
-	 ("TAB" . ivy-alt-done)
-	 ("C-l" . ivy-alt-done)
-	 ("C-j" . ivy-next-line)
-	 ("C-k" . ivy-previous-line)
-	 :map ivy-switch-buffer-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-l" . ivy-done)
-	 ("C-d" . ivy-switch-buffer-kill)
-	 :map ivy-reverse-i-search-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
 
@@ -290,11 +290,11 @@
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 ("C-h C-t" . counsel-load-theme)
-	 :map minibuffer-local-map
-	 ("C-r" . counsel-minibuffer-history))
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         ("C-h C-t" . counsel-load-theme)
+         :map minibuffer-local-map
+         ("C-r" . counsel-minibuffer-history))
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
@@ -311,26 +311,22 @@
 (use-package helpful)
 
 ;; ivy-views
-(setq ivy-views
-      `(("ivy.el {}"
-	 (horz
-	  (file ,(find-library-name "ivy"))
-	  (buffer "*scratch*")))))
+(setq ivy-views '())
 
 ;; https://github.com/abo-abo/swiper/issues/1079
 (defun icot/save-ivy-views ()
-(interactive)
-(with-temp-file "~/.emacs.d/ivy-views"
-(prin1 ivy-views (current-buffer))
-(message "save ivy-views to ~/.emacs.d/ivy-views")))
+ (interactive)
+ (with-temp-file "~/.emacs.d/ivy-views"
+  (prin1 ivy-views (current-buffer))
+  (message "save ivy-views to ~/.emacs.d/ivy-views")))
 
 (defun icot/load-ivy-views ()
-(interactive)
-(setq ivy-views
-(with-temp-buffer
-(insert-file-contents "~/.emacs.d/ivy-views")
-(read (current-buffer))))
-(message "load ivy-views"))
+ (interactive)
+ (setq ivy-views
+  (with-temp-buffer
+   (insert-file-contents "~/.emacs.d/ivy-views")
+   (read (current-buffer))))
+ (message "load ivy-views"))
 
 ;;;; Tools
 
@@ -352,11 +348,29 @@
 
 ;;; Keybindings
 ;; Hydra -> Transient keybindings
-(use-package general)
+
+(use-package general
+  :ensure t
+  :config
+  (general-override-mode))
+
+;; Create this mapping on the override keymap to prevent
+;; evil-collection-pdf-tools to override the prefix key
+;; preventing icot/leader-keys definitions to work correctly
+
+;; A single definition "pre-reserves" the prefix key, which
+;; actually what I want.
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix "SPC"
+ "wh" 'evil-window-left)
+
 (general-create-definer icot/leader-keys
-			:keymaps '(normal insert visual emacs)
-			:prefix "SPC"
-			:global-prefix "C-SPC")
+                                                      			:keymaps '(normal insert visual emacs)
+                                                      			:prefix "SPC"
+                                                      			:global-prefix "C-SPC")
 
 (defun icot/open-config-folder ()
   (interactive)
@@ -395,6 +409,7 @@
   "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
   "tc" '(counsel-load-theme :which-key "choose color theme")
+  "tm" '(modus-themes-toggle :which-key "toggle modus themes")
   "tt" '(icot/cycle-theme :which-key "cycle theme")
   "ts" '(eshell :which-key "toggle terminal (eshell)")
   "tw" '(whitespace-mode :which-key "toggle whitespace mode")
@@ -422,8 +437,8 @@
 ; (define-key keymap key def)
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
-		  eshell-mode
-		  term-mode))
+                  eshell-mode
+                  term-mode))
     (add-to-list 'evil-emacs-state-modes mode)))
 
 (use-package evil
@@ -465,8 +480,8 @@
   :init
   (when (file-directory-p "~/workspace")
     (setq projectile-project-search-path '("~/workspace"
-					   "~/workspace/cerndb"
-					   "~/workspace/puppet"))))
+                                           "~/workspace/cerndb"
+                                           "~/workspace/puppet"))))
 
 (use-package counsel-projectile
   :ensure t
@@ -523,11 +538,19 @@
 ;; pdf-tools
 (use-package pdf-tools
   :ensure t
+  :after evil
   :config
-  (pdf-tools-install))
+  (pdf-tools-install)
+  (evil-set-initial-state 'pdf-view-mode 'normal)
+  :hook
+  (pdf-view-mode . (lambda ()
+                     (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 
+;; TODO Save state between restarts?
 (use-package pdf-view-restore
-  :after pdf-tools)
+  :after pdf-tools
+  :config
+  (pdf-view-restore-mode t))
 
 ;; TRAMP
 (setq tramp-default-method "sshx")
