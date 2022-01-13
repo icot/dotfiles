@@ -200,11 +200,11 @@
 ;; Line numbers
 (column-number-mode)
 (dolist (mode '(org-mode-hook
-                                                		term-mode-hook
-                                                		shell-mode-hook
-                                                		eshell-mode-hook
-                                                		help-mode-hook
-                                                		magit-mode-hook))
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook
+                help-mode-hook
+                magit-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (use-package hl-todo
