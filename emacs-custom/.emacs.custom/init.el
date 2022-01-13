@@ -500,11 +500,11 @@
   (drag-stuff-define-keys))
 
 ;;; Terms
-;(use-package vterm
-;  :ensure t
-;  :defer t
-;  :config
-;  (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
+(use-package vterm
+  :ensure t
+  :defer t
+  :config
+  (setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window))))
 
 ;; For new frame: display-buffer-pop-up-frame
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
@@ -538,19 +538,21 @@
 ;; pdf-tools
 (use-package pdf-tools
   :ensure t
-  :after evil
   :config
   (pdf-tools-install)
   (evil-set-initial-state 'pdf-view-mode 'normal)
+  (setq-default pdf-view-display-size 'fit-page)
   :hook
   (pdf-view-mode . (lambda ()
-                     (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+                     (set (make-local-variable 'evil-normal-state-cursor) (list nil))))
+  (pdf-annot-list-mode . 'hide-mode-line-mode))
 
-;; TODO Save state between restarts?
-(use-package pdf-view-restore
-  :after pdf-tools
+(use-package saveplace-pdf-view
+  :after pdf-view
   :config
-  (pdf-view-restore-mode t))
+  (save-place-mode t))
+
+
 
 ;; TRAMP
 (setq tramp-default-method "sshx")
