@@ -100,7 +100,6 @@ alias mutt-gmail="mutt -F ~/.mutt/muttrc-gmail"
 alias mutt-cern="mutt -F ~/.mutt/muttrc-cern"
 alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
 alias cp2="rsync -avz"
-alias vi="unset PYTHONPATH;vi"
 alias bat="bat -p"
 alias ec="emacsclient -nw"
 
@@ -115,7 +114,7 @@ alias talacritty='tabbed -c alacritty --embed'
 alias sbcl='rlwrap sbcl'
 alias clisp='rlwrap clisp'
 
-alias vi='vim'
+alias vi='emacsclient -nw'
 
 # Vi Mode
 function zle-line-init zle-keymap-select {
@@ -178,9 +177,10 @@ vterm_printf(){
 
 # GUIX
 export GUIX_PROFILE="/home/$USER/.guix-profile"
+export GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
 source $GUIX_PROFILE/etc/profile
-export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
 
+export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
 export PATH=$PATH:$GUIX_PROFILE/bin
 export PATH=$HOME/.config/guix/current/bin:$PATH
 
@@ -188,6 +188,16 @@ export INFOPATH="${HOME}/.config/guix/current/share/info:${INFOPATH}"
 export MANPATH="${HOME}/.guix-profile/share/man:/usr/share/man:${MANPATH}"
 export XDG_CONFIG_DIRS="${HOME}/.desktop-profile/etc/xdg:${HOME}/.guix-profile/etc/xdg:$XDG_CONFIG_DIRS"
 export XDG_DATA_DIRS="${HOME}/.desktop-profile/share:${HOME}/.guix-profile/share:$XDG_DATA_DIRS"
+
+# Enable extra profiles
+for i in $GUIX_EXTRA_PROFILES/*; do
+  profile=$i/$(basename "$i")
+  if [ -f "$profile"/etc/profile ]; then
+    GUIX_PROFILE="$profile"
+    source "$GUIX_PROFILE"/etc/profile
+  fi
+  unset profile
+done
 
 # raco pkg
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
