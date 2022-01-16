@@ -134,6 +134,9 @@
   :ensure t
   :defer t)
 
+;; Find dependents
+(require 'loadhist)
+; Ex: (file-dependents (feature-file 'cl))
 
 ;;; Theme, Fonts, UI
 
@@ -162,16 +165,14 @@
 
 ;; visible bell
 (setq visible-bell t)
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 110)
 (global-hl-line-mode)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
 (use-package doom-themes
-  :ensure t
   :defer t)
 
 (use-package tron-legacy-theme
-  :ensure t
   :defer t
   :init
   (setq tron-legacy-theme-vivid-cursor t))
@@ -354,23 +355,10 @@
   :config
   (general-override-mode))
 
-;; Create this mapping on the override keymap to prevent
-;; evil-collection-pdf-tools to override the prefix key
-;; preventing icot/leader-keys definitions to work correctly
-
-;; A single definition "pre-reserves" the prefix key, which
-;; actually what I want.
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix "SPC"
- "wh" 'evil-window-left)
-
 (general-create-definer icot/leader-keys
-                                                      			:keymaps '(normal insert visual emacs)
-                                                      			:prefix "SPC"
-                                                      			:global-prefix "C-SPC")
+  :keymaps '(normal insert visual emacs)
+  :prefix "SPC"
+  :global-prefix "C-SPC")
 
 (defun icot/open-config-folder ()
   (interactive)
@@ -433,6 +421,10 @@
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
+
+;; Enable windove for window changes. SHIFT + Arrows
+(windmove-default-keybindings)
+
 
 ; (define-key keymap key def)
 (defun icot/evil-hook ()
@@ -537,7 +529,8 @@
 
 ;; pdf-tools
 (use-package pdf-tools
-  :ensure t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install)
   (evil-set-initial-state 'pdf-view-mode 'normal)
