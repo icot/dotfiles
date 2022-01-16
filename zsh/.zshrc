@@ -199,6 +199,18 @@ for i in $GUIX_EXTRA_PROFILES/*; do
   unset profile
 done
 
+cgp (){
+    pushd $GUIX_EXTRA_PROFILES
+    mkdir $1
+    popd
+}
+
+rgp (){
+    pushd $GUIX_EXTRA_PROFILES
+    rm -fr $1
+    popd
+}
+
 # raco pkg
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
