@@ -247,9 +247,9 @@
          (icot/toggle-hide-mode-line)
          (text-scale-increase 2))
       (progn
-                       	(text-scale-decrease 2)
-                       	(icot/toggle-hide-mode-line)
-                       	(olivetti-mode -1)))))
+        (text-scale-decrease 2)
+        (icot/toggle-hide-mode-line)
+        (olivetti-mode -1)))))
 
 (use-package dimmer
   :ensure t
@@ -422,10 +422,6 @@
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
 
-;; Enable windove for window changes. SHIFT + Arrows
-(windmove-default-keybindings)
-
-
 ; (define-key keymap key def)
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
@@ -447,6 +443,8 @@
 
 (use-package evil-collection
   :after evil
+  :init
+  (setq evil-collection-key-blacklist '("SPC"))
   :config
   (evil-collection-init))
 
