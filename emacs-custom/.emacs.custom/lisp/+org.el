@@ -43,7 +43,7 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   :ensure t
   :straight (:type built-in)
   :init
-  (setq org-directory "~/Nextcloud/myorg/")
+  (setq org-directory "~/Sync/myorg/")
   (setq org-agenda-files `(,org-directory))
   (setq org-startup-with-inline-images t)
   (setq org-todo-keywords
