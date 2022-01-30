@@ -165,9 +165,9 @@
 
 ;; visible bell
 (setq visible-bell t)
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 120)
 (global-hl-line-mode)
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+(add-hook 'after-init-hook (lambda () (load-theme 'doom-homage-white)))
 
 (use-package doom-themes
   :defer t)
@@ -180,13 +180,13 @@
 (defun icot/cycle-theme ()
   "Cycle light/dark themes"
   (interactive)
-  (if (eq (car custom-enabled-themes) 'modus-operandi)
+  (if (eq (car custom-enabled-themes) 'tron-legacy)
       (progn
-        (disable-theme 'modus-operandi)
-        (load-theme 'doom-ir-black))
+        (disable-theme 'tron-legacy)
+        (load-theme 'doom-homage-white))
     (progn
-      (disable-theme 'doom-ir-black)
-      (load-theme 'modus-operandi))))
+      (disable-theme 'doom-homage-white)
+      (load-theme 'tron-legacy))))
 
 (use-package smartparens
   :defer t)
