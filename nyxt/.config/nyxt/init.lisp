@@ -16,8 +16,19 @@
   ((session-restore-prompt :never-restore)))
 
 ;; Configurign Keybindings
-;;(define-configuration buffer
-;;  ((default-modes (append '(vi-normal-mode) %slot-default%))))
+;(define-configuration buffer
+;  ((default-modes (append '(vi-normal-mode) %slot-default%))))
+
+
+(defvar *my-search-engines*
+  (list
+   '("google" "https:/www.google.com/search?q=" "https://google.com"))
+  "List of search engines")
+
+(define-configuration buffer
+  ((search-engines (append (mapcar (lambda (engine) (apply 'make-search-engine engine))
+                                   *my-search-engines*)
+                           %slot-default%))))
 
 ;;configuration for buffer and nosave buffer to have reduce tracking by default
 (define-configuration (web-buffer nosave-buffer)
