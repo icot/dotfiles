@@ -17,6 +17,5 @@
                      "C-h c" 'describe-command
                      "M-x" 'execute-command
                      "C-s" 'query-selection-in-search-engine
-                     "C-c" 'nyxt/web-mode::copy ;;currently an override because C-c not working without it
-                     "C-q" 'quit-history)
+                     "C-c" 'nyxt/web-mode::copy) ;;currently an override because C-c not working without it
                    map))))

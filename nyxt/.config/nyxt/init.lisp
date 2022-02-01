@@ -1,15 +1,12 @@
 (in-package #:nyxt-user)
 
 ;;loading of config files
-;;add theme here
-;;(nyxt::load-lisp "~/.config/nyxt/themes/standard-dark.lisp")
 ;;base
 (nyxt::load-lisp "~/.config/nyxt/base/keybindings.lisp")
-;(nyxt::load-lisp "~/.config/nyxt/base/urlprompt.lisp")
+(nyxt::load-lisp "~/.config/nyxt/base/search.lisp")
 (nyxt::load-lisp "~/.config/nyxt/base/commands.lisp")
-(nyxt::load-lisp "~/.config/nyxt/base/glyphs.lisp")
 ;;extending
-(nyxt::load-lisp "~/.config/nyxt/ex/specificurl.lisp")
+;(nyxt::load-lisp "~/.config/nyxt/ex/specificurl.lisp")
 
 ;;configuration for browser
 (define-configuration browser
@@ -18,17 +15,6 @@
 ;; Configurign Keybindings
 ;(define-configuration buffer
 ;  ((default-modes (append '(vi-normal-mode) %slot-default%))))
-
-
-(defvar *my-search-engines*
-  (list
-   '("google" "https:/www.google.com/search?q=" "https://google.com"))
-  "List of search engines")
-
-(define-configuration buffer
-  ((search-engines (append (mapcar (lambda (engine) (apply 'make-search-engine engine))
-                                   *my-search-engines*)
-                           %slot-default%))))
 
 ;;configuration for buffer and nosave buffer to have reduce tracking by default
 (define-configuration (web-buffer nosave-buffer)
