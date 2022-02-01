@@ -1,0 +1,11 @@
+(specifications->manifest
+ '("afew"
+   "bat"
+   "exa"
+   "fd"
+   "glibc-locales"
+   "guile"
+   "guile-colorized"
+   "guile-readline"
+   "isync"
+   "le-certs"))
