@@ -12,14 +12,11 @@
 (define-configuration browser
   ((session-restore-prompt :never-restore)))
 
-;; Configurign Keybindings
-;(define-configuration buffer
-;  ((default-modes (append '(vi-normal-mode) %slot-default%))))
-
-;;configuration for buffer and nosave buffer to have reduce tracking by default
-(define-configuration (web-buffer nosave-buffer)
-  ((default-modes `(reduce-tracking-mode
-                    ,@%slot-default%))))
+;; Configuring Default modes
+(define-configuration buffer
+  ((default-modes (append '(reduce-tracking-mode ;; Tracking
+                            blocker-mode) ;; Ad blocking
+                          %slot-default%))))
 
 ;;setting new buffer url and having nyxt start full screen
 ;(defmethod nyxt::startup ((browser browser) urls)
