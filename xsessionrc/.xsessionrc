@@ -1,6 +1,6 @@
 export BUF=xsession:$BUF
 
-xrandr --output HDMI-0 --left-of DP-2
+test $(hostname) = 'erazer' && xrandr --output HDMI-0 --left-of DP-2
 
 # Rofi setup
 export GUIX_PROFILE="$HOME/.guix-profile"
