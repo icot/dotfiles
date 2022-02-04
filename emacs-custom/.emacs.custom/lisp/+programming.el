@@ -104,6 +104,10 @@
 (setq inferior-lisp-program "sbcl")
 (setq sly-command-switch-to-existing-lisp t)
 
+;; Add slime too. Sly can't connect to nyxt's swank server at v2.2.4
+(use-package slime
+  :defer t)
+
 ;; Clojure
 (use-package cider
   :defer t)
