@@ -7,7 +7,7 @@
                      "C-d" 'delete-buffer
                      "C-b" 'switch-buffer
                      "C-B" 'list-bookmarks
-                     "C-h" 'list-history
+                     "C-H" 'nyxt/web-mode:list-history
                      "C-j" 'nyxt/web-mode:scroll-down
                      "C-k" 'nyxt/web-mode:scroll-up
                      "M-h" 'nyxt/web-mode:scroll-left
