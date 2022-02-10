@@ -15,7 +15,9 @@
 ;; Configuring Default modes
 (define-configuration buffer
   ((default-modes (append '(reduce-tracking-mode ;; Tracking
-                            blocker-mode) ;; Ad blocking
+                            blocker-mode ;; Ad blocking
+                                        ;    nyxt::vi-normal-mode) ;; VI Mode
+                            )
                           %slot-default%))))
 
 ;;setting new buffer url and having nyxt start full screen
@@ -25,6 +27,10 @@
 ;  (let ((window (current-window)))
 ;    (window-set-buffer window (make-buffer :url (quri:uri "https://nyxt.atlas.engineer/")))
 ;    (toggle-fullscreen window)))
+
+
+(echo "Start swank server")
+(start-swank)
 
 ;;when reloading init.lisp file shows in message bar once finished
 (echo "Loaded config.")
