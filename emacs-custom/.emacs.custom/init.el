@@ -350,6 +350,10 @@
 ;;; Keybindings
 ;; Hydra -> Transient keybindings
 
+(defun icot/open-config-folder ()
+  (interactive)
+  (counsel-find-file nil "~/.emacs.custom"))
+
 (use-package general
   :ensure t
   :config
@@ -359,10 +363,6 @@
   :keymaps '(normal insert visual emacs)
   :prefix "SPC"
   :global-prefix "C-SPC")
-
-(defun icot/open-config-folder ()
-  (interactive)
-  (counsel-find-file nil "~/.emacs.custom"))
 
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
@@ -422,7 +422,7 @@
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
 
-; (define-key keymap key def)
+
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
                   eshell-mode

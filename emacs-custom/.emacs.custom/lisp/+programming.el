@@ -100,13 +100,18 @@
 
 ;; common-lisp
 (use-package sly
-  :defer t)
+  :defer t
+  :bind (:map lisp-mode-map
+         ("C-c C-r" . sly-eval-region)
+         ("C-c C-l" . sly-eval-last-expression)
+         ("C-c C-b" . sly-eval-buffer)
+         ("C-c C-d" . sly-eval-defun)))
 (setq inferior-lisp-program "sbcl")
 (setq sly-command-switch-to-existing-lisp t)
 
 ;; Add slime too. Sly can't connect to nyxt's swank server at v2.2.4
-(use-package slime
-  :defer t)
+;(use-package slime
+;  :defer t)
 
 ;; Clojure
 (use-package cider
@@ -114,7 +119,14 @@
 
 ;; scheme
 (use-package geiser
-  :defer t)
+  :defer t
+  :bind (:map geiser-mode-map
+         ("C-c C-r" . geiser-eval-region)
+         ("C-c C-l" . geiser-eval-last-sexp)
+         ("C-c C-d" . geiser-eval-definition)
+         ("C-c C-b" . geiser-eval-buffer)
+         ("C-x C-e" . geiser-eval-last-sexp)))
+
 (use-package geiser-guile
   :after geiser
   :defer t)
@@ -126,8 +138,12 @@
 
 ;; racket
 (use-package racket-mode
-  :defer t)
-
+  :defer t
+  :bind (:map racket-mode-map
+         ("C-c C-r" . racket-send-region)
+         ("C-c C-l" . racket-send-last-sexp)
+         ("C-c C-d" . racket-send-definition)
+         ("C-x C-e" . racket-eval-last-sexp)))
 
 ;;; data formats
 ;; json
