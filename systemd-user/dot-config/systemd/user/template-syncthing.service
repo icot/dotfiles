@@ -1,0 +1,29 @@
+
+(require racket/os)
+(define hostname (gethostname))
+(define username (getenv "USER"))
+
+
+(define template 
+"## If your Syncthing is installed in a non-standard location, you may need
+## to copy this file to a standard directory, eg ~~/.config/systemd/user/ .
+## If you install this file by hand, change the Exec lines below
+## to use absolute file names for the executables.
+[Unit]
+Description=Syncthing 
+Documentation=info:syncthing man:syncthing(1) https://docs.syncthing.net/users/autostart.html
+
+[Service]
+Type=exec
+ExecStart=/home/~a/.guix-profile/bin/syncthing
+
+# The location of the SSH auth socket varies by distribution, and some
+# set it from PAM, so don't override by default.
+# Environment=SSH_AUTH_SOCK=%t/keyring/ssh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target"
+)
+
+(format template username)
