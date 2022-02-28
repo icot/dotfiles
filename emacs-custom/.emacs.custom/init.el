@@ -70,6 +70,10 @@
   (setq auto-save-file-name-transforms `((".*" ,savedir t)))
   (setq backup-directory-alist `(("." . ,backupdir))))
 
+;; Auto-revert mode
+(setq global-auto-revert-non-file-buffers t)
+(global-auto-revert-mode t)
+
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -194,9 +198,9 @@
 ;; TODO smartparens bindings?
 
 ; requires all-the-icons font
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+;(use-package doom-modeline
+;  :ensure t
+;  :init (doom-modeline-mode 1))
 
 ;; Line numbers
 (column-number-mode)
@@ -418,6 +422,7 @@
   "w_" '(evil-window-split :which-key "window split horizontal")
   "w|" '(evil-window-vsplit :which-key "window split vertical")
   "wn" '(evil-window-new :which-key "new window")
+  "w=" '(balance-windows :which-key "balance windows")
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
@@ -460,6 +465,32 @@
   (evil-lion-mode))
 
 ;; evil-snipe: TODO check evil f/F/t/T and ~avy~
+
+;; File management
+;; From Emacs From Scratch #10 - Effortless File Management with Dired
+;; https://www.youtube.com/watch?v=PMWwM8QJAtU
+
+(use-package dired
+  :ensure t
+  :straight (:type built-in)
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-up-directory
+    "l" 'dired-find-file))
+
+(use-package dired-single
+  :ensure t
+  :after dired)
+
+(use-package all-the-icons-dired
+  :ensure t
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+;; dired-open : to map extensions with external programs
+
 
 ;;; Projectile TODO project discovery, improve search-path load time
 (use-package projectile
