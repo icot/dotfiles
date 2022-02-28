@@ -102,16 +102,23 @@
   :config
   (lsp-enable-which-key-integration t))
 
+(use-package lsp-ui
+  :ensure t
+  :after lsp-mode)
+
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbols)
-;; Debugger
-;(use-package dap-mode)
-;(use-package dap-LANG)
+
 
 ;; Servers
 
 ;; Python
 ;;; Pyright https://emacs-lsp.github.io/lsp-pyright/
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))
 
 ;; Java
 ;;; (lsp-java)
@@ -135,10 +142,13 @@
 ;; Racket
 ;;  raco pkg install racket-langserver
 
+
 ;; Terraform - GO install
 
 
-
+;; Debugger
+;(use-package dap-mode)
+;(use-package dap-LANG)
 
 
 ;; Considered alpha state
