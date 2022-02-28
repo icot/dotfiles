@@ -92,6 +92,55 @@
 
 
 ;; https://github.com/justinbarclay/parinfer-rust-mode
+
+;; LSP Mode
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbols)
+;; Debugger
+;(use-package dap-mode)
+;(use-package dap-LANG)
+
+;; Servers
+
+;; Python
+;;; Pyright https://emacs-lsp.github.io/lsp-pyright/
+
+
+;; Java
+;;; (lsp-java)
+
+;; Clojure - Automatic install (lsp-install-server)
+
+;; Rust - rls/rust analyzer
+
+;; Go
+;;; gopls https://github.com/golang/tools/tree/master/gopls
+
+
+;; Haskell
+;;; https://emacs-lsp.github.io/lsp-haskell/
+
+;; Bash - npm
+;; Dockerfiles - npm
+;; Elm -npm
+;; Json - npm
+
+;; Racket
+;;  raco pkg install racket-langserver
+
+;; Terraform - GO install
+
+
+
+
+
 ;; Considered alpha state
 (use-package parinfer-rust-mode
     :hook emacs-lisp-mode
@@ -139,6 +188,7 @@
 ;; racket
 (use-package racket-mode
   :defer t
+  :mode "\\.rkt\\'"
   :bind (:map racket-mode-map
          ("C-c C-r" . racket-send-region)
          ("C-c C-l" . racket-send-last-sexp)
