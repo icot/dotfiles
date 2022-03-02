@@ -106,15 +106,20 @@ With a prefix ARG, remove start location."
 
 (require 'org-noter-pdftools)
 
+(defun icot/mail-todo-format-string ()
+  "Create todo format string from mail contents. Assumes notmuch use"
+  (let ((from (notmuch-show-get-from))
+        (subject (notmuch-show-get-subject)))
+    (format "* [ ] %%u %s %s %%?" from subject)))
+
 (setq org-capture-templates
-    '(("t" "Todo" entry
-	(file+headline +org-capture-todo-file "Inbox")
-	"* [ ] %?\n%i\n%a" :prepend t)
-	("n" "Notes" entry
-	(file+headline +org-capture-notes-file "Inbox")
-	"* %u %?\n%i\n%a" :prepend t)
- 	("j" "Journal" entry
-	(file+olp+datetree +org-capture-journal-file)
-	"* %U %?\n%i\n%a" :prepend t)))
+      '(("t" "Todo" entry (file+headline +org-capture-todo-file "Inbox")
+         "* [ ] %?\n%i\n%a" :prepend t)
+        ("m" "Mail Todo" entry (file+headline +org-capture-todo-file "Inbox")
+         (function icot/mail-todo-format-string) :prepend t)
+        ("n" "Notes" entry (file+headline +org-capture-notes-file "Inbox")
+         "* %u %?\n%i\n%a" :prepend t)
+        ("j" "Journal" entry (file+olp+datetree +org-capture-journal-file)
+         "* %U %?\n%i\n%a" :prepend t)))
 
 ;; org-tree-slide

@@ -389,7 +389,7 @@
   "mm" '(notmuch-mua-mail :which-key "New mail")
   "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
   "o" '(:ignore t :which-key "open")
-  "oc" '(org-capture :which-key "org capture")
+  "oc" '(counsel-org-capture :which-key "org capture")
   "ot" '(org-todo-list :which-key "org TODO list")
   "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
   "p" '(:ignore t :which-key "projectile")
