@@ -176,21 +176,16 @@
 (use-package doom-themes
   :defer t)
 
-(use-package tron-legacy-theme
-  :defer t
-  :init
-  (setq tron-legacy-theme-vivid-cursor t))
-
 (defun icot/cycle-theme ()
   "Cycle light/dark themes"
   (interactive)
-  (if (eq (car custom-enabled-themes) 'tron-legacy)
+  (if (eq (car custom-enabled-themes) 'doom-laserwave)
       (progn
-        (disable-theme 'tron-legacy)
+        (disable-theme 'doom-laserwave)
         (load-theme 'doom-homage-white))
     (progn
       (disable-theme 'doom-homage-white)
-      (load-theme 'tron-legacy))))
+      (load-theme 'doom-laserwave))))
 
 (use-package smartparens
   :defer t)
@@ -198,9 +193,9 @@
 ;; TODO smartparens bindings?
 
 ; requires all-the-icons font
-;(use-package doom-modeline
-;  :ensure t
-;  :init (doom-modeline-mode 1))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; Line numbers
 (column-number-mode)
