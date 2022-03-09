@@ -63,7 +63,7 @@
       sendmail-program "/usr/bin/msmtp")
 
 (use-package notmuch
-  :defer t
+  :ensure t
   :commands (notmuch-jump-search notmuch-hello notmuch-mua-mail)
   :config
   (setq
@@ -77,13 +77,13 @@
     ;;; Search
     notmuch-search-oldest-first nil
     notmuch-saved-searches `(
-	    (:name "inbox" :query "tag:inbox not tag:trash" :key "i" :sort-order newest-first)
-	    (:name "recent" :query "tag:inbox date:15_days..  not tag:trash" :key "r" :sort-order newest-first)
-	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first)
-	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first)
-	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first)
-	    (:name "sent" :query "tag:sent" :key "s" :sort-order newest-first)
-	    (:name "drafts" :query "tag:draft" :key "d" :sort-order newest-first)))
+	    (:name "inbox" :query "tag:inbox not tag:trash" :key "i" :sort-order newest-first :search-type tree)
+	    (:name "recent" :query "tag:inbox date:15_days..  not tag:trash" :key "r" :sort-order newest-first :search-type tree)
+	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first :type tree)
+	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first :search-type tree)
+	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first :search-type tree)
+	    (:name "sent" :query "tag:sent" :key "s" :sort-order newest-first :search-type tree)
+	    (:name "drafts" :query "tag:draft" :key "d" :sort-order newest-first :search-type tree)))
   ;; Separate the sections override so it takes our modified saved searches
   (setq notmuch-hello-sections '(
                           notmuch-hello-insert-saved-searches
@@ -95,7 +95,6 @@
           ("authors" . "%-30s ")
           ("subject" . "%-72s ")
           ("tags" . "(%s)"))))
-
 ;; From https://notmuchmail.org/emacstips/
 ;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
 
