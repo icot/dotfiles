@@ -144,12 +144,7 @@
 
 ;;; Theme, Fonts, UI
 
-;; Disable menu bar and scroll bar
 (setq inhibit-startup-message t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
-(set-fringe-mode 10)
 
 ;;; General UI, taken from https://github.com/susam/emfy/blob/main/.emacs
 
@@ -171,7 +166,13 @@
 (setq visible-bell t)
 (set-face-attribute 'default nil :height 120)
 (global-hl-line-mode)
-(add-hook 'after-init-hook (lambda () (load-theme 'doom-homage-white)))
+
+;; Disable menu bar and scroll bar
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(set-fringe-mode 10)
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
 (use-package doom-themes
   :defer t)
@@ -179,13 +180,13 @@
 (defun icot/cycle-theme ()
   "Cycle light/dark themes"
   (interactive)
-  (if (eq (car custom-enabled-themes) 'doom-laserwave)
+  (if (eq (car custom-enabled-themes) 'modus-operandi)
       (progn
-        (disable-theme 'doom-laserwave)
-        (load-theme 'doom-homage-white))
+        (disable-theme 'modus-operandi)
+        (load-theme 'modus-vivendi))
     (progn
-      (disable-theme 'doom-homage-white)
-      (load-theme 'doom-laserwave))))
+      (disable-theme 'modus-vivendi)
+      (load-theme 'modus-operandi))))
 
 (use-package smartparens
   :defer t)
@@ -234,8 +235,8 @@
   :diminish
   :config
   (setq olivetti-body-width 0.65
-                   	olivetti-minimum-body-width 72
-                   	olivetti-recall-visual-line-mode-entry-state t)
+                                                                                                                                 	olivetti-minimum-body-width 72
+                                                                                                                                 	olivetti-recall-visual-line-mode-entry-state t)
   (define-minor-mode icot/olivetti-mode
     "additional olivetti mode parameters"
     :init-value nil
