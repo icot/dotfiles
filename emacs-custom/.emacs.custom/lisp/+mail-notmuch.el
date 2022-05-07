@@ -78,7 +78,7 @@
     notmuch-search-oldest-first nil
     notmuch-saved-searches `(
 	    (:name "inbox" :query "tag:inbox not tag:trash" :key "i" :sort-order newest-first :search-type tree)
-	    (:name "recent" :query "tag:inbox date:15_days..  not tag:trash" :key "r" :sort-order newest-first :search-type tree)
+	    (:name "recent" :query "date:15_days..  not tag:trash" :key "r" :sort-order newest-first :search-type tree)
 	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first :type tree)
 	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first :search-type tree)
 	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first :search-type tree)
@@ -98,9 +98,22 @@
 ;; From https://notmuchmail.org/emacstips/
 ;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
 
+
+(loop for p in load-path
+      do (if (file-accessible-directory-p p)
+             (let ((m (directory-files-recursively p "^ol-notmuch.el$")))
+                  (if m (add-to-list 'load-path (file-name-directory (car m)))))))
+
+;; Required by ol-notmuch via require
+(use-package compat
+  :ensure t)
+
 (use-package ol-notmuch
   :ensure t
+  :after 'compat
   :bind ("C-c t" . org-store-link)) ; Incompatible with LSP?
+
+
 
 (defun icot/mm-pipe-- (handle cmd)
   ;; conveniently, '-' '-' a args to pdftotext and docx2txt.pl work fine
