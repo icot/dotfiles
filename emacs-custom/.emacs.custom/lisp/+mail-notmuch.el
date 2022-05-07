@@ -98,6 +98,10 @@
 ;; From https://notmuchmail.org/emacstips/
 ;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
 
+(use-package ol-notmuch
+  :ensure t
+  :bind ("C-c t" . org-store-link)) ; Incompatible with LSP?
+
 (defun icot/mm-pipe-- (handle cmd)
   ;; conveniently, '-' '-' a args to pdftotext and docx2txt.pl work fine
   ;; fixme: naming inconsistency (fn name and buffer name)
