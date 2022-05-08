@@ -57,6 +57,12 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
 
 ;  :hook (org-mode . icot/org-add-electric-pairs)
 
+;; Org Modern https://github.com/minad/org-modern
+
+(use-package org-modern
+  :ensure t)
+(global-org-modern-mode)
+
 (use-package org-journal
   :ensure t
   :config
