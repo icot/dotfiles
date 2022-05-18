@@ -116,7 +116,7 @@ With a prefix ARG, remove start location."
   "Create todo format string from mail contents. Assumes notmuch use"
   (let ((from (notmuch-show-get-from))
         (subject (notmuch-show-get-subject)))
-    (format "* [ ] %%u %s %s %%?" from subject)))
+    (format "* TODO [ ] %%u %s %s %%?" from subject)))
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline +org-capture-todo-file "Inbox")
