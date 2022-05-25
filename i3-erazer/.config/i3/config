@@ -111,7 +111,7 @@ bar {
     strip_workspace_numbers yes
     strip_workspace_name no
     status_command i3status
-    output DP-4
+    output HDMI-0
 }
 
 # workspaces
@@ -251,8 +251,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
-exec --no-startup-id "xrandr --output HDMI-0 --mode 1920x1080 --left-of DP-0"
-exec --no-startup-id "feh --bg-scale ~/.dotfiles/artifacts/wallpapers/moebius/3100712.png"
+exec --no-startup-id "xrandr --output HDMI-0 --mode 3440x1440
+exec --no-startup-id "feh --bg-scale ~/.dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
 exec --no-startup-id "/usr/bin/xset -b"
 
 # Only to be enabled with i3-gaps
