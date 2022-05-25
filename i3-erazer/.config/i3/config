@@ -99,19 +99,19 @@ bindsym $mod+Ctrl+Left workspace prev
 ## Workspace mapping to screen
 ##
 
-bar {
-    i3bar_command i3bar --transparency
-    strip_workspace_numbers yes
-    strip_workspace_name no
-    output HDMI-0
-    tray_output none
-}
+#bar {
+#    i3bar_command i3bar --transparency
+#    strip_workspace_numbers yes
+#    strip_workspace_name no
+#    output HDMI-0
+#    tray_output none
+#}
 
 bar {
     strip_workspace_numbers yes
     strip_workspace_name no
     status_command i3status
-    output DP-0
+    output DP-4
 }
 
 # workspaces
