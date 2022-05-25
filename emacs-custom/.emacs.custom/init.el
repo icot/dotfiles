@@ -130,6 +130,9 @@
 ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+;(use-package esup
+;  :ensure t)
+
 (use-package explain-pause-mode
   :ensure t
   :defer t)
@@ -434,7 +437,6 @@
   :init
   (setq evil-want-keybinding nil) ;; necessary for evil-collection
   (setq evil-want-integration t)
-  (setq evil-want-C-u-scroll t)
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
   ;; (setq evil-want-C-u-scroll t)
