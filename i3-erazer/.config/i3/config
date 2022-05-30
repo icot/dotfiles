@@ -112,6 +112,7 @@ bar {
     strip_workspace_name no
     status_command i3status
     output HDMI-0
+    mode hide
 }
 
 # workspaces
