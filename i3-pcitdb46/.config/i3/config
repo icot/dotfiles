@@ -13,7 +13,7 @@ font xft:URWGothic-Book 12
 
 floating_modifier $mod
 
-bindsym $mod+t exec alacritty
+bindsym $mod+t exec kitty
 bindsym $mod+Return exec kitty
 
 # Window kill command
@@ -241,8 +241,8 @@ exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/310
 exec --no-startup-id "/usr/bin/xset -b"
 
 # Only to be enabled with i3-gaps
-smart_gaps on
-smart_borders on
-gaps inner 2
-gaps outer 2
-gaps horizontal 2
+#smart_gaps on
+#smart_borders on
+#gaps inner 2
+#gaps outer 2
+#gaps horizontal 2
