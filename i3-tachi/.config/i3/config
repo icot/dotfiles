@@ -222,7 +222,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
-exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/3100712.png"
+exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
 exec_always --no-startup-id setxkbmap -option caps:swapescape
 
 # Only to be enabled with i3-gaps
