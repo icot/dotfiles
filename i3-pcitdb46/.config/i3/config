@@ -25,7 +25,7 @@ bindsym $mod+Ctrl+l exec i3lock -c 0f0f0f
 # start program launcher
 #bindsym $mod+p exec --no-startup-id /home/icoteril/.guix-profile/bin/rofi -show run
 bindsym $mod+p exec --no-startup-id rofi -show run
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id passmenu
 bindsym $mod+Delete exec --no-startup-id export > /tmp/i3-export
 
 
@@ -99,9 +99,11 @@ bar {
     strip_workspace_name no
     output DP-1
     tray_output none
+    mode hide
 }
 
 bar {
+    mode hide
     strip_workspace_numbers yes
     strip_workspace_name no
     status_command i3status
