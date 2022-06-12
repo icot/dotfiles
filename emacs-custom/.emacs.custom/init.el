@@ -180,6 +180,15 @@
 (use-package doom-themes
   :defer t)
 
+;; modus customizations
+(setq modus-themes-hl-line '(intense accented))
+(setq modus-themes-org-blocks 'gray-background)
+(setq modus-themes-mode-line '(borderless accented))
+
+;(setq modus-themes-syntax '(alt-syntax))
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-italic-constructs t)
+
 (defun icot/cycle-theme ()
   "Cycle light/dark themes"
   (interactive)
