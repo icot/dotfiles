@@ -97,18 +97,19 @@ bar {
     i3bar_command i3bar --transparency
     strip_workspace_numbers yes
     strip_workspace_name no
-    output DP-1
-    tray_output none
+    output DP-2
+    status_command i3status
     mode hide
 }
 
-bar {
-    mode hide
-    strip_workspace_numbers yes
-    strip_workspace_name no
-    status_command i3status
-    output DP-2
-}
+#bar {
+#    mode hide
+#    strip_workspace_numbers yes
+#    strip_workspace_name no
+#    status_command i3status
+#    output DP-2
+#    tray_output none
+#}
 
 # workspaces
 set $ws1 "1: λ"
@@ -229,7 +230,7 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 # Autostart applications
 ## icot custom
 exec_always --no-startup-id setxkbmap -option caps:swapescape
-exec_always picom --inactive-dim 0.15 -b
+exec_always picom --inactive-dim 0.1 -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id "sudo dhclient"
@@ -238,7 +239,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
-exec --no-startup-id "xrandr --output HDMI-0 --mode 1920x1080 --left-of DP-0"
+exec --no-startup-id "xrandr --output DP-2 --mode 2560x1440 --left-of DP-1 --rotate left"
 exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
 exec --no-startup-id "/usr/bin/xset -b"
 
