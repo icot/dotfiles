@@ -104,12 +104,22 @@
 
 (use-package lsp-ui
   :ensure t
-  :after lsp-mode)
+  :commands lsp-uid-mode
+  :after lsp-mode
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-use-childframe t)
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-ui-sideline-delay 0.05))
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbols)
 
-
 ;; Servers
+
 
 ;; Python
 ;;; Pyright https://emacs-lsp.github.io/lsp-pyright/
@@ -121,7 +131,10 @@
                           (lsp-deferred))))
 
 ;; Java
-;;; (lsp-java)
+(use-package lsp-java
+  :ensure t
+  :defer t
+  :hook (java-mode . lsp))
 
 ;; Clojure - Automatic install (lsp-install-server)
 
