@@ -412,6 +412,8 @@
   "pc" '(counsel-projectile :which-key "counsel-projectile")
   "pp" '(counsel-projectile-switch-project :which-key "counsel-projectile-switch-project")
   "p/" '(counsel-projectile-rg :which-key "counsel-projectile-rg")
+  "pC" '(projectile-compile-project :which-key "projectile Compile")
+  "pP" '(projectile-package-project :which-key "projectile Package")
   "t" '(:ignore t :which-key "toggles")
   "tl" '(global-display-line-numbers-mode :which-key "line numbers")
   "tp" '(ivy-pass :which-key "pass")
