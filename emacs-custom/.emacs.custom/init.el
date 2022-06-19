@@ -170,6 +170,13 @@
 (set-face-attribute 'default nil :height 120)
 (global-hl-line-mode)
 
+;; hightlight-ident-guides
+(use-package highlight-indent-guides
+  :ensure t
+  :defer t
+  :config
+  (setq highlight-indent-guides-method 'character))
+
 ;; Disable menu bar and scroll bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -413,6 +420,7 @@
   "tt" '(icot/cycle-theme :which-key "cycle theme")
   "ts" '(eshell :which-key "toggle terminal (eshell)")
   "tw" '(whitespace-mode :which-key "toggle whitespace mode")
+  "ti" '(highlight-indent-guides-mode :which-key "highlight-indent-guides mode")
   "tz" '(icot/olivetti-mode :which-key "Olivetti Mode")
   "v" '(:ignore t :which-key "views")
   "vp" '(ivy-push-view :which-key "ivy-push view")
