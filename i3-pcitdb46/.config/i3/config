@@ -1,9 +1,8 @@
 set $mod Mod4
 
-new_window pixel 1
-new_float normal
+default_border pixel
 
-hide_edge_borders none
+hide_edge_borders smart
 
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
@@ -99,7 +98,7 @@ bar {
     strip_workspace_name no
     output DP-2
     status_command i3status
-    mode hide
+  #  mode hide
 }
 
 #bar {
@@ -122,7 +121,7 @@ set $ws7 7
 set $ws8 "8: "
 set $ws9 "9: "
 
-workspace $ws1 output DP-2
+workspace $ws1 output DP-1
 workspace $ws8 output DP-2
 workspace $ws9 output DP-1
 
@@ -210,14 +209,13 @@ mode "resize" {
 #trans-background = #dd0a1e24
 
 # Theme colors
-# client.focused          #272827 #272827 #657b83 #272827 #272827
-client.focused          #0a1e24 #ecefc1 #657b83 #0a1e24 #ecefc1
-#client.focused_inactive #272827 #272827 #657b83 #272827 #272827
-#client.unfocused        #272827 #272827 #657b83 #272827 #272827
-#client.urgent           #272827 #272827 #657b83 #272827 #272827
-#client.placeholder      #272827 #272827 #657b83 #272827 #272827
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #ff0000
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-#client.background       #272827
+client.background       #ffffff
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db- unmute
