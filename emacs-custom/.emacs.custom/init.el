@@ -410,6 +410,10 @@
   :prefix "SPC"
   :global-prefix "C-SPC")
 
+(use-package burly
+  :straight (:host github
+             :repo "alphapapa/burly.el"))
+
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
