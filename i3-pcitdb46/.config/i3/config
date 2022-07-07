@@ -150,6 +150,11 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
 
+# https://www.reddit.com/r/i3wm/comments/m27dwc/i3_settings_for_zoom/
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
