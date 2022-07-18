@@ -1,5 +1,5 @@
 [SpamFilter]
-[DKIMValidityFilter]
+#[DKIMValidityFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
 [ArchiveSentMailsFilter]
@@ -11,23 +11,15 @@ folder_transforms = [gmail]:gmail
 
 [InboxFilter]
 
-[HeaderMatchingFilter.1]
-message = GitLab message
-header = X-Gitlab-Project-Id
-pattern = "^(\d)+"
-tags = +gitlab;-inbox
-
-[HeaderMatchingFilter.2]
-message = JIRA message
-header = X-JIRA-FingerPrint
-pattern = "^[a-zA-Z0-9]{32}"
+[Filter.1]
+message = JIRA message (from)
+query = from:noreply-jira@cern.ch or from:jiramail@cern.ch
 tags = +jira;-inbox
 
-[HeaderMatchingFilter.3]
-message = SNOW Notification
-header = X-ServiceNow-Source
-pattern = "^Notification-"
-tags = +gni;-inbox
+[Filter.2]
+message = SNOW Notifications (from)
+query = from:noreply-service-desk@cern.ch
+tags = +snow;-inbox
 
 [MailMover]
 rename = True

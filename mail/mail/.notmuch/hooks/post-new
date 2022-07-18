@@ -1,2 +1,2 @@
 #!/bin/sh
-$HOME/.guix-profile/bin/afew --tag --new
+$HOME/.guix-profile/bin/afew --tag --new -v
