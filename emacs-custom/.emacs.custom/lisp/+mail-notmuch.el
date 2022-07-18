@@ -78,8 +78,10 @@
     notmuch-search-oldest-first nil
     notmuch-saved-searches `(
 	    (:name "inbox" :query "tag:inbox not tag:trash" :key "i" :sort-order newest-first :search-type tree)
-	    (:name "recent" :query "date:15_days..  not tag:trash" :key "r" :sort-order newest-first :search-type tree)
+	    (:name "recent" :query "date:15_days..  not tag:trash and not tag:snow or tag:jira" :key "r" :sort-order newest-first :search-type tree)
 	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first :type tree)
+	    (:name "snow" :query "tag:snow" :key "S" :sort-order newest-first :type tree)
+	    (:name "jira" :query "tag:jira" :key "j" :sort-order newest-first :type tree)
 	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first :search-type tree)
 	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first :search-type tree)
 	    (:name "sent" :query "tag:sent" :key "s" :sort-order newest-first :search-type tree)
