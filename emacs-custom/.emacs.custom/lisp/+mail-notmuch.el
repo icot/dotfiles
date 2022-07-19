@@ -64,7 +64,6 @@
 
 (use-package notmuch
   :ensure t
-  :commands (notmuch-jump-search notmuch-hello notmuch-mua-mail)
   :config
   (setq
     ;; General UI
@@ -97,9 +96,9 @@
           ("authors" . "%-30s ")
           ("subject" . "%-72s ")
           ("tags" . "(%s)"))))
+
 ;; From https://notmuchmail.org/emacstips/
 ;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
-
 
 (loop for p in load-path
       do (if (file-accessible-directory-p p)
