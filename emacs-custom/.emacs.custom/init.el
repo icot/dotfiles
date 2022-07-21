@@ -414,6 +414,20 @@
   :straight (:host github
              :repo "alphapapa/burly.el"))
 
+;; Denote
+(use-package denote
+  :defer t
+  :straight (:host nil
+             :repo "https://git.sr.ht/~protesilaos/denote")
+  :config
+  (setq denote-directory (expand-file-name "~/Sync/denote/"))
+  (setq denote-known-keywords '("emacs" "management" "monit" "nile" "lisp"))
+  (setq denote-infer-keywords t)
+  (setq denote-sort-keywords t)
+  (setq denote-file-type nil) ; Org is the default, set others here
+  (setq denote-prompts '(title keywords)))
+
+
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
   "bb" '(ivy-switch-buffer :which-key "ivy-switch-buffer")
