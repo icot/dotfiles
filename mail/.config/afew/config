@@ -9,8 +9,6 @@ folder_lowercases = true
 maildir_separator = /
 folder_transforms = [gmail]:gmail
 
-[InboxFilter]
-
 [Filter.1]
 message = JIRA message (from)
 query = from:noreply-jira@cern.ch or from:jiramail@cern.ch
@@ -23,3 +21,5 @@ tags = +snow;-inbox
 
 [MailMover]
 rename = True
+
+[InboxFilter]
