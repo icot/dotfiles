@@ -418,15 +418,23 @@
 (use-package denote
   :defer t
   :straight (:host nil
-             :repo "https://git.sr.ht/~protesilaos/denote")
+                   :repo "https://git.sr.ht/~protesilaos/denote")
+  :hook (dired-mode . denote-dired-mode-in-directories)
   :config
   (setq denote-directory (expand-file-name "~/Sync/denote/"))
   (setq denote-known-keywords '("emacs" "management" "monit" "nile" "lisp"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil) ; Org is the default, set others here
-  (setq denote-prompts '(title keywords)))
+  (setq denote-prompts '(title keywords))
+  (setq denote-link-fontify-backlinks t))
 
+(defun icot/my-denote-journal ()
+  "Create an entry tagged 'journal', while prompting for a title."
+  (interactive)
+  (denote
+   (denote--title-prompt)
+   '("journal")))
 
 (icot/leader-keys
   "b" '(:ignore t :which-key "buffer")
@@ -448,6 +456,14 @@
   "m" '(:ignore m :which-key "mail")
   "mm" '(notmuch-mua-mail :which-key "New mail")
   "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
+  "n" '(:ignore m :which-key "notes")
+  "nj" '(icot/my-denote-journal :which-key "New Journal note")
+  "nn" '(denote :which-key "denote")
+  "ns" '(denote-subdirectory :which-key "denote-subdirectory")
+  "ni" '(denote-link :which-key "denote-link")
+  "nI" '(denote-link-add-links :which-key "denote-link-add-links")
+  "nl" '(denote-link-find-file :which-key "denote-link-find-file")
+  "nb" '(denote-link-backlinks :which-key "denote-link-backlinks")
   "o" '(:ignore t :which-key "open")
   "oc" '(counsel-org-capture :which-key "org capture")
   "ot" '(org-todo-list :which-key "org TODO list")
