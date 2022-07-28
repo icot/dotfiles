@@ -464,6 +464,7 @@
   "nI" '(denote-link-add-links :which-key "denote-link-add-links")
   "nl" '(denote-link-find-file :which-key "denote-link-find-file")
   "nb" '(denote-link-backlinks :which-key "denote-link-backlinks")
+  "nd" '((lambda () (interactive) (dired-other-tab denote-directory)) :which-key "dired denote-directory")
   "o" '(:ignore t :which-key "open")
   "oc" '(counsel-org-capture :which-key "org capture")
   "ot" '(org-todo-list :which-key "org TODO list")
@@ -505,7 +506,6 @@
   ":" '(counsel-M-x :which-key "counsel-M-x")
   "/" '(counsel-rg :which-key "counsel-rg")
   ";" '(eval-expression :which-key "eval-expresion"))
-
 
 (defun icot/evil-hook ()
   (dolist (mode '(custom-mode
