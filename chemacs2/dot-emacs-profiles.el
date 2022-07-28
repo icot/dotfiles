@@ -1,4 +1,5 @@
 (("doom" . ((user-emacs-directory . "~/.emacs.doom")
-           (env . (("DOOMDIR" . "~/.doom.d")))))
+            (env . (("DOOMDIR" . "~/.doom.d")))))
  ("prelude" . ((user-emacs-directory . "~/.emacs.prelude")))
+ ("nano" . ((user-emacs-directory . "~/.emacs.nano")))
  ("custom" . ((user-emacs-directory . "~/.emacs.custom"))))
