@@ -187,6 +187,10 @@
 (use-package doom-themes
   :defer t)
 
+;; emacs-nano
+(straight-use-package
+  '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
+
 ;; modus customizations
 (setq modus-themes-hl-line '(intense accented))
 (setq modus-themes-org-blocks 'gray-background)
@@ -464,7 +468,7 @@
   "nI" '(denote-link-add-links :which-key "denote-link-add-links")
   "nl" '(denote-link-find-file :which-key "denote-link-find-file")
   "nb" '(denote-link-backlinks :which-key "denote-link-backlinks")
-  "nd" '((lambda () (interactive) (dired-other-tab denote-directory)) :which-key "dired denote-directory")
+  "nd" '((lambda () (interactive) (dired-other-window denote-directory)) :which-key "dired denote-directory")
   "o" '(:ignore t :which-key "open")
   "oc" '(counsel-org-capture :which-key "org capture")
   "ot" '(org-todo-list :which-key "org TODO list")
