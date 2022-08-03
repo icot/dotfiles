@@ -74,6 +74,9 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+(use-package counsel
+  :ensure t)
+
 ;; Disable menu bar and scroll bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -88,7 +91,8 @@
 ;; Default layout (optional)
 (require 'nano-layout)
 
-(require 'nano-theme-light)
+(require 'nano-theme-dark)
+
 
 ;; Theme
 (require 'nano-faces)
@@ -126,3 +130,21 @@
 
 ;; Help (optional)
 (require 'nano-help)
+
+;; minibuffer
+(use-package mini-frame
+  :ensure t)
+
+;(require 'nano-minibuffer)
+
+;; colors
+
+(require 'nano-colors)
+
+(require 'nano-counsel)
+
+(menu-bar-mode -1)
+
+;(tool-bar-mode -1)
+;(scroll-bar-mode -1)
+;(set-fringe-mode 10)
