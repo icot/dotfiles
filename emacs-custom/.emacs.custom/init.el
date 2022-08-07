@@ -180,6 +180,7 @@
 ;; Disable menu bar and scroll bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(tab-bar-mode t)
 (scroll-bar-mode -1)
 (set-fringe-mode 10)
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
@@ -258,8 +259,8 @@
   :diminish
   :config
   (setq olivetti-body-width 0.65
-      	olivetti-minimum-body-width 72
-       	olivetti-recall-visual-line-mode-entry-state t)
+                                                                                                                                                                                                                                                                              	olivetti-minimum-body-width 72
+                                                                                                                                                                                                                                                                               	olivetti-recall-visual-line-mode-entry-state t)
   (define-minor-mode icot/olivetti-mode
     "additional olivetti mode parameters"
     :init-value nil
@@ -671,3 +672,5 @@
 ;;; Reset gc-cons-threshold
 (setq gc-cons-threshold (* 2 1000 1000))
 ;;; init.el ends here
+
+
