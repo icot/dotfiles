@@ -6,19 +6,20 @@
 ;; (use-package yasnippet)
 
 ;; tree-sitter
+(use-package tree-sitter-langs
+  :ensure t)
 
 (use-package tree-sitter
   :ensure t
+  :after tree-sitter-langs
   :config
-  (setq global-tree-sitter-mode t))
-
-(use-package tree-sitter-langs
-  :ensure t)
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 ;;;; Completion
 (use-package company)
 (add-hook 'after-init-hook #'global-company-mode)
- 
+
 ;;;; linting
 
 ;;; syntax
