@@ -14,8 +14,8 @@
   :after tree-sitter-langs
   :config
   (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
+  :hook (prog-mode . turn-on-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
 ;;;; Completion
 (use-package company)
 (add-hook 'after-init-hook #'global-company-mode)
