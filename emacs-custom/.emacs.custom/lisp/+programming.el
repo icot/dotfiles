@@ -5,6 +5,15 @@
 ;;; file-templates/snippets
 ;; (use-package yasnippet)
 
+;; tree-sitter
+
+(use-package tree-sitter
+  :ensure t
+  :config
+  (setq global-tree-sitter-mode t))
+
+(use-package tree-sitter-langs
+  :ensure t)
 
 ;;;; Completion
 (use-package company)
