@@ -259,8 +259,8 @@
   :diminish
   :config
   (setq olivetti-body-width 0.65
-                                                                                                                                                                                                                                                                              	olivetti-minimum-body-width 72
-                                                                                                                                                                                                                                                                               	olivetti-recall-visual-line-mode-entry-state t)
+        olivetti-minimum-body-width 72
+        olivetti-recall-visual-line-mode-entry-state t)
   (define-minor-mode icot/olivetti-mode
     "additional olivetti mode parameters"
     :init-value nil
