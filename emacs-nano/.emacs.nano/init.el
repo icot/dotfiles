@@ -368,10 +368,6 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; which-key -> investigate embark-prefix-help-command
-
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.3))
+;;; Reset gc-cons-threshold
+(setq gc-cons-threshold (* 2 1000 1000))
+;;; init.el ends here
