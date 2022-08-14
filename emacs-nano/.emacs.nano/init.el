@@ -154,11 +154,8 @@
   :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first"))
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-up-directory
-    "l" 'dired-find-file))
+  :custom ((dired-listing-switches "-agho --group-directories-first")))
+
 
 (use-package dired-single
   :ensure t
@@ -424,15 +421,15 @@
 
 ;;; 3rd party Modules
 
-;;(load "+focus.el")
+(load "+focus.el")
 
-;;(load "+git.el")
+(load "+git.el")
 
-;;(load "+pass.el")
+(load "+pass.el")
 
 ;;(load "+org.el")
 
-;;(load "+denote.el")
+(load "+denote.el")
 
 ;;(load "+elfeed.el")
 
@@ -442,7 +439,7 @@
 
 ;;(load "+irc.el")
 
-;;(load "+pdf.el")
+(load "+pdf.el")
 
 ;;(load "+programming.el")
 
@@ -451,23 +448,15 @@
 
 ;; Override forward-char
 (global-set-key (kbd "C-f") nil)
-(global-set-key (kbd "C-f C-f") #'consult-find) 
-(global-set-key (kbd "C-f C-r") #'consult-recent-file)
+(global-set-key (kbd "C-f f") #'consult-find) 
+(global-set-key (kbd "C-f r") #'consult-recent-file)
+(global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
 
 ;  "gg" '(magit-status :which-key "magit-status")
 
 ;  "mm" '(notmuch-mua-mail :which-key "New mail")
 ;  "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
 
-;; Overrides next-line
-(global-set-key (kbd "C-n") nil)
-;  "nj" '(icot/my-denote-journal :which-key "New Journal note")
-;  "nn" '(denote :which-key "denote")
-;  "ns" '(denote-subdirectory :which-key "denote-subdirectory")
-;  "ni" '(denote-link :which-key "denote-link")
-;  "nI" '(denote-link-add-links :which-key "denote-link-add-links")
-;  "nl" '(denote-link-find-file :which-key "denote-link-find-file")
-;  "nb" '(denote-link-backlinks :which-key "denote-link-backlinks")
 ;  "nd" '((lambda () (interactive) (dired-other-window denote-directory)) :which-key "dired denote-directory")
 
 ;; Overrides open-line
@@ -485,7 +474,7 @@
 ;  "pC" '(projectile-compile-project :which-key "projectile Compile")
 ;  "pP" '(projectile-package-project :which-key "projectile Package")
 
-;; Override transpose-char
+;; Override transpose-char for toggle like settings
 (global-set-key (kbd "C-t") nil)
 
 (global-set-key (kbd "C-t l") #'global-display-line-numbers-mode)
