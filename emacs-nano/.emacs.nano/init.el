@@ -1,6 +1,8 @@
 
 (provide 'init)
 
+(add-to-list 'load-path "~/.emacs.nano/lisp")
+
 (defun icot/package-reinstall-all-activated-packages ()
   "Refresh and reinstall all activated packages."
   (interactive)
@@ -11,7 +13,17 @@
                 (package-reinstall package-name))
         (warn "Package %s failed to reinstall" package-name)))))
 
-;;; Basics
+;; From https://github.com/daviwil/emacs-from-scratch/blob/master/init.el
+(defun icot/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                     (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'icot/display-startup-time)
+
+;;; Basics: Native compilation
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
 (setq load-prefer-newer t)
@@ -74,15 +86,35 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;; Theme, GUI
+
 ;; Disable menu bar and scroll bar
 (setq inhibit-startup-screen t)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-fringe-mode 10)
 
-(use-package posframe)
+(global-prettify-symbols-mode 1)
 
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+
+;; modus theme customizations
+(setq modus-themes-hl-line '(intense accented))
+(setq modus-themes-org-blocks 'gray-background)
+(setq modus-themes-mode-line '(borderless))
+
+;(setq modus-themes-syntax '(alt-syntax))
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-italic-constructs t)
+
+(set-face-attribute 'default nil :height 120)
+
+
+;;; Help, Completion
+
+;; marginalia
 (use-package marginalia
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
   :bind (("M-A" . marginalia-cycle)
@@ -368,6 +400,129 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;;; Reset gc-cons-threshold
+;; which-key
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.3))
+
+
+;;; Core modules
+
+;; TRAMP
+(setq tramp-default-method "sshx")
+(setq tramp-verbose 10)
+
+;; eshell
+;;  Display in new split buffer
+(setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
+
+;; vterm
+(setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window)))
+
+
+;;; 3rd party Modules
+
+;;(load "+focus.el")
+
+;;(load "+git.el")
+
+;;(load "+pass.el")
+
+;;(load "+org.el")
+
+;;(load "+denote.el")
+
+;;(load "+elfeed.el")
+
+;;(load "+mail-notmuch.el")
+
+;;(load "+blog.el")
+
+;;(load "+irc.el")
+
+;;(load "+pdf.el")
+
+;;(load "+programming.el")
+
+;; Keybindings
+;(global-set-key (kbd "RET") #'newline)
+
+;; Override forward-char
+(global-set-key (kbd "C-f") nil)
+(global-set-key (kbd "C-f C-f") #'consult-find) 
+(global-set-key (kbd "C-f C-r") #'consult-recent-file)
+
+;  "gg" '(magit-status :which-key "magit-status")
+
+;  "mm" '(notmuch-mua-mail :which-key "New mail")
+;  "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
+
+;; Overrides next-line
+(global-set-key (kbd "C-n") nil)
+;  "nj" '(icot/my-denote-journal :which-key "New Journal note")
+;  "nn" '(denote :which-key "denote")
+;  "ns" '(denote-subdirectory :which-key "denote-subdirectory")
+;  "ni" '(denote-link :which-key "denote-link")
+;  "nI" '(denote-link-add-links :which-key "denote-link-add-links")
+;  "nl" '(denote-link-find-file :which-key "denote-link-find-file")
+;  "nb" '(denote-link-backlinks :which-key "denote-link-backlinks")
+;  "nd" '((lambda () (interactive) (dired-other-window denote-directory)) :which-key "dired denote-directory")
+
+;; Overrides open-line
+(global-set-key (kbd "C-o") nil)
+;  "oc" '(counsel-org-capture :which-key "org capture")
+;  "ot" '(org-todo-list :which-key "org TODO list")
+;  "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
+
+;; Overrides previous-line 
+(global-set-key (kbd "C-p") nil)
+;  "pb" '(counsel-projectile-switch-to-buffer :which-key "counsel-projectile-buffer")
+;  "pc" '(counsel-projectile :which-key "counsel-projectile")
+;  "pp" '(counsel-projectile-switch-project :which-key "counsel-projectile-switch-project")
+;  "p/" '(counsel-projectile-rg :which-key "counsel-projectile-rg")
+;  "pC" '(projectile-compile-project :which-key "projectile Compile")
+;  "pP" '(projectile-package-project :which-key "projectile Package")
+
+;; Override transpose-char
+(global-set-key (kbd "C-t") nil)
+
+(global-set-key (kbd "C-t l") #'global-display-line-numbers-mode)
+(global-set-key (kbd "C-t s") #'eshell)
+(global-set-key (kbd "C-t w") #'whitespace-mode)
+(global-set-key (kbd "C-t i") #'highlight-indent-guides-mode)
+(global-set-key (kbd "C-t z") #'icot/olivetti-mode)
+(global-set-key (kbd "C-t t") #'modus-themes-toggle)
+
+;; Overrides scroll-up
+(global-set-key (kbd "C-v") nil)
+;  "vp" '(burly-bookmark-windows :which-key "burly bookmark windows")
+;  "vP" '(burly-bookmark-frames :which-key "burly bookmark frames")
+;  "vv" '(burly-open-bookmark :which-key "burly open bookmark")
+
+(global-set-key (kbd "C-x h") #'windmove-left)
+(global-set-key (kbd "C-x j") #'windmove-down)
+(global-set-key (kbd "C-x k") #'windmove-up)
+(global-set-key (kbd "C-x l") #'windmove-right)
+
+;; "wH" '(evil-window-move-far-left :which-key "move window to the left")
+;; "wJ" '(evil-window-move-very-bottom :which-key "move window to bottom")
+;; "wK" '(evil-window-move-very-top :which-key "move window to the top")
+;; "wL" '(evil-window-move-far-right :which-key "move window to the right")
+;; "wn" '(evil-window-new :which-key "new window")
+
+(global-set-key (kbd "C-x |") #'split-window-horizontally)
+(global-set-key (kbd "C-x _") #'split-window-vertically)
+(global-set-key (kbd "C-x =") #'balance-windows)
+
+(global-set-key (kbd "C-/") #'consult-line)
+(global-set-key (kbd "C-\\") #'consult-ripgrep)
+(global-set-key (kbd "C-:") #'eval-expression)
+(global-set-key (kbd "C-;") #'execute-extended-command)
+
+;;;; init.el ends here
 (setq gc-cons-threshold (* 2 1000 1000))
-;;; init.el ends here
+;;;; init.el ends here 
+
+
