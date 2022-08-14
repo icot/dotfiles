@@ -5,7 +5,6 @@
   :magic ("%PDF" . pdf-view-mode)
   :config
   (pdf-tools-install)
-  (evil-set-initial-state 'pdf-view-mode 'normal)
   (setq-default pdf-view-display-size 'fit-page)
   :hook
   (pdf-view-mode . (lambda ()

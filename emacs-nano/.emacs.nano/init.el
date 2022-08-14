@@ -111,6 +111,16 @@
 
 (set-face-attribute 'default nil :height 120)
 
+;; Window/frame setup management
+
+(use-package burly
+  :straight (:host github
+             :repo "alphapapa/burly.el"))
+
+(global-set-key (kbd "C-v") nil) ; Overrides scroll-up to free prefix
+(global-set-key (kbd "C-v b") #'burly-bookmark-windows)
+(global-set-key (kbd "C-v B") #'burly-bookmark-frames)
+(global-set-key (kbd "C-v v") #'burly-open-bookmark)
 
 ;;; Help, Completion
 
@@ -431,17 +441,17 @@
 
 (load "+denote.el")
 
-;;(load "+elfeed.el")
+(load "+elfeed.el")
 
 ;;(load "+mail-notmuch.el")
 
-;;(load "+blog.el")
+(load "+blog.el")
 
-;;(load "+irc.el")
+(load "+irc.el")
 
 (load "+pdf.el")
 
-;;(load "+programming.el")
+(load "+programming.el")
 
 ;; Keybindings
 ;(global-set-key (kbd "RET") #'newline)
@@ -451,8 +461,6 @@
 (global-set-key (kbd "C-f f") #'consult-find) 
 (global-set-key (kbd "C-f r") #'consult-recent-file)
 (global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
-
-;  "gg" '(magit-status :which-key "magit-status")
 
 ;  "mm" '(notmuch-mua-mail :which-key "New mail")
 ;  "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
@@ -484,11 +492,6 @@
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
 (global-set-key (kbd "C-t t") #'modus-themes-toggle)
 
-;; Overrides scroll-up
-(global-set-key (kbd "C-v") nil)
-;  "vp" '(burly-bookmark-windows :which-key "burly bookmark windows")
-;  "vP" '(burly-bookmark-frames :which-key "burly bookmark frames")
-;  "vv" '(burly-open-bookmark :which-key "burly open bookmark")
 
 (global-set-key (kbd "C-x h") #'windmove-left)
 (global-set-key (kbd "C-x j") #'windmove-down)
