@@ -437,13 +437,13 @@
 
 (load "+pass.el")
 
-;;(load "+org.el")
+(load "+org.el")
 
 (load "+denote.el")
 
 (load "+elfeed.el")
 
-;;(load "+mail-notmuch.el")
+(load "+mail-notmuch.el")
 
 (load "+blog.el")
 
@@ -470,8 +470,9 @@
 ;; Overrides open-line
 (global-set-key (kbd "C-o") nil)
 ;  "oc" '(counsel-org-capture :which-key "org capture")
-;  "ot" '(org-todo-list :which-key "org TODO list")
-;  "om" '(notmuch-jump-search :which-key "notmuch") ;; Requires load binding to this method
+(global-set-key (kbd "C-o c") #'org-capture)
+(global-set-key (kbd "C-o t") #'org-todo-list)
+(global-set-key (kbd "C-o m") #'notmuch-jump-search)
 
 ;; Overrides previous-line 
 (global-set-key (kbd "C-p") nil)

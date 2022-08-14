@@ -100,7 +100,8 @@
 ;; From https://notmuchmail.org/emacstips/
 ;; Modification of user/mm-pipe-- and user/notmuch-show-pop-attachment-to-buffer
 
-(loop for p in load-path
+(require 'cl-lib)
+(cl-loop for p in load-path
       do (if (file-accessible-directory-p p)
              (let ((m (directory-files-recursively p "^ol-notmuch.el$")))
                   (if m (add-to-list 'load-path (file-name-directory (car m)))))))
