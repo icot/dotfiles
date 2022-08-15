@@ -86,6 +86,16 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;; Benchmark init
+
+;(load "wrong-args-fix.el")
+
+(use-package benchmark-init
+ :ensure f
+ :config
+;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 ;; Theme, GUI
 
 ;; Disable menu bar and scroll bar
