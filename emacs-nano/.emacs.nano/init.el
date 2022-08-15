@@ -462,12 +462,10 @@
 (global-set-key (kbd "C-f r") #'consult-recent-file)
 (global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
 
-
-
 ;; Mail
 
 (global-set-key (kbd "C-x m") #'notmuch-mua-mail)
-(global-set-key (kbd "C-x ma") #'icot/notmuch-show-process-attachment)
+;; (global-set-key (kbd "C-x m a") #'icot/notmuch-show-process-attachment)
                                                                                    
 ;; Overrides open-line
 (global-set-key (kbd "C-o") nil)
