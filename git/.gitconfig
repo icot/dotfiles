@@ -34,6 +34,7 @@
 	default = simple
 [http]
 	sslCAPath = /etc/ssl/certs/
+	emptyAuth = true
 [credential]
   helper = cache --timeout=3600
 [credential "https://git.overleaf.com"]
