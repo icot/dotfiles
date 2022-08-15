@@ -462,11 +462,13 @@
 (global-set-key (kbd "C-f r") #'consult-recent-file)
 (global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
 
-;  "mm" '(notmuch-mua-mail :which-key "New mail")
-;  "ma" '(icot/notmuch-show-process-attachment :which-key "Process attachment")
 
-;  "nd" '((lambda () (interactive) (dired-other-window denote-directory)) :which-key "dired denote-directory")
 
+;; Mail
+
+(global-set-key (kbd "C-x m") #'notmuch-mua-mail)
+(global-set-key (kbd "C-x ma") #'icot/notmuch-show-process-attachment)
+                                                                                   
 ;; Overrides open-line
 (global-set-key (kbd "C-o") nil)
 ;  "oc" '(counsel-org-capture :which-key "org capture")
