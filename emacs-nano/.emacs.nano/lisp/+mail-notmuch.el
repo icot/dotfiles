@@ -161,5 +161,24 @@
       (_ (notmuch-show-save-part)))
     (kill-buffer (mm-handle-buffer handle)))))
 
+
+;; helpers to toogle flagged and deleted tags
+(defun icot/notmuch-tree-toggle-tag (tag)
+  (let* ((tags (notmuch-tree-get-tags))
+         (new-tags (list (concat (if (member tag tags) "-" "+") tag)))) 
+;;    (message "tags-raw: %s" tags)
+;;    (message "new-tags: %s" new-tags)
+    (notmuch-tag (notmuch-tree-get-message-id) new-tags)
+    (notmuch-tree-tag-update-display new-tags)))
+
+(defun icot/notmuch-tree-toggle-tag-flagged ()
+  (interactive)
+  (icot/notmuch-tree-toggle-tag "flagged"))
+
+(defun icot/notmuch-tree-toggle-tag-deleted ()
+  (interactive)
+  (icot/notmuch-tree-toggle-tag "deleted"))
+
+
 (setq notmuch-show-part-button-default-action
       #'icot/notmuch-show-process-attachment)
