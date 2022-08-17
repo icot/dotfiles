@@ -179,6 +179,8 @@
   (interactive)
   (icot/notmuch-tree-toggle-tag "deleted"))
 
+(define-key notmuch-tree-mode-map (kbd "=") 'icot/notmuch-tree-toggle-tag-flagged)
+(define-key notmuch-tree-mode-map (kbd "d") 'icot/notmuch-tree-toggle-tag-deleted)
 
 (setq notmuch-show-part-button-default-action
       #'icot/notmuch-show-process-attachment)
