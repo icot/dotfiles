@@ -222,8 +222,8 @@
 ;; c/c++
 
 ;; go
-(use-package company-shell
-  :defer t)
+;;(use-package company-shell
+;;  :defer t)
 
 ;; javascript
 
@@ -233,11 +233,11 @@
 
 ;; shell
 ;; Config for sh-script
-(use-package company-shell
-  :defer t)
+;;(use-package company-shell
+;;  :defer t
 
 ;; web
-(use-package company-web
-  :defer t)
-(use-package counsel-css
-  :defer t)
+;;(use-package company-web
+;;  :defer t)
+;;(use-package counsel-css
+;;  :defer t)
