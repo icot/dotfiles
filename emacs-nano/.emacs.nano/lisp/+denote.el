@@ -5,8 +5,9 @@
   :straight (:host nil
                    :repo "https://git.sr.ht/~protesilaos/denote")
   :hook (dired-mode . denote-dired-mode-in-directories)
-  :config
+  :init
   (setq denote-directory (expand-file-name "~/Sync/denote/"))
+  :config
   (setq denote-known-keywords '("emacs" "management" "monit" "nile" "lisp"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
