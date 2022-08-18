@@ -174,6 +174,8 @@
 (use-package cider
   :defer t)
 
+(add-to-list 'exec-path "~/.sdkman/candidates/leiningen/current/bin")
+
 ;; scheme
 (use-package geiser
   :defer t
