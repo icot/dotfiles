@@ -441,6 +441,18 @@
 
 ;;; 3rd party Modules
 
+;;; Projectile TODO project discovery, improve search-path load time
+;; (use-package projectile
+;;   :diminish projectile-mode                                                         				
+;;   :custom ((projectile-completion-system 'ivy))
+;;   :config (projectile-mode)
+;;   :bind-keymap ("C-c p" . projectile-command-map)
+;;   :init
+;;   (when (file-directory-p "~/workspace")
+;;     (setq projectile-project-search-path '("~/workspace"
+;;                                            "~/workspace/cerndb"
+;;                                            "~/workspace/puppet"))))
+
 (load "+focus.el")
 
 (load "+git.el")
