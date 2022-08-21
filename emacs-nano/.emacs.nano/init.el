@@ -121,6 +121,22 @@
 
 (set-face-attribute 'default nil :height 120)
 
+;; Install lambda-themes
+(use-package lambda-themes
+  :straight (:type git :host github :repo "lambda-emacs/lambda-themes") 
+  :custom
+  (lambda-themes-set-italic-comments t)
+  (lambda-themes-set-italic-keywords t)
+  (lambda-themes-set-variable-pitch t) 
+  :config
+  ;; load preferred theme 
+  (load-theme 'lambda-light))
+
+;; Install ef-themes
+(use-package ef-themes
+  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
+
+
 ;; Window/frame setup management
 
 (use-package burly
