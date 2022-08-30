@@ -440,6 +440,9 @@
   :config
   (setq which-key-idle-delay 0.3))
 
+;; transpose-frame
+(use-package transpose-frame
+  :ensure t)
 
 ;;; Core modules
 
@@ -551,6 +554,8 @@
 (global-set-key (kbd "C-\\") #'consult-ripgrep)
 (global-set-key (kbd "C-:") #'eval-expression)
 (global-set-key (kbd "C-;") #'execute-extended-command)
+
+(global-set-key (kbd "C-x w") #'transpose-frame)
 
 ;;;; init.el ends here
 (setq gc-cons-threshold (* 2 1000 1000))
