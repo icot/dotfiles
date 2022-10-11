@@ -127,10 +127,7 @@
   :custom
   (lambda-themes-set-italic-comments t)
   (lambda-themes-set-italic-keywords t)
-  (lambda-themes-set-variable-pitch t) 
-  :config
-  ;; load preferred theme 
-  (load-theme 'lambda-light))
+  (lambda-themes-set-variable-pitch t))
 
 ;; Install ef-themes
 (use-package ef-themes
