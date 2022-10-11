@@ -119,7 +119,7 @@
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-italic-constructs t)
 
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 105)
 
 ;; Install lambda-themes
 (use-package lambda-themes
@@ -455,7 +455,13 @@
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
 
 ;; vterm
-(setq display-buffer-alist '(("\\`\\*vterm" display-buffer-pop-up-window)))
+(add-to-list 'load-path "/usr/lib/x86_64-linux-gnu/")
+(use-package vterm
+  :ensure t)
+
+(add-to-list 'display-buffer-alist
+	     '(("\\`\\*vterm" display-buffer-pop-up-window))
+	     t)
 
 
 ;;; 3rd party Modules
@@ -485,6 +491,8 @@
 (load "+elfeed.el")
 
 (load "+mail-notmuch.el")
+
+(load "+calendar.el")
 
 (load "+blog.el")
 
