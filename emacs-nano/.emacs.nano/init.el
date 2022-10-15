@@ -133,6 +133,13 @@
 (use-package ef-themes
   :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
 
+;; catpuccin
+(use-package autothemer
+  :ensure t)
+
+(use-package catppucin-latte
+  :straight (:host nil :repo "https://github.com/catppuccin/emacs"))
+
 
 ;; Window/frame setup management
 
