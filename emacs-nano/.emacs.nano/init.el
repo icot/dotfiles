@@ -544,7 +544,8 @@
 (global-set-key (kbd "C-t w") #'whitespace-mode)
 (global-set-key (kbd "C-t i") #'highlight-indent-guides-mode)
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
-(global-set-key (kbd "C-t t") #'modus-themes-toggle)
+(global-set-key (kbd "C-t t") #'consult-theme)
+(global-set-key (kbd "C-t m") #'modus-themes-toggle)
 
 
 (global-set-key (kbd "C-x h") #'windmove-left)
