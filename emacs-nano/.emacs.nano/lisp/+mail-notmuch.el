@@ -80,6 +80,7 @@
 	    (:name "recent" :query "date:15_days.. and not tag:trash and not tag:snow and not tag:jira and not tag:lists" :key "r" :sort-order newest-first :search-type tree)
 	    (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first :type tree)
 	    (:name "snow" :query "tag:snow" :key "S" :sort-order newest-first :type tree)
+	    (:name "monit" :query "tag:lists/monit-support" :key "M" :sort-order newest-first :type tree)
 	    (:name "jira" :query "tag:jira" :key "j" :sort-order newest-first :type tree)
 	    (:name "todo" :query "tag:todo not tag:archived" :key "t" :sort-order newest-first :search-type tree)
 	    (:name "events" :query "attachment:ics not tag:trash" :key "e" :sort-order newest-first :search-type tree)
