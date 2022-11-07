@@ -571,6 +571,7 @@
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
 (global-set-key (kbd "C-t t") #'consult-theme)
 (global-set-key (kbd "C-t m") #'modus-themes-toggle)
+(global-set-key (kbd "C-t v") #'vterm-other-window)
 
 
 (global-set-key (kbd "C-x h") #'windmove-left)
