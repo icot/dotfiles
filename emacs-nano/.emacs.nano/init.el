@@ -119,7 +119,7 @@
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-italic-constructs t)
 
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 105)
 
 ;; Install lambda-themes
 (use-package lambda-themes
