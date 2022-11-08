@@ -39,12 +39,11 @@ Channel gmail-user
 # CERN
 ###############################
 IMAPAccount CERN
-Host cernmail.cern.ch
-User icoteril
-PassCmd "pass cern/icoteril"
+Host outlook.office365.com
+User ignacio.coterillo.coz@cern.ch
+PassCmd "/usr/bin/oauth2ms"
 SSLType IMAPS
-AuthMechs LOGIN
-#AuthMechs GSSAPI
+AuthMechs XOAUTH2
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 Timeout 60
 
