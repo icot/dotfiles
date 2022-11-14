@@ -221,6 +221,11 @@
 (use-package puppet-mode
   :defer t)
 
+;; golang
+(use-package go-mode
+  :defer t
+  :ensure t)
+
 ;; c/c++
 
 ;; go
