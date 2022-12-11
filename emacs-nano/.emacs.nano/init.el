@@ -496,16 +496,25 @@
 ;;; 3rd party Modules
 
 ;;; Projectile TODO project discovery, improve search-path load time
-;; (use-package projectile
-;;   :diminish projectile-mode                                                         				
-;;   :custom ((projectile-completion-system 'ivy))
-;;   :config (projectile-mode)
-;;   :bind-keymap ("C-c p" . projectile-command-map)
-;;   :init
-;;   (when (file-directory-p "~/workspace")
-;;     (setq projectile-project-search-path '("~/workspace"
-;;                                            "~/workspace/cerndb"
-;;                                            "~/workspace/puppet"))))
+(use-package projectile
+  :diminish projectile-mode                                                         				
+;;  :custom ((projectile-completion-system 'ivy))
+  :config (projectile-mode)
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/workspace")
+    (setq projectile-project-search-path '("~/workspace"
+                                           "~/workspace/cerndb"
+                                           "~/workspace/nile"
+                                           "~/workspace/kafka"
+                                           "~/workspace/monit"					   
+                                           "~/workspace/puppet"))))
+;; Notes
+;  "C-c p b" counsel-projectile-switch-to-buffer
+;  "C-c p p" counsel-projectile-switch-project
+;  "C-c p s r" counsel-projectile-rg
+;  "C-C p c" projectile-compile-project
+;  "C-C p K" projectile-package-project
 
 (load "+focus.el")
 
@@ -541,7 +550,6 @@
 (global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
 
 ;; Mail
-
 (global-set-key (kbd "C-x m") #'notmuch-mua-mail)
 ;; (global-set-key (kbd "C-x m a") #'icot/notmuch-show-process-attachment)
                                                                                    
@@ -551,15 +559,6 @@
 (global-set-key (kbd "C-o c") #'org-capture)
 (global-set-key (kbd "C-o t") #'org-todo-list)
 (global-set-key (kbd "C-o m") #'notmuch-jump-search)
-
-;; Overrides previous-line 
-(global-set-key (kbd "C-p") nil)
-;  "pb" '(counsel-projectile-switch-to-buffer :which-key "counsel-projectile-buffer")
-;  "pc" '(counsel-projectile :which-key "counsel-projectile")
-;  "pp" '(counsel-projectile-switch-project :which-key "counsel-projectile-switch-project")
-;  "p/" '(counsel-projectile-rg :which-key "counsel-projectile-rg")
-;  "pC" '(projectile-compile-project :which-key "projectile Compile")
-;  "pP" '(projectile-package-project :which-key "projectile Package")
 
 ;; Override transpose-char for toggle like settings
 (global-set-key (kbd "C-t") nil)
