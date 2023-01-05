@@ -129,17 +129,6 @@
   (lambda-themes-set-italic-keywords t)
   (lambda-themes-set-variable-pitch t))
 
-;; Install ef-themes
-(use-package ef-themes
-  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
-
-;; catpuccin
-(use-package autothemer
-  :ensure t)
-
-(use-package catppucin-latte
-  :straight (:host nil :repo "https://github.com/catppuccin/emacs"))
-
 ;; Install and configure lambda-line
 (use-package lambda-line
   :straight (:type git :host github :repo "lambda-emacs/lambda-line") 
