@@ -242,11 +242,9 @@ exec_always picom --inactive-dim 0 -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id "sudo dhclient"
-exec --no-startup-id urxvtd
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-tray
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
-exec --no-startup-id ./dropbox-dist/dropboxd
 exec --no-startup-id "xrandr --output HDMI-0 --mode 3440x1440"
 exec --no-startup-id "feh --bg-scale ~/.dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
 exec --no-startup-id "/usr/bin/xset -b"
@@ -254,6 +252,6 @@ exec --no-startup-id "/usr/bin/xset -b"
 # Only to be enabled with i3-gaps
 smart_gaps on
 smart_borders on
-gaps inner 2
-gaps outer 2
-gaps horizontal 2
+gaps inner 7
+gaps outer 7
+gaps horizontal 7
