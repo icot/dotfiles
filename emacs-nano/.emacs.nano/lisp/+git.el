@@ -19,6 +19,7 @@
 
 (use-package lab
   :ensure t
+  :after password-store
   :straight (:host github :repo "isamert/lab.el")
   :config  (setq lab-host "https://gitlab.cern.ch"
                  lab-token (password-store-get "gitlab/magit-forge")

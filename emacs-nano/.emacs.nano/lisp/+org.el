@@ -75,10 +75,11 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   (setq org-noter-default-notes-file-names +org-capture-notes-file))
 
 (use-package org-pdftools
+  :after '(org pdf-tools)
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
-  :after org-noter
+  :after '(org-noter pdf-tools)
   :config
   ;; Add a function to ensure precise note is inserted
   (defun org-noter-pdftools-insert-precise-note (&optional toggle-no-questions)
@@ -109,8 +110,7 @@ With a prefix ARG, remove start location."
                            (org-noter--pretty-print-location location))))))))
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
-
-(require 'org-noter-pdftools)
+;;(require 'org-noter-pdftools)
 
 (defun icot/mail-todo-format-string ()
   "Create todo format string from mail contents. Assumes notmuch use"

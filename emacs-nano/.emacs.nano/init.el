@@ -1,4 +1,3 @@
-
 (provide 'init)
 
 (add-to-list 'load-path "~/.emacs.nano/lisp")
@@ -119,7 +118,15 @@
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-italic-constructs t)
 
-(set-face-attribute 'default nil :height 105)
+(defun my/customize-mac ()
+  (set-face-attribute 'default nil :height 120))
+
+(defun my/customize-linux ()
+  (set-face-attribute 'default nil :height 110))
+
+(if (equal (getenv "HOME") "/Users/icoteril")
+    (my/customize-mac)
+    (my/customize-linux))
 
 ;; Install lambda-themes
 (use-package lambda-themes
@@ -128,6 +135,13 @@
   (lambda-themes-set-italic-comments t)
   (lambda-themes-set-italic-keywords t)
   (lambda-themes-set-variable-pitch t))
+
+;; Install ef-themes
+(use-package ef-themes
+  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
+
+(use-package all-the-icons
+  :ensure t)
 
 ;; Install and configure lambda-line
 (use-package lambda-line
@@ -473,7 +487,6 @@
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
 
 ;; vterm
-(add-to-list 'load-path "/usr/lib/x86_64-linux-gnu/")
 (use-package vterm
   :ensure t)
 
@@ -521,7 +534,7 @@
 
 (load "+calendar.el")
 
-(load "+blog.el")
+;;(load "+blog.el")
 
 (load "+irc.el")
 
