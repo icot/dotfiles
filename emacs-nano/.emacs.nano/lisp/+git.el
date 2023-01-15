@@ -4,14 +4,15 @@
   :defer t
   :config
   (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" "git@gitlab.cern.ch:7999" "ai"))
+  (add-to-list 'magit-clone-name-alist '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch:7999" "ai"))
   :custom
   (magit-clone-default-directory "~/workspace/puppet/"))
 
-(use-package forge
-  :after magit
-  :config
-  (add-to-list 'forge-alist
-               '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" 'forge-gitlab-repository)))
+;;(use-package forge
+;;  :after magit
+;;  :config
+;;  (add-to-list 'forge-alist
+;;               '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" 'forge-gitlab-repository)))
   
 (use-package git-link
   :custom
@@ -25,6 +26,10 @@
                  lab-token (password-store-get "gitlab/magit-forge")
                  lab-group "db"
                  lab-projects-directory "~/workspace"))
+
+(defun icot/project-pipelines ()
+  (interactive)
+  (lab-get-project-pipelines lab-project-id))
 
 (defun icot/clone-module (module-name)
  "Clone a Puppet module from gitlab.cern.ch/ai"
