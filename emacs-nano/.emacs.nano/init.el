@@ -132,7 +132,7 @@
 
 (set-face-attribute 'default nil
 		    :family "JetBrains Mono"
-		    :height 105)
+		    :height my/font-size)
 
 (set-face-attribute 'variable-pitch nil
 		    :family "JetBrains Mono"
