@@ -43,19 +43,29 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   :ensure t
   :straight (:type built-in)
   :init
-  (setq org-directory "~/Sync/myorg/")
-  (setq org-agenda-files `(,org-directory))
-  (setq org-startup-with-inline-images t)
-  (setq org-todo-keywords
-        '((sequence "TODO" "STARTED" "DONE")))
-  (setq org-agenda-span 'day)
-  (setq
-   org-default-notes-file (expand-file-name +org-capture-notes-file org-directory)
-   +org-capture-journal-file (expand-file-name +org-capture-journal-file org-directory)
-   +org-capture-todo-file (expand-file-name +org-capture-todo-file org-directory)
-   +org-capture-notes-file (expand-file-name +org-capture-notes-file org-directory)))
+  (setq org-directory "~/Sync/myorg/"
+        org-agenda-files `(,org-directory)
+        org-startup-with-inline-images t
+        org-todo-keywords '((sequence "TODO" "STARTED" "DONE"))
+        org-agenda-span 'day
+        org-default-notes-file (expand-file-name +org-capture-notes-file org-directory)
+        +org-capture-journal-file (expand-file-name +org-capture-journal-file org-directory)
+        +org-capture-todo-file (expand-file-name +org-capture-todo-file org-directory)
+        +org-capture-notes-file (expand-file-name +org-capture-notes-file org-directory))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)
+     (dot . t)
+     (plantuml . t)))
+  :hook
+  (org-babel-after-execute . org-redisplay-inline-images)
+  :config
+  (setq org-edit-src-content-indentation 0
+        org-confirm-babel-evaluate nil
+        org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"
+        org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar"))
 
-;  :hook (org-mode . icot/org-add-electric-pairs)
+;; Babel config initially seen in https://blog.lazy-evaluation.net/posts/orgmode-diagrams.html
 
 ;; Org Modern https://github.com/minad/org-modern
 
