@@ -131,12 +131,6 @@ export GOPATH=~/workspace/go
 export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:/home/$USER/apps/graalvm-ce-java11-20.3.0/bin
 
-# Set WMNAME for JAVA Apps compatibilty
-which wmname > /dev/null
-if [ $? -eq 0 ]; then
-        wmname LG3D
-fi
-
 bindkey '^R' history-incremental-search-backward
 bindkey -r "^T"
 
