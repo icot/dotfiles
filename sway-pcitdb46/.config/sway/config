@@ -207,17 +207,17 @@ bar {
   output DP-1
 }
 
-
 # Autostart applications
 ## icot custom
 exec --no-startup-id "swaybg -i ~/dotfiles/artifacts/wallpapers/moebius/3100712.png"
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
 exec --no-startup-id ./dropbox-dist/dropboxd
+exec --no-startup-id mako
 
 # Only to be enabled with i3-gaps
 smart_gaps on
 smart_borders on
-gaps inner 2
-gaps outer 2
-gaps horizontal 2
+gaps inner 5
+gaps outer 5
+gaps horizontal 5
