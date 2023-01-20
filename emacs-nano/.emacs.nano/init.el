@@ -510,6 +510,35 @@
 	     t)
 
 
+;; eat
+
+(use-package eat
+  :straight (:type git
+             :host nil
+             :repo "https://codeberg.org/akib/emacs-eat"
+             :files ("*.el" ("term" "term/*.el") "*.texi"
+                     "*.ti" ("terminfo/e" "terminfo/e/*")
+                     ("terminfo/65" "terminfo/65/*")
+                     ("integration" "integration/*")
+                     (:exclude ".dir-locals.el" "*-tests.el"))))
+
+
+(defvar icot/num-terms)
+(setq icot/num-terms 0)
+
+(defun icot/new-eat ()
+  (interactive)
+  (setq icot/num-terms (+ icot/num-terms 1))
+  (eat "/bin/bash" icot/num-terms))
+
+(defun icot/new-vterm ()
+  (interactive)
+  (setq icot/num-terms (+ icot/num-terms 1))
+  (vterm icot/num-terms))
+
+
+  
+
 ;;; 3rd party Modules
 
 ;;; Projectile TODO project discovery, improve search-path load time
