@@ -233,6 +233,10 @@ if [ $? -eq 0 ]; then
         eval "$(starship init zsh)"
 fi
 
+# ASDF
+[ "$(ls -A $HOME/.asdf)" ] &&
+. "$HOME/.asdf/asdf.sh"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/$USER/.sdkman"
 [[ -s "/home/$USER/.sdkman/bin/sdkman-init.sh" ]] && source "/home/$USER/.sdkman/bin/sdkman-init.sh"
