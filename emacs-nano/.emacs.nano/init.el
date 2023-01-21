@@ -509,35 +509,25 @@
 	     '(("\\`\\*vterm" display-buffer-pop-up-window))
 	     t)
 
+(defvar icot/term-list 0)
 
-;; eat
+(defun icot/term-next-id ()
+  (setq icot/term-list (+ icot/term-list 1)))
 
-(use-package eat
-  :straight (:type git
-             :host nil
-             :repo "https://codeberg.org/akib/emacs-eat"
-             :files ("*.el" ("term" "term/*.el") "*.texi"
-                     "*.ti" ("terminfo/e" "terminfo/e/*")
-                     ("terminfo/65" "terminfo/65/*")
-                     ("integration" "integration/*")
-                     (:exclude ".dir-locals.el" "*-tests.el"))))
-
-
-(defvar icot/num-terms)
-(setq icot/num-terms 0)
-
-(defun icot/new-eat ()
-  (interactive)
-  (setq icot/num-terms (+ icot/num-terms 1))
-  (eat "/bin/bash" icot/num-terms))
+(defun icot/new-term (my-term)
+  (tab-bar-new-tab)
+  (apply my-term (list (icot/term-next-id))))
 
 (defun icot/new-vterm ()
   (interactive)
-  (setq icot/num-terms (+ icot/num-terms 1))
-  (vterm icot/num-terms))
+  (icot/new-term 'vterm))
 
-
-  
+;;  tab-bar
+(tab-bar-mode t) ; Enable tab-bar
+(global-set-key (kbd "C-t n") #'tab-bar-new-tab)
+(global-set-key (kbd "C-t k") #'tab-bar-close-tab)
+(global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-<next>") #'tab-bar-switch-to-next-tab)
 
 ;;; 3rd party Modules
 
