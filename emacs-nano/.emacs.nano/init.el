@@ -505,29 +505,16 @@
 (use-package vterm
   :ensure t)
 
+(use-package multi-vterm
+  :ensure t
+  :after vterm)
+
 (add-to-list 'display-buffer-alist
 	     '(("\\`\\*vterm" display-buffer-pop-up-window))
 	     t)
 
-(defvar icot/term-list 0)
-
-(defun icot/term-next-id ()
-  (setq icot/term-list (+ icot/term-list 1)))
-
-(defun icot/new-term (my-term)
-  (tab-bar-new-tab)
-  (apply my-term (list (icot/term-next-id))))
-
-(defun icot/new-vterm ()
-  (interactive)
-  (icot/new-term 'vterm))
-
 ;;  tab-bar
 (tab-bar-mode t) ; Enable tab-bar
-(global-set-key (kbd "C-t n") #'tab-bar-new-tab)
-(global-set-key (kbd "C-t k") #'tab-bar-close-tab)
-(global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "C-<next>") #'tab-bar-switch-to-next-tab)
 
 ;;; 3rd party Modules
 
@@ -606,8 +593,14 @@
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
 (global-set-key (kbd "C-t t") #'consult-theme)
 (global-set-key (kbd "C-t m") #'modus-themes-toggle)
-(global-set-key (kbd "C-t v") #'vterm-other-window)
+(global-set-key (kbd "C-t v") #'multi-vterm-dedicated-toggle)
+(global-set-key (kbd "C-t V") #'multi-vterm)
 
+;; C-x t t -> other-tab-prefix. Will execute command in a new tab
+(global-set-key (kbd "C-t n") #'tab-bar-new-tab)
+(global-set-key (kbd "C-t k") #'tab-bar-close-tab)
+(global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-<next>") #'tab-bar-switch-to-next-tab)
 
 (global-set-key (kbd "C-x h") #'windmove-left)
 (global-set-key (kbd "C-x j") #'windmove-down)
