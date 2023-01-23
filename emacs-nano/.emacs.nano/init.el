@@ -487,10 +487,9 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-;; transpose-frame
-(use-package transpose-frame
-  :ensure t)
-
+(use-package emacs-rotate
+  :straight (:type git :host github :repo "daichirata/emacs-rotate"))
+  
 ;;; Core modules
 
 ;; TRAMP
@@ -530,7 +529,7 @@
                                            "~/workspace/cerndb"
                                            "~/workspace/nile"
                                            "~/workspace/kafka"
-                                           "~/workspace/monit"					   
+                                           "~/workspace/monit"	   
                                            "~/workspace/puppet"))))
 ;; Notes
 ;  "C-c p b" counsel-projectile-switch-to-buffer
