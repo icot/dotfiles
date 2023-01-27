@@ -113,6 +113,7 @@
 (setq modus-themes-hl-line '(intense accented))
 (setq modus-themes-org-blocks 'gray-background)
 (setq modus-themes-mode-line '(borderless))
+(setq modus-themes-fringes nil)
 
 ;(setq modus-themes-syntax '(alt-syntax))
 (setq modus-themes-bold-constructs t)
@@ -501,8 +502,16 @@
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
 
 ;; vterm
+
+;; TODO Function to close tab if vterm buffer is the only buffer
+;; Add to vterm-exit-functions
+
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :config
+  (add-to-list 'vterm-keymap-exceptions "C-t")
+  (add-to-list 'vterm-keymap-exceptions "C-;"))
+
 
 (use-package multi-vterm
   :ensure t
@@ -592,7 +601,7 @@
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
 (global-set-key (kbd "C-t t") #'consult-theme)
 (global-set-key (kbd "C-t m") #'modus-themes-toggle)
-(global-set-key (kbd "C-t v") #'multi-vterm-dedicated-toggle)
+(global-set-key (kbd "C-,") #'multi-vterm-dedicated-toggle)
 (global-set-key (kbd "C-t V") #'multi-vterm)
 
 ;; C-x t t -> other-tab-prefix. Will execute command in a new tab
