@@ -175,7 +175,10 @@ vterm_printf(){
 # GUIX
 export GUIX_PROFILE="/home/$USER/.guix-profile"
 export GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
+if [[ "${HOME}" == "/home/${USER}" ]]
+then  
 source $GUIX_PROFILE/etc/profile
+fi
 
 export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
 export PATH=$PATH:$GUIX_PROFILE/bin
@@ -232,8 +235,10 @@ if [ $? -eq 0 ]; then
 fi
 
 # ASDF
-[ "$(ls -A $HOME/.asdf)" ] &&
+if [[ ${HOME} == "/home/${USER}" ]]
+then 
 . "$HOME/.asdf/asdf.sh"
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/$USER/.sdkman"
