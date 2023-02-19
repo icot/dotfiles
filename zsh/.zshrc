@@ -138,6 +138,7 @@ if [ $? -eq 0 ]; then
 fi
 
 bindkey '^R' history-incremental-search-backward
+bindkey -r "^T"
 
 export ORACLE_HOME=~/apps/instantclient_12_1
 export LD_LIBRARY_PATH=~/apps/instantclient_12_1
@@ -227,6 +228,9 @@ export PATH=$PATH:$HOME/.emacs.d/bin
 #NPM
 export NPM_PACKAGES=$HOME/.npm-pkgs
 export PATH=$PATH:$NPM_PACKAGES/bin
+
+#Swift
+export PATH=$HOME/apps/swift/usr/bin:"${PATH}"
 
 
 which starship > /dev/null
