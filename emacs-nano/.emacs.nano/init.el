@@ -110,10 +110,10 @@
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 
 ;; modus theme customizations
-(setq modus-themes-hl-line '(intense accented))
-(setq modus-themes-org-blocks 'gray-background)
-(setq modus-themes-mode-line '(borderless))
-(setq modus-themes-fringes nil)
+(setq modus-themes-common-palette-overrides
+      '((fringe unspecified)
+	(border-mode-line-active unspecified)
+	(border-mode-line-inactive unspecified)))
 
 ;(setq modus-themes-syntax '(alt-syntax))
 (setq modus-themes-bold-constructs t)
