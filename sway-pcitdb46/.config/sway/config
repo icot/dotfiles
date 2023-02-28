@@ -1,7 +1,8 @@
 set $mod Mod4
 
 # Vertical monitor
-output DP-2 position 0 0 transform 270
+# output DP-2 position 0 0 transform 270
+output DP-2 disable
 
 input "type:keyboard" {
   xkb_options caps:swapescape

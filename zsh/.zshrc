@@ -226,7 +226,6 @@ export PATH=$PATH:$NPM_PACKAGES/bin
 #Swift
 export PATH=$HOME/apps/swift/usr/bin:"${PATH}"
 
-
 which starship > /dev/null
 if [ $? -eq 0 ]; then
         eval "$(starship init zsh)"

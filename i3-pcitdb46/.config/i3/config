@@ -96,7 +96,7 @@ bar {
     i3bar_command i3bar --transparency
     strip_workspace_numbers yes
     strip_workspace_name no
-    output DP-2
+    output DP-1
     status_command i3status
   #  mode hide
 }
@@ -247,8 +247,8 @@ exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/fl6
 exec --no-startup-id "/usr/bin/xset -b"
 
 # Only to be enabled with i3-gaps
-#smart_gaps on
-#smart_borders on
-#gaps inner 2
-#gaps outer 2
-#gaps horizontal 2
+smart_gaps on
+smart_borders on
+gaps inner 4
+gaps outer 4
+gaps horizontal 4

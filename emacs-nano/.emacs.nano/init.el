@@ -115,6 +115,9 @@
 	(border-mode-line-active unspecified)
 	(border-mode-line-inactive unspecified)))
 
+(setq modus-themes-common-palette-overrides
+      '((fringe unspecified)))
+
 ;(setq modus-themes-syntax '(alt-syntax))
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-italic-constructs t)
@@ -125,7 +128,7 @@
   (setq my/font-size 120))
 
 (defun my/customize-linux ()
-  (setq my/font-size 105))
+  (setq my/font-size 110))
 
 (if (equal (getenv "HOME") "/Users/icoteril")
     (my/customize-mac)
@@ -142,7 +145,6 @@
 (set-face-attribute 'fixed-pitch nil
 		    :family "JetBrains Mono"
 		    :height 1.0)
-
 
 ;; Install lambda-themes
 (use-package lambda-themes

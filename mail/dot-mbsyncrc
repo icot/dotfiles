@@ -41,11 +41,14 @@ Channel gmail-user
 IMAPAccount CERN
 Host outlook.office365.com
 User ignacio.coterillo.coz@cern.ch
+<<<<<<< Updated upstream
 PassCmd "/usr/bin/oauth2ms"
+=======
+PassCmd "/home/icoteril/.guix-profile/bin/oauth2ms"
+>>>>>>> Stashed changes
 SSLType IMAPS
 AuthMechs XOAUTH2
 CertificateFile /etc/ssl/certs/ca-certificates.crt
-Timeout 60
 
 IMAPStore cern-remote
 Account CERN

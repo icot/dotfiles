@@ -5,6 +5,10 @@
   path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/cerndb/**"]
   path = ~/.gitconfig-cern
+[includeIf "gitdir:~/workspace/nile/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:~/workspace/monit/**"]
+  path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/guix/"]
   path = ~/.gitconfig-guix
 
