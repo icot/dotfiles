@@ -98,6 +98,7 @@ bar {
     strip_workspace_name no
     output DP-1
     status_command i3status
+    position top
   #  mode hide
 }
 
