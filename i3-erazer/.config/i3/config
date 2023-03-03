@@ -111,6 +111,7 @@ bar {
     strip_workspace_name no
     status_command i3status
     output HDMI-0
+    position top
 #    mode hide
 }
 
@@ -252,6 +253,6 @@ exec --no-startup-id "/usr/bin/xset -b"
 # Only to be enabled with i3-gaps
 smart_gaps on
 smart_borders on
-gaps inner 7
-gaps outer 7
-gaps horizontal 7
+gaps inner 5
+gaps outer 5
+gaps horizontal 5
