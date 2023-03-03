@@ -98,7 +98,6 @@ alias mutt-cern="mutt -F ~/.mutt/muttrc-cern"
 alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
 alias cp2="rsync -avz"
 alias bat="bat -p"
-alias ec="emacsclient -nw"
 
 alias l='exa -l --group-directories-first --git'
 alias ll='exa -l --all --all --group-directories-first --git'
@@ -111,7 +110,7 @@ alias talacritty='tabbed -c alacritty --embed'
 alias sbcl='rlwrap sbcl'
 alias clisp='rlwrap clisp'
 
-alias vi='emacsclient -nw'
+alias vi='emacsclient -c -n'
 
 # Vi Mode
 function zle-line-init zle-keymap-select {
