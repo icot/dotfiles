@@ -1,11 +1,15 @@
 [user]
-	name = icot
+  name = icot
   email = icot@users.noreply.github.com
 [includeIf "gitdir:~/workspace/puppet/*/"]
   path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/cerndb/**"]
   path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/nile/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:~/workspace/kafka/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:~/workspace/monitoring/**"]
   path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/monit/**"]
   path = ~/.gitconfig-cern
