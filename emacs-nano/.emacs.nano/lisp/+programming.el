@@ -124,6 +124,11 @@
 ;; Clojure - Automatic install (lsp-install-server)
 
 ;; Rust - rls/rust analyzer
+;; rust-analyzer installed via cargo
+(use-package rust-mode
+  :ensure t
+  :defer t
+  :hook (rust-mode . lsp))
 
 ;; Go
 ;;; gopls https://github.com/golang/tools/tree/master/gopls
