@@ -107,19 +107,8 @@
 
 (global-prettify-symbols-mode 1)
 
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi-tinted)))
 ;; modus theme customizations
-(setq modus-themes-common-palette-overrides
-      '((fringe unspecified)
-	(border-mode-line-active unspecified)
-	(border-mode-line-inactive unspecified)))
-
-(setq modus-themes-common-palette-overrides
-      '((fringe unspecified)))
-
-;(setq modus-themes-syntax '(alt-syntax))
-(setq modus-themes-bold-constructs t)
-(setq modus-themes-italic-constructs t)
 
 (defvar my/font-size)
 
@@ -127,7 +116,7 @@
   (setq my/font-size 120))
 
 (defun my/customize-linux ()
-  (setq my/font-size 110))
+  (setq my/font-size 120))
 
 (if (equal (getenv "HOME") "/Users/icoteril")
     (my/customize-mac)
@@ -156,6 +145,17 @@
 ;; Install ef-themes
 (use-package ef-themes
   :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
+
+(use-package modus-themes
+  :ensure t
+  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/modus-themes")
+  :config
+  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-italic-constructs t)
+  (setq modus-themes-common-palette-overrides
+      '((fringe unspecified)
+	(border-mode-line-active unspecified)
+	(border-mode-line-inactive unspecified))))
 
 (use-package all-the-icons
   :ensure t)
