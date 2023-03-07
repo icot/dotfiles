@@ -108,7 +108,6 @@
 (global-prettify-symbols-mode 1)
 
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
-
 ;; modus theme customizations
 (setq modus-themes-common-palette-overrides
       '((fringe unspecified)
@@ -446,8 +445,8 @@
 
 (use-package orderless
   :ensure t
-  :custom
-  (completion-styles '(orderless basic))
+  :custom 
+ (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; embark
@@ -563,7 +562,7 @@
 
 (load "+mail-notmuch.el")
 
-(load "+calendar.el")
+;;(load "+calendar.el")
 
 ;;(load "+blog.el")
 
