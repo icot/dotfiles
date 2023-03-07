@@ -6,7 +6,7 @@ default_floating_border normal
 hide_edge_borders none
 
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 font xft:URWGothic-Book 11
@@ -14,7 +14,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 bindsym $mod+t exec kitty
-bindsym $mod+Return exec foot
+bindsym $mod+Return exec kitty
 
 # Window kill command
 bindsym $mod+Shift+q kill
@@ -23,8 +23,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Ctrl+l exec swaylock -c 0f0f0f
 
 # start program launcher
-bindsym $mod+p exec --no-startup-id rofi -show run
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+p exec --no-startup-id passmenu
+bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Delete exec --no-startup-id export > /tmp/sway-export
 
 
@@ -205,7 +205,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
 # Autostart applications
 ## icot custom
-exec --no-startup-id "swaybg -i ~/dotfiles/artifacts/wallpapers/moebius/3100712.png"
+exec --no-startup-id "swaybg -i ~/dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
 #exec --no-startup-id lxqt-powermanagement
 #exec --no-startup-id clipit # clipman/wl-clipboard
 #exec --no-startup-id "sudo dhclient"
@@ -217,6 +217,6 @@ exec --no-startup-id ./dropbox-dist/dropboxd
 # Only to be enabled with i3-gaps
 smart_gaps on
 smart_borders on
-gaps inner 2
-gaps outer 2
-gaps horizontal 2
+gaps inner 4
+gaps outer 3
+gaps horizontal 3
