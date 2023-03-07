@@ -1,3 +1,3 @@
 #!/bin/bash
 
-emacsclient -c
+$HOME/.guix-extra-profiles/emacs/emacs/bin/emacsclient -c
