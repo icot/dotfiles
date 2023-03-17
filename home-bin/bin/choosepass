@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#shopt -s nullglob globstar
+shopt -s nullglob globstar
 
 typeit=0
 if [[ $1 == "--type" ]]; then
@@ -23,3 +23,4 @@ else
 	pass show "$password" | { IFS= read -r pass; printf %s "$pass"; } |
 		xdotool type --clearmodifiers --file -
 fi
+exit 0
