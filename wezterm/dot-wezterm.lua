@@ -14,8 +14,26 @@ return {
       }
     },
     {
+      key = '|',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SplitPane {
+        direction = 'Right',
+        command = { args = { 'zsh' } },
+	      size = { Percent = 50 },
+      }
+    },
+    {
       key = '_',
       mods = 'CTRL|SHIFT',
+      action = wezterm.action.SplitPane {
+        direction = 'Down',
+        command = { args = { 'zsh' } },
+        size = { Percent = 50 },
+      }
+    },
+    {
+      key = '_',
+      mods = 'CMD|SHIFT',
       action = wezterm.action.SplitPane {
         direction = 'Down',
         command = { args = { 'zsh' } },
@@ -28,8 +46,18 @@ return {
       action = wezterm.action.ActivatePaneDirection 'Right'
     },
     {
+      key = ']',
+      mods = 'CMD',
+      action = wezterm.action.ActivatePaneDirection 'Right'
+    },
+    {
       key = '[',
       mods = 'CTRL',
+      action = wezterm.action.ActivatePaneDirection 'Left'
+    },
+    {
+      key = '[',
+      mods = 'CMD',
       action = wezterm.action.ActivatePaneDirection 'Left'
     },
     {
@@ -38,8 +66,18 @@ return {
       action = wezterm.action.ActivatePaneDirection 'Up'
     },
     {
+      key = 'UpArrow',
+      mods = 'CMD',
+      action = wezterm.action.ActivatePaneDirection 'Up'
+    },
+    {
       key = 'DownArrow',
       mods = 'CTRL',
+      action = wezterm.action.ActivatePaneDirection 'Down'
+    },
+    {
+      key = 'DownArrow',
+      mods = 'CMD',
       action = wezterm.action.ActivatePaneDirection 'Down'
     }
   }
