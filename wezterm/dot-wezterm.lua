@@ -1,9 +1,29 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    if tab.is_active then
+      return {
+        { Background = { Color = 'black' } },
+        { Text = ' ' .. tab.active_pane.title .. ' ' },
+      }
+    end
+    return tab.active_pane.title
+  end
+)
+
 return {
 --  color_scheme = 'Catppuccin Mocha',
   color_scheme = "Solarized (light) (terminal.sexy)",
+  
+  window_frame = {
+    active_titlebar_bg = '#666666',
+    inactive_titlebar_bg = '#666666',
+  },
+  
   keys = {
     { key = 'LeftArrow', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
     { key = 'RightArrow', mods = 'CTRL', action = act.ActivateTabRelative(1) },
@@ -53,7 +73,11 @@ return {
     { key = 'DownArrow', mods = 'CMD', action = wezterm.action.ActivatePaneDirection 'Down' },
     { key = 'PageUp', mods = 'CTRL', action = act.ScrollByPage(-0.5) },
     { key = 'PageDown', mods = 'CTRL', action = act.ScrollByPage(0.5) },
-    { key = 'W', mods = 'CTRL', action = act.CloseCurrentTab {confirm = true}}
+    { key = 'Space', mods = 'CTRL', action = act.PaneSelect },
+    { key = '0', mods = 'CTRL', action = act.PaneSelect { mode = 'SwapWithActive'} },
+    { key = 'Space', mods = 'CMD', action = act.PaneSelect },
+    { key = '0', mods = 'CMD', action = act.PaneSelect { mode = 'SwapWithActive'} },
+    { key = 'W', mods = 'CTRL', action = act.CloseCurrentTab {confirm = true}},
   }
 }
 
