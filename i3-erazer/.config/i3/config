@@ -13,7 +13,7 @@ font pango:Font Awesome 10
 
 floating_modifier $mod
 
-bindsym $mod+t exec kitty
+bindsym $mod+t exec wezterm
 #bindsym $mod+Return exec "~/bin/alacritty"
 bindsym $mod+Return exec kitty
 
