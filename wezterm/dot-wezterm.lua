@@ -77,7 +77,8 @@ return {
     { key = '0', mods = 'CTRL', action = act.PaneSelect { mode = 'SwapWithActive'} },
     { key = 'Space', mods = 'CMD', action = act.PaneSelect },
     { key = '0', mods = 'CMD', action = act.PaneSelect { mode = 'SwapWithActive'} },
-    { key = 'W', mods = 'CTRL', action = act.CloseCurrentTab {confirm = true}},
+    { key = 't', mods = 'CTRL', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
+    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab{confirm=true}
+    }
   }
 }
-
