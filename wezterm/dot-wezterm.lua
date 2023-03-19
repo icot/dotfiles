@@ -16,8 +16,8 @@ wezterm.on(
 )
 
 return {
---  color_scheme = 'Catppuccin Mocha',
-  color_scheme = "Solarized (light) (terminal.sexy)",
+  color_scheme = 'Catppuccin Mocha',
+--  color_scheme = "Solarized (light) (terminal.sexy)",
   
   window_frame = {
     active_titlebar_bg = '#666666',
