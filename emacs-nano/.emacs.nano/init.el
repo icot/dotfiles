@@ -113,7 +113,9 @@
 (defvar my/font-size)
 
 (defun my/customize-mac ()
-  (setq my/font-size 120))
+  (setq my/font-size 120)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
 (defun my/customize-linux ()
   (setq my/font-size 120))
@@ -502,6 +504,23 @@
 ;;  Display in new split buffer
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
 
+;; EAT https://codeberg.org/akib/emacs-eat
+(straight-use-package
+ '(eat :type git
+       :host nil
+       :repo "https://codeberg.org/akib/emacs-eat"
+       :files ("*.el" ("term" "term/*.el") "*.texi"
+               "*.ti" ("terminfo/e" "terminfo/e/*")
+               ("terminfo/65" "terminfo/65/*")
+               ("integration" "integration/*")
+               (:exclude ".dir-locals.el" "*-tests.el"))))
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
 ;; vterm
 
 ;; TODO Function to close tab if vterm buffer is the only buffer
@@ -602,6 +621,7 @@
 (global-set-key (kbd "C-t z") #'icot/olivetti-mode)
 (global-set-key (kbd "C-t t") #'consult-theme)
 (global-set-key (kbd "C-t m") #'modus-themes-toggle)
+(global-set-key (kbd "C-t e") #'(lambda () (interactive) (eat "/usr/bin/zsh")))
 (global-set-key (kbd "C-,") #'multi-vterm-dedicated-toggle)
 (global-set-key (kbd "C-t V") #'multi-vterm)
 
