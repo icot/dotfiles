@@ -1,7 +1,6 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
-
 wezterm.on(
   'format-tab-title',
   function(tab, tabs, panes, config, hover, max_width)
@@ -17,16 +16,19 @@ wezterm.on(
 
 return {
   color_scheme = 'Catppuccin Mocha',
---  color_scheme = "Solarized (light) (terminal.sexy)",
+  font_size = 14.0,
+
   
   window_frame = {
     active_titlebar_bg = '#666666',
     inactive_titlebar_bg = '#666666',
   },
-  
+
   keys = {
     { key = 'LeftArrow', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
     { key = 'RightArrow', mods = 'CTRL', action = act.ActivateTabRelative(1) },
+    { key = 'LeftArrow', mods = 'CMD', action = act.ActivateTabRelative(-1) },
+    { key = 'RightArrow', mods = 'CMD', action = act.ActivateTabRelative(1) },
     {
       key = '|',
       mods = 'CTRL|SHIFT',
@@ -78,7 +80,6 @@ return {
     { key = 'Space', mods = 'CMD', action = act.PaneSelect },
     { key = '0', mods = 'CMD', action = act.PaneSelect { mode = 'SwapWithActive'} },
     { key = 't', mods = 'CTRL', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab{confirm=true}
-    }
+    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab{confirm=true}}
   }
 }
