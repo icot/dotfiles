@@ -3,6 +3,12 @@
 ;; https://protesilaos.com/codelog/2020-07-18-emacs-concept-org-tweaked-focus/
 
 ;; https://gist.github.com/rnkn/a522429ed7e784ae091b8760f416ecf8
+
+
+;; Highlight TODO related keywords
+(use-package hl-todo
+  :ensure t)
+
 (defun icot/toggle-hide-mode-line ()
   "Toggle mode-line visibility in current buffer."
   (interactive)
@@ -31,3 +37,6 @@
         (olivetti-mode -1)))))
 
 
+;; TODO Disable mode-line in vterm/eat/term/eshell windows
+
+;; (add-hook 'term-mode-hook (lambda () (interactive) (icot/toggle-hide-mode-line)))
