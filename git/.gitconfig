@@ -40,6 +40,7 @@
 	editor = vi
 [push]
 	default = simple
+	autoSetupRemote = true
 [http]
 	sslCAPath = /etc/ssl/certs/
 	emptyAuth = true
