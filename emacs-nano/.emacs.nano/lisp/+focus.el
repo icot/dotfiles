@@ -37,6 +37,3 @@
         (olivetti-mode -1)))))
 
 
-;; TODO Disable mode-line in vterm/eat/term/eshell windows
-
-;; (add-hook 'term-mode-hook (lambda () (interactive) (icot/toggle-hide-mode-line)))
