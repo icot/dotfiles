@@ -1,8 +1,17 @@
 ;; eshell/term/vterm/eat configuration
 
+;; Helper functions
+
 (defun my/clean-window ()
-  (when (not (one-window-p))
-    (delete-window)))
+  (interactive)
+  (if (one-window-p t t)
+      (delete-frame)
+      (delete-window)))
+
+(defun my/term-handle-exit (&optional process-name msg)
+  (message "%s | %s" process-name msg)
+  (kill-buffer (current-buffer))
+  (delete-frame))
 
 ;; EAT https://codeberg.org/akib/emacs-eat
 (straight-use-package
@@ -15,26 +24,26 @@
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
 
-;; vterm
-(use-package vterm
-  :ensure t
-  :config
-  (add-to-list 'vterm-keymap-exceptions "C-t")
-  (add-to-list 'vterm-keymap-exceptions "C-;")
-  (add-to-list 'vterm-exit-functions 'my/clean-window))
-
-(use-package multi-vterm
-  :ensure t
-  :after vterm)
-
-;; EAT
-
 (defvar eat-session-id 0)
 
 (defun my/multi-eat ()
   (interactive)
   (setq eat-session-id (+ eat-session-id 1))
   (eat "/usr/bin/zsh" eat-session-id))
+
+;; vterm
+(use-package vterm
+  :ensure t
+  :config
+  (add-to-list 'vterm-keymap-exceptions "C-t")
+  (add-to-list 'vterm-keymap-exceptions "C-;")
+  (add-to-list 'vterm-exit-functions 'my/term-handle-exit))
+
+(use-package multi-vterm
+  :ensure t
+  :after vterm)
+
+;; Misc
 
 (defun my/shell-mode-hook ()
   "Custom `shell-mode' behaviours."
@@ -53,7 +62,11 @@
            (buffer-live-p (process-buffer process))
            (kill-buffer (process-buffer process))))))))
 
+;;  Call cleanup helpers after exit
+;(add-to-list 'vterm-exit-functions 'my/term-handle-exit) ;; Done in use-package
+(advice-add 'term-handle-exit :after 'my/term-handle-exit)
 (advice-add 'eshell-life-is-too-much :after 'my/clean-window)
+
 
 ;;; Hooks
 
@@ -68,11 +81,19 @@
 
 ;; WIP
 (add-hook 'shell-mode-hook 'my/shell-mode-hook) ;; Works
-(add-hook 'eat-mode-hook 'my/shell-mode-hook) ;; Doesn't work
+;;(add-hook 'eat-mode-hook 'my/shell-mode-hook) ;; Doesn't work
 
 ;;;  Display in new split buffer
 (setq display-buffer-alist
       '(("\\`\\*e?shell" display-buffer-pop-up-window)
         ("\\`\\*eat*" display-buffer-pop-up-frame)
-	("\\`\\*vterm" display-buffer-pop-up-window)))
+        ("\\`\\*term*" display-buffer-pop-up-frame)
+	("\\`\\*vterm" display-buffer-pop-up-frame)))
 
+;; term - $HOME/apps ls -lR: 11.238s
+;; vterm - $HOME/apps ls -lR: 0.473s
+;; eshell - $HOME/apps ls -lR: 5.644 (output in block after completion, doesn't scroll)
+;; eat - $HOME/apps ls -lR: 5.628s
+;; wezterm - 0.153s
+;; alacritty - 0.149s
+;; kitty - 0.141s
