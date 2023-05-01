@@ -1,13 +1,15 @@
 set $mod Mod4
 
 default_border pixel
+
 hide_edge_borders smart
 
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-font xft:URWGothic-Book 11
+#font xft:URWGothic-Book 11
+font pango:Font Awesome 10
 
 floating_modifier $mod
 
@@ -89,25 +91,43 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
-# Bar
-bar {
-    strip_workspace_numbers yes
-    strip_workspace_name no
-    status_command i3status
-    output eDP-1
-    position top
-}
+## Named workspaces
+
+
+## Workspace mapping to screen
+##
+
+## Polybar
+
+exec_always --no-startup-id ~/.config/polybar/i3bar.sh &
+
+#bar {
+#    i3bar_command i3bar --transparency
+#    strip_workspace_numbers yes
+#    strip_workspace_name no
+#    output HDMI-0
+#    tray_output none
+#}
+
+# bar {
+#     strip_workspace_numbers yes
+#     strip_workspace_name no
+#     status_command i3status
+#     output HDMI-0
+#     position top
+# #    mode hide
+# }
 
 # workspaces
-set $ws1 "1: λ"
-set $ws2 "2: "
+set $ws1 1
+set $ws2 2
 set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
-set $ws8 "8: "
-set $ws9 "9: "
+set $ws8 8
+set $ws9 9
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -131,8 +151,14 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
+# Application/workspace mapping
+assign [class="Emacs"] $ws1
+assign [class="Transmission"] $ws8
+assign [class="zoom"] $ws9
+
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Pavucontrol"] floating enable
 
 # switch to workspace with urgent window automatically
@@ -172,10 +198,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -189,14 +215,18 @@ mode "resize" {
 }
 
 
-# Theme colors
-for_window [class="^.*"] border pixel 2
+#foreground = #ecefc1
+#background = #0a1e24
+#trans-background = #dd0a1e24
 
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #ff0000
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# Theme colors
+for_window [class="^.*"] border pixel 2 
+
+client.focused          #4c7899 #285577 #ffffff #2e9ef4 #ffcc2f
+client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e #222222
+client.urgent           #2f343a #900000 #ffffff #900000 #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 
 client.background       #ffffff
 
@@ -210,20 +240,21 @@ bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 
 # Autostart applications
 ## icot custom
-exec_always picom --inactive-dim 0.15 -b
+exec_always --no-startup-id setxkbmap -option caps:swapescape
+#exec_always --no-startup-id /$HOME/.config/polybar/i3bar.sh
+exec_always picom --inactive-dim 0 -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id "sudo dhclient"
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-tray
 exec --no-startup-id pasystray
 exec --no-startup-id cernbox
-exec --no-startup-id ./dropbox-dist/dropboxd
 exec --no-startup-id "feh --bg-scale ~/dotfiles/artifacts/wallpapers/moebius/fl6ly7wwct871.png"
-exec_always --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id "/usr/bin/xset -b"
 
 # Only to be enabled with i3-gaps
 smart_gaps on
 smart_borders on
-gaps inner 4
-gaps outer 2
-gaps horizontal 2
+gaps inner 3
+gaps outer 3
+gaps horizontal 3
