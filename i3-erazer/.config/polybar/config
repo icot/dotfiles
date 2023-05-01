@@ -1,7 +1,7 @@
 [colors]
-foreground = #e5c6a8
-background = #282420
-trans-background = #dd282420
+foreground = #ffcc2f
+background = #2c1c15
+trans-background = #aa282420
 
 [bar/i3bar]
 bottom = false
