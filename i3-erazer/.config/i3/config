@@ -13,7 +13,7 @@ font pango:Font Awesome 10
 
 floating_modifier $mod
 
-bindsym $mod+t exec wezterm
+bindsym $mod+t exec kitty
 #bindsym $mod+Return exec "~/bin/alacritty"
 bindsym $mod+Return exec kitty
 
@@ -98,6 +98,10 @@ bindsym $mod+Ctrl+Left workspace prev
 ## Workspace mapping to screen
 ##
 
+## Polybar
+
+exec_always --no-startup-id ~/.config/polybar/i3bar.sh &
+
 #bar {
 #    i3bar_command i3bar --transparency
 #    strip_workspace_numbers yes
@@ -106,25 +110,25 @@ bindsym $mod+Ctrl+Left workspace prev
 #    tray_output none
 #}
 
-bar {
-    strip_workspace_numbers yes
-    strip_workspace_name no
-    status_command i3status
-    output HDMI-0
-    position top
-#    mode hide
-}
+# bar {
+#     strip_workspace_numbers yes
+#     strip_workspace_name no
+#     status_command i3status
+#     output HDMI-0
+#     position top
+# #    mode hide
+# }
 
 # workspaces
-set $ws1 "1: λ"
-set $ws2 "2: "
+set $ws1 1
+set $ws2 2
 set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
-set $ws8 "8: "
-set $ws9 "9: "
+set $ws8 8
+set $ws9 9
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
