@@ -91,25 +91,28 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
-# Bars
-bar {
-    i3bar_command i3bar --transparency
-    strip_workspace_numbers yes
-    strip_workspace_name no
-    output DP-1
-    status_command i3status
-    position top
-  #  mode hide
-}
 
-#bar {
-#    mode hide
-#    strip_workspace_numbers yes
-#    strip_workspace_name no
-#    status_command i3status
-#    output DP-2
-#    tray_output none
-#}
+# Bars
+exec_always --no-startup-id $HOME/.config/polybar/i3bar.sh
+
+# bar {
+#     i3bar_command i3bar --transparency
+#     strip_workspace_numbers yes
+#     strip_workspace_name no
+#     output DP-1
+#     status_command i3status
+#     position top
+#   #  mode hide
+# }
+
+# bar {
+#     output DP-1
+#     position bottom
+#     strip_workspace_numbers yes
+#     strip_workspace_name no
+#     status_command i3blocks
+#     tray_output none
+# }
 
 # workspaces
 set $ws1 "1: λ"
@@ -251,5 +254,5 @@ exec --no-startup-id "/usr/bin/xset -b"
 smart_gaps on
 smart_borders on
 gaps inner 4
-gaps outer 4
+gaps outer 3
 gaps horizontal 4
