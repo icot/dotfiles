@@ -8,8 +8,7 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-#font xft:URWGothic-Book 11
-font pango:Font Awesome 10
+font xft:URWGothic-Book 11
 
 floating_modifier $mod
 
