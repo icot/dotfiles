@@ -311,6 +311,9 @@
 ;; look at interactive functions.
 (global-set-key (kbd "C-h C") #'helpful-command)
 
+
+(use-package counsel :ensure t)
+
 ;; consult
 
 ;; Example configuration for Consult
@@ -322,7 +325,7 @@
          ("C-c k" . consult-kmacro)
          ;; C-x bindings (ctl-x-map)
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ;; ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
          ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
@@ -544,9 +547,10 @@
 
 ;; Override forward-char
 (global-set-key (kbd "C-f") nil)
-(global-set-key (kbd "C-f f") #'consult-find) 
-(global-set-key (kbd "C-f r") #'consult-recent-file)
-(global-set-key (kbd "C-f P") (lambda () (interactive) (consult-find "~/.emacs.nano"))) 
+(global-set-key (kbd "C-f f") #'counsel-find-file) 
+(global-set-key (kbd "C-f r") #'counsel-recentf)
+(global-set-key (kbd "C-x b") #'ivy-switch-buffer)
+(global-set-key (kbd "C-f P") (lambda () (interactive) (counsel-find-file "~/.emacs.nano")))
 
 ;; Mail
 (global-set-key (kbd "C-x m") #'notmuch-mua-mail)
@@ -594,12 +598,12 @@
 (global-set-key (kbd "C-x _") #'split-window-vertically)
 (global-set-key (kbd "C-x =") #'balance-windows)
 
-(global-set-key (kbd "C-/") #'consult-line)
-(global-set-key (kbd "C-\\") #'consult-ripgrep)
+(global-set-key (kbd "C-/") #'swiper)
+(global-set-key (kbd "C-\\") #'counsel-rg)
 (global-set-key (kbd "C-:") #'eval-expression)
 (global-set-key (kbd "C-;") #'execute-extended-command)
 
-(global-set-key (kbd "C-x w") #'transpose-frame)
+;;(global-set-key (kbd "C-x w") #'transpose-frame)
 
 ;;;; init.el ends here
 (setq gc-cons-threshold (* 2 1000 1000))
