@@ -41,7 +41,9 @@
 
 (use-package multi-vterm
   :ensure t
-  :after vterm)
+  :after vterm
+  :config
+  (setq multi-vterm-program "/usr/bin/zsh"))
 
 ;; Misc
 
@@ -88,12 +90,14 @@
       '(("\\`\\*e?shell" display-buffer-pop-up-window)
         ("\\`\\*eat*" display-buffer-pop-up-frame)
         ("\\`\\*term*" display-buffer-pop-up-frame)
+        ("\\`\\*vterminal.*$" display-buffer-pop-up-frame) ;; https://github.com/suonlight/multi-vterm/issues/23
 	("\\`\\*vterm" display-buffer-pop-up-frame)))
 
 ;; term - $HOME/apps ls -lR: 11.238s
 ;; vterm - $HOME/apps ls -lR: 0.473s
 ;; eshell - $HOME/apps ls -lR: 5.644 (output in block after completion, doesn't scroll)
 ;; eat - $HOME/apps ls -lR: 5.628s
+
 ;; wezterm - 0.153s
 ;; alacritty - 0.149s
 ;; kitty - 0.141s
