@@ -15,6 +15,8 @@ wezterm.on(
 )
 
 return {
+
+  window_decorations = "RESIZE",
   color_scheme = 'Catppuccin Mocha',
   font_size = 14.0,
 
