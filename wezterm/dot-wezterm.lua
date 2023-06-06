@@ -18,7 +18,7 @@ return {
 
   window_decorations = "RESIZE",
   color_scheme = 'Catppuccin Mocha',
-  font_size = 14.0,
+  font_size = 13.0,
 
   
   window_frame = {
@@ -67,14 +67,14 @@ return {
         size = { Percent = 50 },
       }
     },
-    { key = ']', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Right' },
-    { key = ']', mods = 'CMD',  action = wezterm.action.ActivatePaneDirection 'Right' },
-    { key = '[', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Left'  },
+    { key = ']', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Next' },
+    { key = ']', mods = 'CMD',  action = wezterm.action.ActivatePaneDirection 'Prev' },
+    { key = '[', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Next'  },
     { key = '[', mods = 'CMD',  action = wezterm.action.ActivatePaneDirection 'Left'  },
-    { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Up' },
-    { key = 'UpArrow', mods = 'CMD', action = wezterm.action.ActivatePaneDirection 'Up' },
-    { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Down' },
-    { key = 'DownArrow', mods = 'CMD', action = wezterm.action.ActivatePaneDirection 'Down' },
+    { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Prev' },
+    { key = 'UpArrow', mods = 'CMD', action = wezterm.action.ActivatePaneDirection 'Prev' },
+    { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.ActivatePaneDirection 'Next' },
+    { key = 'DownArrow', mods = 'CMD', action = wezterm.action.ActivatePaneDirection 'Next' },
     { key = 'PageUp', mods = 'CTRL', action = act.ScrollByPage(-0.5) },
     { key = 'PageDown', mods = 'CTRL', action = act.ScrollByPage(0.5) },
     { key = 'Space', mods = 'CTRL', action = act.PaneSelect },
