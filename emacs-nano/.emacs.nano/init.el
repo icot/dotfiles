@@ -490,6 +490,53 @@
 (setq tramp-default-method "sshx")
 (setq tramp-verbose 10)
 
+<<<<<<< Updated upstream
+=======
+;; eshell
+;;  Display in new split buffer
+(setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
+
+
+;; EAT https://codeberg.org/akib/emacs-eat
+
+(straight-use-package
+ '(eat :type git
+       :host nil
+       :repo "https://codeberg.org/akib/emacs-eat"
+       :files ("*.el" ("term" "term/*.el") "*.texi"
+               "*.ti" ("terminfo/e" "terminfo/e/*")
+               ("terminfo/65" "terminfo/65/*")
+               ("integration" "integration/*")
+               (:exclude ".dir-locals.el" "*-tests.el"))))
+
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
+;; vterm
+
+;; TODO Function to close tab if vterm buffer is the only buffer
+;; Add to vterm-exit-functions
+
+(use-package vterm
+  :ensure t
+  :config
+  (add-to-list 'vterm-keymap-exceptions "C-t")
+  (add-to-list 'vterm-keymap-exceptions "C-;"))
+
+
+(use-package multi-vterm
+  :ensure t
+  :after vterm)
+
+(add-to-list 'display-buffer-alist
+	     '(("\\`\\*vterm" display-buffer-pop-up-window))
+	     t)
+
+>>>>>>> Stashed changes
 ;;  tab-bar
 (tab-bar-mode t) ; Enable tab-bar
 
