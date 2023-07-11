@@ -43,8 +43,8 @@ return {
       }
     },
     {
-      key = '|',
-      mods = 'CMD|SHIFT',
+      key = 'd',
+      mods = 'CMD',
       action = wezterm.action.SplitPane {
         direction = 'Right',
         command = { args = { 'zsh' } },
@@ -61,7 +61,7 @@ return {
       }
     },
     {
-      key = '_',
+      key = 'd',
       mods = 'CMD|SHIFT',
       action = wezterm.action.SplitPane {
         direction = 'Down',
@@ -83,7 +83,7 @@ return {
     { key = '0', mods = 'CTRL', action = act.PaneSelect { mode = 'SwapWithActive'} },
     { key = 'Space', mods = 'CMD', action = act.PaneSelect },
     { key = '0', mods = 'CMD', action = act.PaneSelect { mode = 'SwapWithActive'} },
-    { key = 't', mods = 'CTRL', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab{confirm=true}}
+--    { key = 't', mods = 'CTRL', action = wezterm.action.SpawnTab 'CurrentPaneDomain' }
+--    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab{confirm=true}}
   }
 }
