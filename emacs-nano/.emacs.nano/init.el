@@ -499,8 +499,6 @@
 (setq tramp-default-method "sshx")
 (setq tramp-verbose 10)
 
-<<<<<<< Updated upstream
-=======
 ;; eshell
 ;;  Display in new split buffer
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
@@ -545,7 +543,6 @@
 	     '(("\\`\\*vterm" display-buffer-pop-up-window))
 	     t)
 
->>>>>>> Stashed changes
 ;;  tab-bar
 (tab-bar-mode t) ; Enable tab-bar
 
