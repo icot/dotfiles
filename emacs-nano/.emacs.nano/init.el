@@ -112,15 +112,24 @@
 
 (defvar my/font-size)
 
+;; https://www.reddit.com/r/emacs/comments/isl1s5/remapping_the_command_key_on_macos_to_ctrl/
+;; https://www.reddit.com/r/MacOS/comments/ugelbc/tips_for_macos_modifier_key_remapping_emacs/
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
+
 (defun my/customize-mac ()
   (setq my/font-size 120)
+;	mac-command-modifier 'control
+;	ns-alternative-modifier 'meta
+;	ns-command-modifier 'control
+;	ns-right-alternate-modifier 'meta
+;	ns-right-command-modifier 'super)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
 (defun my/customize-linux ()
   (setq my/font-size 120))
 
-(if (equal (getenv "HOME") "/Users/icoteril")
+(if (eq system-type 'darwin)
     (my/customize-mac)
     (my/customize-linux))
 
