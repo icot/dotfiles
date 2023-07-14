@@ -534,6 +534,8 @@
   (add-to-list 'vterm-keymap-exceptions "C-t")
   (add-to-list 'vterm-keymap-exceptions "C-;"))
 
+;; Disable to prevent conflicts with quick-vterm 
+(define-key org-mode-map (kbd "C-,") nil)
 
 (use-package multi-vterm
   :ensure t
