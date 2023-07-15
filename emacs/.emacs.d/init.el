@@ -114,8 +114,9 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
 
 (defun my/customize-mac ()
-  (setq my/font-size 13)
-;	mac-command-modifier 'control
+  (setq my/font-size 13
+	mac-command-modifier 'control
+	ring-bell-function 'ignore)
 ;	ns-alternative-modifier 'meta
 ;	ns-command-modifier 'control
 ;	ns-right-alternate-modifier 'meta
