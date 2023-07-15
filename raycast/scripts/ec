@@ -1,0 +1,9 @@
+#!/usr/local/bin/bash
+
+# @raycast.schemaVersion 1
+# @raycast.title ec
+# @raycast.mode silent
+#
+# @raycast.packageName icot
+
+/usr/local/bin/emacsclient -c -n
