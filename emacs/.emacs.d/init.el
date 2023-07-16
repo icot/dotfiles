@@ -112,7 +112,6 @@
 ;; https://www.reddit.com/r/emacs/comments/isl1s5/remapping_the_command_key_on_macos_to_ctrl/
 ;; https://www.reddit.com/r/MacOS/comments/ugelbc/tips_for_macos_modifier_key_remapping_emacs/
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
-
 (defun my/customize-mac ()
   (setq my/font-size 13
 	mac-command-modifier 'control
@@ -182,7 +181,10 @@
   :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first")))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (if (eq system-type 'darwin)
+      (setq insert-directory-program "/usr/local/bin/gls")))
 
 
 (use-package dired-single
