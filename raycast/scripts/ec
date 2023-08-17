@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 
 # @raycast.schemaVersion 1
 # @raycast.title ec
@@ -6,4 +6,11 @@
 #
 # @raycast.packageName icot
 
-/usr/local/bin/emacsclient -c -n
+if sysctl machdep.cpu.brand_string | grep M1
+then
+    # M1 based
+    /opt/homebrew/bin/emacsclient -c -n
+else
+    # Intel based Mac
+    /usr/local/bin/emacsclient -c -n
+fi
