@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# @raycast.schemaVersion 1
+# @raycast.title win-up
+# @raycast.mode silent
+#
+# @raycast.packageName icot
+
+swift /Users/icoteril/workspace/swift/spikot-win/spikot-win.swift up
