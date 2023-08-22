@@ -105,6 +105,7 @@ export PATH=~/bin:/usr/local/bin:$PATH
 export PATH=~/apps/bin:$PATH
 export PATH=~/apps/JohnTheRipper/run:$PATH
 export PATH=~/.local/bin:$PATH
+export PATH=/usr/local/opt/curl/bin:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
