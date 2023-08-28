@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 # @raycast.schemaVersion 1
-# @raycast.title win-right
+# @raycast.title win-3
 # @raycast.mode silent
 #
 # @raycast.packageName icot
 
-/Users/icoteril/workspace/spikot-win/spikot-win right
+/Users/icoteril/workspace/spikot-win/spikot-win 3
+
+
