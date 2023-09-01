@@ -74,10 +74,10 @@
 
 ;;; LISPs
 
-(use-package parinfer-rust-mode
-  :hook (emacs-lisp-mode clojure-mode common-lisp scheme-mode lisp-mode)
-  :config
-  (setq parinfer-rust-auto-download t))
+;;(use-package parinfer-rust-mode
+;;  :hook (emacs-lisp-mode clojure-mode common-lisp scheme-mode lisp-mode)
+;;  :config
+;;  (setq parinfer-rust-auto-download t))
 
 ;; LSP Mode
 
@@ -155,10 +155,10 @@
 
 
 ;; Considered alpha state
-(use-package parinfer-rust-mode
-    :hook emacs-lisp-mode
-    :init
-    (setq parinfer-rust-auto-download t))
+;;(use-package parinfer-rust-mode
+;;    :hook emacs-lisp-mode
+;;    :init
+;;    (setq parinfer-rust-auto-download t))
 
 ;; common-lisp
 (use-package sly
