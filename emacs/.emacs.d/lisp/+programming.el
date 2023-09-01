@@ -247,6 +247,8 @@
 
 
 (use-package haskell-mode
+
+(use-package swift-mode
   :ensure t)
 
 ;; c/c++
