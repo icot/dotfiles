@@ -140,6 +140,10 @@
 		    :height 120)
 (set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
+(use-package hl-todo
+  :ensure t)
+(global-hl-todo-mode)
+
 ;;; Help, Completion
 
 ;; marginalia
