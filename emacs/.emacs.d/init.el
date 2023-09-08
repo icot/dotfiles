@@ -79,6 +79,12 @@
 (setq straight-use-package-by-default t)
 (setq use-package-always-ensure t)
 
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (when (or (daemonp) (memq window-system '(mac ns x)))
+    (exec-path-from-shell-initialize)))
+
 ;;;; Auto-compile
 (setq load-prefer-newer t)
 (use-package auto-compile
