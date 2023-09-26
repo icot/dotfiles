@@ -536,6 +536,9 @@
 (global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-<next>") #'tab-bar-switch-to-next-tab)
 
+(windmove-default-keybindings 'control)
+// TODO windmove-swap-states-default-keybindings
+
 (global-set-key (kbd "C-x h") #'windmove-left)
 (global-set-key (kbd "C-x j") #'windmove-down)
 (global-set-key (kbd "C-x k") #'windmove-up)
@@ -557,6 +560,14 @@
 (global-set-key (kbd "C-;") #'execute-extended-command)
 
 ;;(global-set-key (kbd "C-x w") #'transpose-frame)
+
+;; https://pay.reddit.com/r/emacs/comments/16rbsnw/whats_something_in_your_emacs_config_that_makes_a/
+
+(defadvice kill-region (before unix-werase activate compile)
+  "When called interactively with no active region, delete a single word backwards instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (save-excursion (backward-word 1) (point)) (point)))))
 
 ;;;; init.el ends here
 (setq gc-cons-threshold (* 2 1000 1000))
