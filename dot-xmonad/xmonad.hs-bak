@@ -1,0 +1,79 @@
+import XMonad
+import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Tabbed
+import XMonad.Layout.NoBorders
+import XMonad.Layout.ShowWName
+import XMonad.Layout.Gaps
+import XMonad.Layout.Grid
+import XMonad.Actions.CycleWS
+import qualified XMonad.StackSet as W
+import qualified Data.Map as M
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Hooks.DynamicLog
+import System.IO
+
+-- Java GUI Problems
+import XMonad.Hooks.SetWMName
+--
+
+main = do
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/icoteril/.xmonad/xmobar"
+    xmonad $ defaultConfig
+            { terminal = "urxvt"
+            , manageHook = manageDocks <+> manageHook defaultConfig
+            , layoutHook = showWName' mySWNConfig myLayout
+            , logHook = dynamicLogWithPP $ xmobarPP
+                { ppOutput = hPutStrLn xmproc
+                , ppTitle = xmobarColor "green" "" . shorten 50 }
+
+            -- keys
+            , modMask = mod4Mask
+            , keys = \c -> myKeys c `M.union` keys defaultConfig c
+            , borderWidth = 1
+            , normalBorderColor = "#000000"--"#aa99aa"
+            , focusedBorderColor = "#10aa10"
+            , focusFollowsMouse = False
+            -- Java GUI problems
+            , startupHook = setWMName "LG3D"
+            }
+
+mySWNConfig = defaultSWNConfig
+        { swn_font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
+        , swn_color = "white"
+        , swn_fade = 1/4 }
+
+myLayout = avoidStruts $ smartBorders $ (normalTiled ||| Mirror normalTiled ||| myTabbed ||| myGrid)
+    where 
+        normalTiled = Tall 1 (2/100) (1/2)
+        myTabbed = tabbed shrinkText myTabConfig
+        myGrid = Grid
+
+myTabConfig = defaultTheme
+        { activeColor = "#3cb371"
+        , activeTextColor = "#00ff00"
+        , activeBorderColor = "3cb371" --"#aaFFaa"
+        , inactiveColor = "6a6a6a"
+        , inactiveTextColor = "#777777"
+        , inactiveBorderColor = "#6a6a6a" --"#FF0000"
+        , decoHeight = 12 }
+
+myKeys conf@(XConfig {modMask = modm}) = 
+    M.fromList $
+        [ ((modm, xK_t), spawn "urxvt")
+        , ((modm, xK_s), spawn "urxvt -e screen -R")
+        , ((modm, xK_r), spawn "xfrun4")
+        , ((modm, xK_m), spawn "icedove")
+        , ((modm, xK_f), spawn "iceweasel")
+        , ((modm, xK_c), spawn "chromium-browser")
+        , ((modm, xK_b), do
+            sendMessage ToggleStruts
+            sendMessage ToggleGaps)
+        , ((modm, xK_Left), prevWS)
+        , ((modm, xK_Right), nextWS)
+        , ((modm, xK_Down), windows W.focusDown)
+        , ((modm, xK_Up), windows W.focusUp)
+        , ((modm .|. shiftMask , xK_Right), nextScreen)
+        , ((modm .|. shiftMask , xK_Left), prevScreen)
+        , ((modm .|. shiftMask , xK_o), shiftNextScreen)
+        , ((modm, xK_Tab), toggleWS)
+        ]

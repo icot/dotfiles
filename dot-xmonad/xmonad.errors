@@ -1,0 +1,47 @@
+
+xmonad.hs:53:27: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+53 |     xmonad $ docks $ ewmh defaultConfig
+   |                           ^^^^^^^^^^^^^
+
+xmonad.hs:56:72: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+56 |             , manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
+   |                                                                        ^^^^^^^^^^^^^
+
+xmonad.hs:59:44: warning: [-Wdeprecations]
+    In the use of ‘defaultPP’ (imported from XMonad.Hooks.DynamicLog):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad.Hooks.DynamicLog) instead."
+   |
+59 |             , logHook = dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn statusbar }
+   |                                            ^^^^^^^^^
+
+xmonad.hs:62:52: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+62 |             , keys = \c -> myKeys c `M.union` keys defaultConfig c
+   |                                                    ^^^^^^^^^^^^^
+
+xmonad.hs:71:15: warning: [-Wdeprecations]
+    In the use of ‘defaultSWNConfig’
+    (imported from XMonad.Layout.ShowWName):
+    Deprecated: "Use def (from Data.Default, and re-exported from XMonad.Layout.ShowWName) instead."
+   |
+71 | mySWNConfig = defaultSWNConfig
+   |               ^^^^^^^^^^^^^^^^
+
+xmonad.hs:85:15: warning: [-Wdeprecations]
+    In the use of ‘defaultTheme’
+    (imported from XMonad.Layout.Tabbed, but defined in XMonad.Layout.Decoration):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad.Layout.Decoration) instead."
+   |
+85 | myTabConfig = defaultTheme
+   |               ^^^^^^^^^^^^
