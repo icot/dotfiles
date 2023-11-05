@@ -11,8 +11,8 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "material"
-    colorscheme_bg = "dark"
+    colorscheme = "palenight"
+#    colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
@@ -26,8 +26,10 @@
     enable_statusline_mode = false
     filetree_direction = "left"
     filemanager = "nerdtree"
+    filemanager_show_hidden = true
     bootstratp_before ="myspacevim#before"
     bootstratp_after ="myspacevim#after"
+    enable_smooth_scrolling = false
 
 # Enable autocomplete layer
 [[layers]]

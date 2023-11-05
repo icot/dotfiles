@@ -11,3 +11,6 @@ error_symbol = "[λ](bold red)"
 
 [gcloud]
 disabled = true
+
+[time]
+disabled = false

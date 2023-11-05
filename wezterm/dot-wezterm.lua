@@ -17,7 +17,9 @@ wezterm.on(
 return {
 
   window_decorations = "RESIZE",
-  color_scheme = 'Catppuccin Macchiato',
+  -- color_scheme = 'Catppuccin Macchiato',
+  color_scheme = 'Chalk',
+  -- window_background_opacity = 0.99,
   font_size = 13.0,
 
   

@@ -10,5 +10,8 @@ configuration {
  terminal: "kitty";
  }
 
-@theme "catppuccin-latte"
+//@theme "catppuccin-latte"
 
+//@theme "/usr/share/rofi/themes/fancy.rasi"
+//@theme "/usr/share/rofi/themes/purple.rasi"
+@theme "/usr/share/rofi/themes/fancy.rasi"
