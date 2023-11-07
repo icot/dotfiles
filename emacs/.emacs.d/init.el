@@ -142,10 +142,21 @@
 
 ;; Set font to "JetBrains Mono"
 
+
+(set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
+
 (set-face-attribute 'default nil
 		    :family "Jetbrains Mono"
-		    :height 120)
-(set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
+		    :height (* 10 my/font-size))
+            
+(set-face-attribute 'variable-pitch nil
+		    :family "JetBrains Mono"
+		    :height (* 10 my/font-size))
+
+(set-face-attribute 'fixed-pitch nil
+		    :family "JetBrains Mono"
+		    :height (* 10 my/font-size))
+
 
 (use-package hl-todo
   :ensure t)
@@ -195,7 +206,7 @@
   :custom ((dired-listing-switches "-agho --group-directories-first"))
   :config
   (if (eq system-type 'darwin)
-      (setq insert-directory-program "/usr/local/bin/gls")))
+      (setq insert-directory-program "/opt/homebrew/bin/gls")))
 
 
 (use-package dired-single
