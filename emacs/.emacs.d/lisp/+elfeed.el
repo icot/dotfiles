@@ -17,4 +17,8 @@
 	  "https://insideclojure.org/feed.xml"
 	  "https://jao.io/blog/rss.xml"
 	  "https://www.exploit-db.com/rss.xml"
-	  "https://www.tandfonline.com/feed/rss/ucry20")))
+	  "https://www.tandfonline.com/feed/rss/ucry20"
+	  "https://writings.stephenwolfram.com/feed/"
+	  "https://drewdevault.com/blog/index.xml"
+	  "https://oxide.computer/blog/feed"
+	  "https://sachachua.com/blog/feed/")))

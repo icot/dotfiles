@@ -49,7 +49,18 @@ map shift+cmd+space next_layout
 
 map kitty_mod+shift+e open_url_with_hints
 
+map kitty_mod+h neighboring_window left
+map kitty_mod+j neighboring_window bottom
+map kitty_mod+k neighboring_window top
+map kitty_mod+l neighboring_window right
+
+map alt+shift+h move_window left
+map alt+shift+j move_window bottom
+map alt+shift+k move_window top
+map alt+shift+l move_window right
+
+
 # BEGIN_KITTY_THEME
-# 1984 Dark
+# Tokyo Night
 include current-theme.conf
 # END_KITTY_THEME

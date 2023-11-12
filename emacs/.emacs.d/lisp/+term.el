@@ -4,6 +4,7 @@
 
 (defun my/clean-window ()
   (interactive)
+  (message "Cleaning window")
   (if (one-window-p t t)
       (delete-frame)
       (delete-window)))
@@ -42,6 +43,11 @@
 ;; TODO Function to close tab if vterm buffer is the only buffer
 ;; Add to vterm-exit-functions
 
+(setq eat-kill-buffer-on-exit t)
+(add-hook 'eat-exit-hook #'my/clean-window)
+;; eat--kill-buffer 
+
+;; vterm
 (use-package vterm
   :ensure t
   :config

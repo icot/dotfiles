@@ -246,7 +246,8 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 
-
+(use-package haskell-mode
+  :ensure t)
 
 ;; c/c++
 

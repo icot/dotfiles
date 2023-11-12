@@ -13,7 +13,19 @@
   path = ~/.gitconfig-cern
 [includeIf "gitdir:~/workspace/monit/**"]
   path = ~/.gitconfig-cern
-[includeIf "gitdir:~/workspace/guix/"]
+[includeIf "gitdir:/opt/workspace/puppet/*/"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/cerndb/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/nile/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/kafka/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/monitoring/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/monit/**"]
+  path = ~/.gitconfig-cern
+[includeIf "gitdir:/opt/workspace/guix/"]
   path = ~/.gitconfig-guix
 
 [branch]
