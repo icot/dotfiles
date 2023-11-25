@@ -1,5 +1,10 @@
+# Clone OMZ if not present
+if [[ ! -d ~/.ohmyzsh ]];then
+  git clone https://github.com/ohmyzsh/ohmyzsh ~/.ohmyzsh
+fi
+
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.ohmyzsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -46,6 +51,15 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+if [[ ! -d $ZSH/custom/plugins/zsh-autosuggestions ]];then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.ohmyzsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [[ ! -d $ZSH/custom/plugins/zsh-syntax-highlighting ]];then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.ohmyzsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
 plugins=(wd colorize z zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
