@@ -168,6 +168,10 @@
 	(border-mode-line-active unspecified)
 	(border-mode-line-inactive unspecified))))
 
+;; Doom themes
+(use-package doom-themes
+  :ensure t)
+
 (use-package all-the-icons
   :ensure t)
 
