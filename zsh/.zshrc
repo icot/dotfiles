@@ -181,44 +181,31 @@ vterm_printf(){
 
 
 # GUIX
-export GUIX_PROFILE="/home/$USER/.guix-profile"
-export GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
-if [[ "${HOME}" == "/home/${USER}" ]]
-then  
-source $GUIX_PROFILE/etc/profile
+if [[ -d /home/$USER/.guix-profile ]];then
+ export GUIX_PROFILE="/home/$USER/.guix-profile"
+ export GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
+ source $GUIX_PROFILE/etc/profile
+
+ export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
+ export PATH=$PATH:$GUIX_PROFILE/bin
+ export PATH=$HOME/.config/guix/current/bin:$PATH
+
+ export INFOPATH="${HOME}/.config/guix/current/share/info:${INFOPATH}"
+ export MANPATH="${HOME}/.guix-profile/share/man:/usr/share/man:${MANPATH}"
+ export XDG_CONFIG_DIRS="${HOME}/.desktop-profile/etc/xdg:${HOME}/.guix-profile/etc/xdg:$XDG_CONFIG_DIRS"
+ export XDG_DATA_DIRS="${HOME}/.desktop-profile/share:${HOME}/.guix-profile/share:$XDG_DATA_DIRS"
+
+ # Enable extra profiles
+ [ "$(ls -A $GUIX_EXTRA_PROFILES)" ] &&
+ for i in $GUIX_EXTRA_PROFILES/*; do
+   profile=$i/$(basename "$i")
+   if [ -f "$profile"/etc/profile ]; then
+     GUIX_PROFILE="$profile"
+     source "$GUIX_PROFILE"/etc/profile
+   fi
+   unset profile
+ done
 fi
-
-export GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
-export PATH=$PATH:$GUIX_PROFILE/bin
-export PATH=$HOME/.config/guix/current/bin:$PATH
-
-export INFOPATH="${HOME}/.config/guix/current/share/info:${INFOPATH}"
-export MANPATH="${HOME}/.guix-profile/share/man:/usr/share/man:${MANPATH}"
-export XDG_CONFIG_DIRS="${HOME}/.desktop-profile/etc/xdg:${HOME}/.guix-profile/etc/xdg:$XDG_CONFIG_DIRS"
-export XDG_DATA_DIRS="${HOME}/.desktop-profile/share:${HOME}/.guix-profile/share:$XDG_DATA_DIRS"
-
-# Enable extra profiles
-[ "$(ls -A $GUIX_EXTRA_PROFILES)" ] &&
-for i in $GUIX_EXTRA_PROFILES/*; do
-  profile=$i/$(basename "$i")
-  if [ -f "$profile"/etc/profile ]; then
-    GUIX_PROFILE="$profile"
-    source "$GUIX_PROFILE"/etc/profile
-  fi
-  unset profile
-done
-
-cgp (){
-    pushd $GUIX_EXTRA_PROFILES
-    mkdir $1
-    popd
-}
-
-rgp (){
-    pushd $GUIX_EXTRA_PROFILES
-    rm -fr $1
-    popd
-}
 
 # raco pkg
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -230,11 +217,6 @@ if [ $? -eq 0 ]; then
 fi
 
 export PATH=$PATH:$HOME/.roswell/bin
-export PATH=$PATH:$HOME/.emacs.d/bin
-
-#NPM
-export NPM_PACKAGES=$HOME/.npm-pkgs
-export PATH=$PATH:$NPM_PACKAGES/bin
 
 #Swift
 export PATH=$HOME/apps/swift/usr/bin:"${PATH}"
@@ -245,13 +227,14 @@ if [ $? -eq 0 ]; then
 fi
 
 # ASDF
-if [[ ${HOME} == "/home/${USER}" ]]
-then 
-. "$HOME/.asdf/asdf.sh"
+if [[ -d /home/$USER/.asdf ]];then
+source "$HOME/.asdf/asdf.sh"
 fi
 
 # Rust
+if [[ -d /home/$USER/.cargo ]];then
 source "$HOME/.cargo/env"
+fi
 
 # Emacs EAT
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
