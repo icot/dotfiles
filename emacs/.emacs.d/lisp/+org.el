@@ -65,6 +65,9 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
         org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"
         org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar"))
 
+;; To prevent conflicst with quick vterm binding
+(define-key org-mode-map (kbd "C-,") nil)
+
 ;; Babel config initially seen in https://blog.lazy-evaluation.net/posts/orgmode-diagrams.html
 
 ;; Org Modern https://github.com/minad/org-modern
@@ -137,5 +140,7 @@ With a prefix ARG, remove start location."
          "* %u %?\n%i\n%a" :prepend t)
         ("j" "Journal" entry (file+olp+datetree +org-capture-journal-file)
          "* %U %?\n%i\n%a" :prepend t)))
+
+
 
 ;; org-tree-slide
