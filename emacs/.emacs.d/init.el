@@ -1,6 +1,6 @@
 (provide 'init)
 
-(add-to-list 'load-path "~/.emacs.nano/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (defun icot/package-reinstall-all-activated-packages ()
   "Refresh and reinstall all activated packages."
@@ -34,7 +34,7 @@
 (setq recentf-max-saved-items 25)
 
 ;; Store customizations in separate file
-(setq custom-file "~/.emacs.nano/custom.el")
+(setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
 ;; Create and configure auto-save folder and backups
@@ -605,7 +605,7 @@
 (global-set-key (kbd "C-f f") #'counsel-find-file) 
 (global-set-key (kbd "C-f r") #'counsel-recentf)
 (global-set-key (kbd "C-x b") #'ivy-switch-buffer)
-(global-set-key (kbd "C-f P") (lambda () (interactive) (counsel-find-file "~/.emacs.nano")))
+(global-set-key (kbd "C-f P") (lambda () (interactive) (counsel-find-file "~/.emacs.d")))
 
 ;; Mail
 (global-set-key (kbd "C-x m") #'notmuch-mua-mail)
