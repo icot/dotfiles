@@ -64,8 +64,43 @@ plugins=(wd colorize z zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Install or initialize ASDF
+if [[ ! -d ~/.asdf ]];then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+else
+    . "$HOME/.asdf/asdf.sh"
+fi
 
+# ASDF Plugins
+# age
+# babashka
+# bat
+# chezscheme
+# chicken
+# clojure
+# colima/lima
+# eza
+# fd
+# fx
+# ghidra
+# glab
+# guile
+# helm
+# jbang
+# k9s
+# kcat
+# kcctl
+# kubectl
+# leiningen
+# racket
+# ripgrep
+# sbcl
+# shellcheck
+# sops
+# sopstool
+# starship
+
+# User configuration
 export PATH=~/bin:/usr/local/bin:$PATH
 export PATH=~/apps/bin:$PATH
 export PATH=~/apps/JohnTheRipper/run:$PATH
@@ -102,23 +137,17 @@ alias ls="ls --color "
 alias grep="grep --color "
 alias rm="rm -v"
 alias ll="ls --color -l "
-alias sqlplus="rlwrap sqlplus"
-alias sqlsys="sqlplus sys as sysdba"
-alias csi="rlwrap csi"
-alias dfs="cadaver https://dfs.cern.ch/dfs"
-alias httpu="http --verify=no"
 alias mutt-gmail="mutt -F ~/.mutt/muttrc-gmail"
 alias mutt-cern="mutt -F ~/.mutt/muttrc-cern"
 alias mutt-cern-local="mutt -F ~/.mutt/muttrc-cern-local"
-alias cp2="rsync -avz"
 alias bat="bat -p"
 
-alias l='exa -l --group-directories-first --git'
-alias ll='exa -l --all --all --group-directories-first --git'
-alias lt='exa -T --git-ignore --level=2 --group-directories-first'
-alias llt='exa -lT --git-ignore --level=2 --group-directories-first'
-alias lT='exa -T --git-ignore --level=4 --group-directories-first'
-alias llfu='exa -bghHliS --git'
+alias l='eza -l --group-directories-first --git'
+alias ll='eza -l --all --all --group-directories-first --git'
+alias lt='eza -T --git-ignore --level=2 --group-directories-first'
+alias llt='eza -lT --git-ignore --level=2 --group-directories-first'
+alias lT='eza -T --git-ignore --level=4 --group-directories-first'
+alias llfu='eza -bghHliS --git'
 alias talacritty='tabbed -c alacritty --embed'
 
 alias sbcl='rlwrap sbcl'
