@@ -205,18 +205,17 @@
 ;;; Help, Completion
 
 ;; marginalia
-(use-package marginalia
+;;(use-package marginalia
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-  :bind (("M-A" . marginalia-cycle)
-         :map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
+;;  :bind (("M-A" . marginalia-cyclea)
+;;         :map minibuffer-local-map
+;;         ("M-A" . marginalia-cycle))
 
-  ;; The :init configuration is always executed (Not lazy!)
-  :init
+  ;; The :init configuration is always executed (Not lazy!)  :init
 
   ;; Must be in the :init section of use-package such that the mode gets
   ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode))
+;;  (marginalia-mode))
 
 ;; Enable vertico
 (use-package vertico
@@ -457,39 +456,6 @@
  (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-;; embark
-
-(use-package embark
-  :ensure t
-
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
-  :init
-
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-
-  :config
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
-
-;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
-
 ;; which-key
 (use-package which-key
   :init (which-key-mode)
@@ -497,8 +463,9 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-(use-package emacs-rotate
-  :straight (:type git :host github :repo "daichirata/emacs-rotate"))
+;; TODO
+;; (use-package emacs-rotate
+;;  :straight (:type git :host github :repo "daichirata/emacs-rotate"))
   
 ;;; Core modules
 
