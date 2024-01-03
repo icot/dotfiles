@@ -107,7 +107,7 @@
 
 (global-prettify-symbols-mode 1)
 
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi-tinted)))
+(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 ;; modus theme customizations
 
 (defvar my/font-size)
@@ -124,10 +124,13 @@
 ;	ns-right-alternate-modifier 'meta
 ;	ns-right-command-modifier 'super)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(undecorated-round . t))))
 
 (defun my/customize-linux ()
-  (setq my/font-size 120))
+  (setq my/font-size 120)
+  ;; Undecorated frames
+  (add-to-list 'default-frame-alist '(undecorated . t)))
 
 (if (eq system-type 'darwin)
     (my/customize-mac)
@@ -177,12 +180,12 @@
 
 ;; Modeline
 
-(use-package moody
-  :config
-  (setq x-underline-at-descent-line t)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-  (moody-replace-eldoc-minibuffer-message-function))
+;; (use-package moody
+;;   :config
+;;   (setq x-underline-at-descent-line t)
+;;   (moody-replace-mode-line-buffer-identification)
+;;   (moody-replace-vc-mode)
+;;   (moody-replace-eldoc-minibuffer-message-function))
 
 (use-package minions
   :ensure t)
