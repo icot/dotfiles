@@ -18,18 +18,18 @@
   :custom
   (git-link-use-commit t))
 
-(use-package lab
-  :ensure t
-  :after password-store
-  :straight (:host github :repo "isamert/lab.el")
-  :config  (setq lab-host "https://gitlab.cern.ch"
-                 lab-token (password-store-get "gitlab/magit-forge")
-                 lab-group "db"
-                 lab-projects-directory "~/workspace"))
+;;(use-package lab
+;;  :ensure t
+;;  :after password-store
+;;  :straight (:host github :repo "isamert/lab.el")
+;;  :config  (setq lab-host "https://gitlab.cern.ch"
+;;                 lab-token (password-store-get "gitlab/magit-forge")
+;;                 lab-group "db"
+;;                 lab-projects-directory "~/workspace"))
 
-(defun icot/project-pipelines ()
-  (interactive)
-  (lab-get-project-pipelines lab-project-id))
+;;(defun icot/project-pipelines ()
+;;  (interactive)
+;;  (lab-get-project-pipelines lab-project-id))
 
 (defun icot/clone-module (module-name)
  "Clone a Puppet module from gitlab.cern.ch/ai"
