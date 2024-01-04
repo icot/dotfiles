@@ -125,7 +125,7 @@
 ;	ns-right-command-modifier 'super)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (add-to-list 'default-frame-alist '(undecorated-round . t))))
+  (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
 (defun my/customize-linux ()
   (setq my/font-size 120)
