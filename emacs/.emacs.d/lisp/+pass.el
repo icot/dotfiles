@@ -9,28 +9,32 @@
 ;;   https://www.gnu.org/software/emacs/manual/html_mono/auth.html#Top
 (setq auth-sources '(password-store))
 
+;; Copy/Paste in Wayland
+(setq wl-copy-process nil)
 
+(defun wl-copy (text)
+  (setq wl-copy-process (make-process :name "wl-copy"
+                                      :buffer nil
+                                      :command '("wl-copy" "-f" "-n")
+                                      :connection-type 'pipe
+                                      :noquery t))
+  (process-send-string wl-copy-process text)
+  (process-send-eof wl-copy-process))
+
+(defun wl-paste ()
+  (if (and wl-copy-process (process-live-p wl-copy-process))
+      nil) ; should return nil if we're the current paste owner
+  (shell-command-to-string "wl-paste -n | tr -d \r"))
+
+(setq interprogram-cut-function 'wl-copy)
+(setq interprogram-paste-function 'wl-paste)
+
+;; External callee 
 (defun icot/passmenu ()
-  (let ((frame (make-frame '((minibuffer . only)))))
-    (message "frame: %s" frame)
-    (call-interactively 'password-store-copy)
-    (delete-frame frame 't)))
-
-;; (let ((frame (make-frame '((minibuffer . only)))))
-;;   (message "frame: %s" frame)
-;;   (call-interactively 'password-store-copy)
-;;   (delete-frame frame 't))
-
-;; (defun switch-to-minibuffer ()
-;;   "Switch to minibuffer window."
-;;   (interactive)
-;;   (if (active-minibuffer-window)
-;;       (select-window (active-minibuffer-window))
-;;     (error "Minibuffer is not active")))
-
-;; (global-set-key "\C-co" 'switch-to-minibuffer) ;; Bind to `C-c o'
-
-;; (frame-list)
-;; (frame-focus)
-
+  (let ((frame (selected-frame)))
+   (message "frame: %s" frame)
+   (call-interactively 'password-store-copy)
+   (delete-frame frame)
+   0))
+   
 
