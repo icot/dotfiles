@@ -34,7 +34,9 @@
   (let ((frame (selected-frame)))
    (message "frame: %s" frame)
    (call-interactively 'password-store-copy)
+   (wl-copy (car kill-ring))
    (delete-frame frame)
    0))
    
+
 
