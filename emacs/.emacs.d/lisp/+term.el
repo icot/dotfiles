@@ -13,7 +13,7 @@
   (kill-buffer (current-buffer))
   (delete-frame))
 
-;; EAT https://codeberg.org/akib/emacs-eat
+;;; EAT https://codeberg.org/akib/emacs-eat
 (straight-use-package
  '(eat :type git
        :host nil
@@ -24,6 +24,12 @@
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
 
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
 (defvar eat-session-id 0)
 
 (defun my/multi-eat ()
@@ -31,7 +37,11 @@
   (setq eat-session-id (+ eat-session-id 1))
   (eat "/usr/bin/zsh" eat-session-id))
 
-;; vterm
+;;; vterm
+
+;; TODO Function to close tab if vterm buffer is the only buffer
+;; Add to vterm-exit-functions
+
 (use-package vterm
   :ensure t
   :config
@@ -44,6 +54,10 @@
   :after vterm
   :config
   (setq multi-vterm-program "/usr/bin/zsh"))
+
+(add-to-list 'display-buffer-alist
+	     '(("\\`\\*vterm" display-buffer-pop-up-window))
+	     t)
 
 ;; Misc
 
@@ -92,6 +106,8 @@
         ("\\`\\*term*" display-buffer-pop-up-frame)
         ("\\`\\*vterminal.*$" display-buffer-pop-up-frame) ;; https://github.com/suonlight/multi-vterm/issues/23
 	("\\`\\*vterm" display-buffer-pop-up-frame)))
+
+;;; Misc
 
 ;; term - $HOME/apps ls -lR: 11.238s
 ;; vterm - $HOME/apps ls -lR: 0.473s
