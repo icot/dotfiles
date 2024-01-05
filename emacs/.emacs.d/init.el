@@ -95,20 +95,16 @@
 ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-;; Theme, GUI
-
-;; Disable menu bar and scroll bar
+;; GUI basics
 (setq inhibit-startup-screen t)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(menu-bar-mode -1) ; disable menu
+(tool-bar-mode -1) ; disable tool-bar
+(scroll-bar-mode -1) ; disable scroll-bar
+(tab-bar-mode t) ; Enable tab-bar
+
 (set-fringe-mode 10)
-
 (global-prettify-symbols-mode 1)
-
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
-;; modus theme customizations
 
 (defvar my/font-size)
 
@@ -136,63 +132,23 @@
     (my/customize-mac)
     (my/customize-linux))
 
+;; "JetBrains Mono" "Roboto Mono"
 (set-face-attribute 'default nil
-		    :family "JetBrains Mono"
+		    :family "Roboto Mono"
 		    :height my/font-size)
 
 (set-face-attribute 'variable-pitch nil
-		    :family "JetBrains Mono"
-		    :height 1.0)
+		    :family "Roboto Mono"
+		    :height my/font-size)
 
 (set-face-attribute 'fixed-pitch nil
-		    :family "JetBrains Mono"
-		    :height 1.0)
+		    :family "Roboto Mono"
+		    :height my/font-size)
+;; Themes
 
-;; Install lambda-themes
-(use-package lambda-themes
-  :straight (:type git :host github :repo "lambda-emacs/lambda-themes") 
-  :custom
-  (lambda-themes-set-italic-comments t)
-  (lambda-themes-set-italic-keywords t)
-  (lambda-themes-set-variable-pitch t))
-
-;; Install ef-themes
-(use-package ef-themes
-  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
-
-(use-package modus-themes
-  :ensure t
-  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/modus-themes")
-  :config
-  (setq modus-themes-bold-constructs t)
-  (setq modus-themes-italic-constructs t)
-  (setq modus-themes-common-palette-overrides
-      '((fringe unspecified)
-	(border-mode-line-active unspecified)
-	(border-mode-line-inactive unspecified))))
-
-;; Doom themes
-(use-package doom-themes
-  :ensure t)
-
-(use-package all-the-icons
-  :ensure t)
-
-;; Modeline
-
-;; (use-package moody
-;;   :config
-;;   (setq x-underline-at-descent-line t)
-;;   (moody-replace-mode-line-buffer-identification)
-;;   (moody-replace-vc-mode)
-;;   (moody-replace-eldoc-minibuffer-message-function))
-
-(use-package minions
-  :ensure t)
-(minions-mode)
-
+;;(load "lisp/themes.el")
+      
 ;; Window/frame setup management
-
 (use-package burly
   :straight (:host github
              :repo "alphapapa/burly.el"))
@@ -449,7 +405,6 @@
 
 
 ;; orderless
-
 (use-package orderless
   :ensure t
   :custom 
@@ -479,7 +434,6 @@
 
 
 ;; EAT https://codeberg.org/akib/emacs-eat
-
 (straight-use-package
  '(eat :type git
        :host nil
@@ -516,8 +470,6 @@
 	     '(("\\`\\*vterm" display-buffer-pop-up-window))
 	     t)
 
-;;  tab-bar
-(tab-bar-mode t) ; Enable tab-bar
 
 ;;; 3rd party Modules
 
