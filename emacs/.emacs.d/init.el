@@ -474,8 +474,12 @@
 (global-set-key (kbd "C-f") nil)
 (global-set-key (kbd "C-f f") #'counsel-find-file) 
 (global-set-key (kbd "C-f r") #'counsel-recentf)
-(global-set-key (kbd "C-x b") #'ivy-switch-buffer)
+(global-set-key (kbd "C-x b") #'ido-switch-buffer)
 (global-set-key (kbd "C-f P") (lambda () (interactive) (counsel-find-file "~/.emacs.d")))
+
+;; Override backward-char
+(global-set-key (kbd "C-b") nil)
+(global-set-key (kbd "C-b k") #'ido-kill-buffer)
 
 ;; Mail
 (global-set-key (kbd "C-x m") #'notmuch-mua-mail)
