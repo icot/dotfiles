@@ -106,6 +106,7 @@
 (set-fringe-mode 10)
 (global-prettify-symbols-mode 1)
 
+;; Font size
 (defvar my/font-size)
 
 ;; https://www.reddit.com/r/emacs/comments/isl1s5/remapping_the_command_key_on_macos_to_ctrl/
@@ -113,7 +114,7 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
 
 (defun my/customize-mac ()
-  (setq my/font-size 120)
+  (setq my/font-size 13)
 ;	mac-command-modifier 'control
 ;	ns-alternative-modifier 'meta
 ;	ns-command-modifier 'control
@@ -124,7 +125,7 @@
   (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
 (defun my/customize-linux ()
-  (setq my/font-size 120)
+  (setq my/font-size 13)
   ;; Undecorated frames
   (add-to-list 'default-frame-alist '(undecorated . t)))
 
@@ -132,18 +133,9 @@
     (my/customize-mac)
     (my/customize-linux))
 
-;; "JetBrains Mono" "Roboto Mono"
-(set-face-attribute 'default nil
-		    :family "Roboto Mono"
-		    :height my/font-size)
+;; Set font to "JetBrains Mono"
+(set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
-(set-face-attribute 'variable-pitch nil
-		    :family "Roboto Mono"
-		    :height my/font-size)
-
-(set-face-attribute 'fixed-pitch nil
-		    :family "Roboto Mono"
-		    :height my/font-size)
 ;; Themes
 
 ;;(load "lisp/themes.el")
