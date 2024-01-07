@@ -7,7 +7,9 @@
 
 ;; Highlight TODO related keywords
 (use-package hl-todo
-  :ensure t)
+  :ensure t
+  :config
+  (hl-todo-mode))
 
 (defun icot/toggle-hide-mode-line ()
   "Toggle mode-line visibility in current buffer."
