@@ -134,6 +134,10 @@
     (my/customize-linux))
 
 ;; Set font to "JetBrains Mono"
+
+(set-face-attribute 'default nil
+		    :family "Jetbrains Mono"
+		    :height 120)
 (set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
 ;; Themes
