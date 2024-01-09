@@ -92,7 +92,7 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
-  :after '(org-noter pdf-tools)
+  :after '(org-noter pdf-tools org-pdftools)
   :config
   ;; Add a function to ensure precise note is inserted
   (defun org-noter-pdftools-insert-precise-note (&optional toggle-no-questions)

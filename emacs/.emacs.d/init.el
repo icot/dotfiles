@@ -140,10 +140,6 @@
 		    :height 120)
 (set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
-;; Themes
-
-;;(load "lisp/themes.el")
-      
 ;; Window/frame setup management
 (use-package burly
   :straight (:host github
@@ -445,6 +441,8 @@
 ;  "C-C p c" projectile-compile-project
 ;  "C-C p K" projectile-package-project
 
+(load "+themes.el")
+
 (load "+focus.el")
 
 (load "+term.el")
@@ -452,6 +450,8 @@
 (load "+git.el")
 
 (load "+pass.el")
+
+(load "+pdf.el")
 
 (load "+org.el")
 
@@ -467,7 +467,6 @@
 
 (load "+irc.el")
 
-(load "+pdf.el")
 
 (load "+programming.el")
 
