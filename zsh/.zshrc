@@ -267,7 +267,7 @@ fi
 
 # Emacs EAT
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
-  source "$EAT_SHELL_INTEGRATION_DIR/bash"
+  source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/$USER/.sdkman"
