@@ -2,15 +2,15 @@
 
 ;; Helper functions
 
-(defun my/clean-window ()
+(defun icot/clean-window ()
   (interactive)
   (message "Cleaning window")
   (if (one-window-p t t)
       (delete-frame)
       (delete-window)))
 
-(defun my/term-handle-exit (&optional process-name msg)
-  (message "%s | %s" process-name msg)
+(defun icot/vterm-handle-exit (&optional process-name msg)
+  (message "icot/vterm-handle-exit %s | %s" process-name msg)
   (kill-buffer (current-buffer))
   (delete-frame))
 
@@ -33,19 +33,15 @@
 
 (defvar eat-session-id 0)
 
-(defun my/multi-eat ()
+(defun icot/multi-eat ()
   (interactive)
   (setq eat-session-id (+ eat-session-id 1))
   (eat "/usr/bin/zsh" eat-session-id))
 
 ;;; vterm
 
-;; TODO Function to close tab if vterm buffer is the only buffer
-;; Add to vterm-exit-functions
-
 (setq eat-kill-buffer-on-exit t)
-(add-hook 'eat-exit-hook #'my/clean-window)
-;; eat--kill-buffer 
+(add-hook 'eat-exit-hook #'icot/vterm-handle-exit)
 
 ;; vterm
 (use-package vterm
@@ -53,7 +49,7 @@
   :config
   (add-to-list 'vterm-keymap-exceptions "C-t")
   (add-to-list 'vterm-keymap-exceptions "C-;")
-  (add-to-list 'vterm-exit-functions 'my/term-handle-exit))
+  (add-to-list 'vterm-exit-functions 'icot/vterm-handle-exit))
 
 (use-package multi-vterm
   :ensure t
@@ -61,13 +57,9 @@
   :config
   (setq multi-vterm-program "/usr/bin/zsh"))
 
-(add-to-list 'display-buffer-alist
-	     '(("\\`\\*vterm" display-buffer-pop-up-window))
-	     t)
-
 ;; Misc
 
-(defun my/shell-mode-hook ()
+(defun icot/shell-mode-hook ()
   "Custom `shell-mode' behaviours."
   ;; Kill the buffer when the shell process exits.
   (let* ((proc (get-buffer-process (current-buffer)))
@@ -85,41 +77,31 @@
            (kill-buffer (process-buffer process))))))))
 
 ;;  Call cleanup helpers after exit
-;(add-to-list 'vterm-exit-functions 'my/term-handle-exit) ;; Done in use-package
-(advice-add 'term-handle-exit :after 'my/term-handle-exit)
-(advice-add 'eshell-life-is-too-much :after 'my/clean-window)
+(advice-add 'term-handle-exit :after 'icot/vterm-handle-exit)
+(advice-add 'eshell-life-is-too-much :after 'icot/clean-window)
 
 
 ;;; Hooks
 
-;; TODO Disable mode-line in vterm/eat/term/eshell windows
-;; (add-hook 'term-mode-hook (lambda () (interactive) (icot/toggle-hide-mode-line)))
-
 ;; For `eat-eshell-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
-
 ;; For `eat-eshell-visual-command-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
-;; WIP
-(add-hook 'shell-mode-hook 'my/shell-mode-hook) ;; Works
-;;(add-hook 'eat-mode-hook 'my/shell-mode-hook) ;; Doesn't work
+(add-hook 'shell-mode-hook 'icot/shell-mode-hook)
 
-;;;  Display in new split buffer
+;; Hide mode line
+(use-package hide-mode-line
+  :ensure t)
+
+(add-hook 'vterm-mode-hook #'hide-mode-line-mode)
+(add-hook 'eat-mode-hook #'hide-mode-line-mode)
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+
+;;;  Display in new split buffer/frames
 (setq display-buffer-alist
       '(("\\`\\*e?shell" display-buffer-pop-up-window)
         ("\\`\\*eat*" display-buffer-pop-up-frame)
         ("\\`\\*term*" display-buffer-pop-up-frame)
         ("\\`\\*vterminal.*$" display-buffer-pop-up-frame) ;; https://github.com/suonlight/multi-vterm/issues/23
 	("\\`\\*vterm" display-buffer-pop-up-frame)))
-
-;;; Misc
-
-;; term - $HOME/apps ls -lR: 11.238s
-;; vterm - $HOME/apps ls -lR: 0.473s
-;; eshell - $HOME/apps ls -lR: 5.644 (output in block after completion, doesn't scroll)
-;; eat - $HOME/apps ls -lR: 5.628s
-
-;; wezterm - 0.153s
-;; alacritty - 0.149s
-;; kitty - 0.141s
