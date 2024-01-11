@@ -4,3 +4,4 @@ eza 0.16.1
 starship 1.16.0
 maven 3.9.6
 ripgrep 14.1.0
+golang 1.21.6
