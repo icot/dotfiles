@@ -19,7 +19,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>w|") 'split-window-horizontally)
   (evil-define-key 'normal 'global (kbd "<leader>w_") 'split-window-vertically)
   (evil-define-key 'normal 'global (kbd "<leader>w=") 'balance-windows)
-  (evil-define-key 'normal 'global (kbd "<leader>w0") 'kill-window)
+  (evil-define-key 'normal 'global (kbd "<leader>w0") 'delete-window)
   
   (evil-define-key 'normal 'global (kbd "<leader>bb") 'ido-switch-buffer)
   (evil-define-key 'normal 'global (kbd "<leader>bk") 'ido-kill-buffer)
