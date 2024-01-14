@@ -26,8 +26,12 @@
 ;; Doom themes
 (use-package doom-themes
   :ensure t)
+
 (use-package doom-modeline
-  :ensure t)
+  :ensure t
+  :config
+  (doom-modeline-mode))
+
 (use-package all-the-icons
   :ensure t)
 
