@@ -140,16 +140,6 @@
 		    :height 120)
 (set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
-;; Window/frame setup management
-(use-package burly
-  :straight (:host github
-             :repo "alphapapa/burly.el"))
-
-(global-set-key (kbd "C-v") nil) ; Overrides scroll-up to free prefix
-(global-set-key (kbd "C-v b") #'burly-bookmark-windows)
-(global-set-key (kbd "C-v B") #'burly-bookmark-frames)
-(global-set-key (kbd "C-v v") #'burly-open-bookmark)
-
 ;;; Help, Completion
 
 ;; marginalia
