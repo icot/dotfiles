@@ -4,12 +4,17 @@
   :ensure t
   :config
   ;; set leader key in all states
+  (setq evil-default-state 'insert)
   (evil-set-leader nil (kbd "C-SPC"))
   ;; set leader key in normal state
   (evil-set-leader 'normal (kbd "SPC"))
   
   (evil-define-key 'normal 'global (kbd "<leader>;") 'execute-extended-command)
   (evil-define-key 'normal 'global (kbd "<leader>:") 'eval-expression)
+
+  (evil-define-key 'normal 'global (kbd "<leader>hk") 'helpful-key)
+  (evil-define-key 'normal 'global (kbd "<leader>hv") 'helpful-variable)
+  (evil-define-key 'normal 'global (kbd "<leader>hf") 'helpful-callable)
   
   (evil-define-key 'normal 'global (kbd "<leader>ee") 'eval-last-sexp)
   (evil-define-key 'normal 'global (kbd "<leader>eb") 'eval-buffer)
@@ -52,3 +57,4 @@
   (evil-define-key 'normal 'global (kbd "<leader>/") #'swiper)
   (evil-define-key 'normal 'global (kbd "<leader>\\") #'counsel-rg))
 
+ 
