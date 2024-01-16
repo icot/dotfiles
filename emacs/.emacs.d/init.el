@@ -434,6 +434,10 @@
                                            "~/workspace/kafka"
                                            "~/workspace/monit"	   
                                            "~/workspace/puppet"))))
+
+(use-package consult-projectile
+  :ensure t
+  :after (consult projectile)
 ;; Notes
 ;  "C-c p b" counsel-projectile-switch-to-buffer
 ;  "C-c p p" counsel-projectile-switch-project
