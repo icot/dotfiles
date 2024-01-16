@@ -427,7 +427,7 @@
 
 (use-package consult-projectile
   :ensure t
-  :after (consult projectile)
+  :after (consult projectile))
 ;; Notes
 ;  "C-c p b" counsel-projectile-switch-to-buffer
 ;  "C-c p p" counsel-projectile-switch-project
@@ -466,6 +466,8 @@
 
 ;; Keybindings
 ;(global-set-key (kbd "RET") #'newline)
+
+(load "+evil.el")
 
 ;; Override forward-char
 (global-set-key (kbd "C-f") nil)
