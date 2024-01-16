@@ -15,6 +15,16 @@
   (setq denote-prompts '(title keywords))
   (setq denote-link-fontify-backlinks t))
 
+(use-package consult-notes
+  :commands (consult-notes
+             consult-notes-search-in-all-notes)
+  :custom
+  (consult-notes-file-dir-sources
+   `(("Denote" ?d ,denote-directory)))
+  :bind
+  (("C-n o" . consult-notes)
+   ("C-n s" . consult-notes-search-in-all-notes)))
+
 (defun icot/my-denote-journal ()
   "Create an entry tagged 'journal', while prompting for a title."
   (interactive)
@@ -31,5 +41,13 @@
 (global-set-key (kbd "C-n b") #'denote-link-backlinks)
 (global-set-key (kbd "C-n d") #'(lambda () (interactive) (dired-other-window denote-directory)))
 
-
+(evil-define-key 'normal 'global (kbd "<leader>nn") #'denote)
+(evil-define-key 'normal 'global (kbd "<leader>ns") #'denote-subdirectory)
+(evil-define-key 'normal 'global (kbd "<leader>ni") #'denote-link)
+(evil-define-key 'normal 'global (kbd "<leader>nI") #'denote-link-add-links)
+(evil-define-key 'normal 'global (kbd "<leader>nl") #'denote-link-find-file)
+(evil-define-key 'normal 'global (kbd "<leader>nb") #'denote-link-backlinks)
+(evil-define-key 'normal 'global (kbd "<leader>no") #'consult-notes)
+(evil-define-key 'normal 'global (kbd "<leader>ns") #'consult-notes-search-in-all-notes)
+(evil-define-key 'normal 'global (kbd "<leader>nd") #'(lambda () (interactive) (dired-other-window denote-directory)))
 
