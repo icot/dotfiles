@@ -21,6 +21,8 @@
   
   (evil-define-key 'normal 'global (kbd "<leader>wj") 'windmove-down)
   (evil-define-key 'normal 'global (kbd "<leader>wk") 'windmove-up)
+  (evil-define-key 'normal 'global (kbd "<leader>wh") 'windmove-left)
+  (evil-define-key 'normal 'global (kbd "<leader>wl") 'windmove-right)
   (evil-define-key 'normal 'global (kbd "<leader>w|") 'split-window-horizontally)
   (evil-define-key 'normal 'global (kbd "<leader>w_") 'split-window-vertically)
   (evil-define-key 'normal 'global (kbd "<leader>w=") 'balance-windows)
