@@ -1,5 +1,7 @@
 ;;; Denote
 
+(global-set-key (kbd "C-n") nil) ; Override next-line binding to free prefix
+
 (use-package denote
   :defer t
   :straight (:host nil

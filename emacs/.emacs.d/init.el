@@ -460,6 +460,9 @@
 ;  "C-C p c" projectile-compile-project
 ;  "C-C p K" projectile-package-project
 
+
+(load "+evil.el")
+
 (load "+themes.el")
 
 (load "+focus.el")
@@ -491,8 +494,6 @@
 
 ;; Keybindings
 ;(global-set-key (kbd "RET") #'newline)
-
-(load "+evil.el")
 
 ;; Override forward-char
 (global-set-key (kbd "C-f") nil)
@@ -536,8 +537,7 @@
 (global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-<next>") #'tab-bar-switch-to-next-tab)
 
-(windmove-default-keybindings 'control)
-// TODO windmove-swap-states-default-keybindings
+(windmove-default-keybindings 'control) ;; TODO windmove-swap-states-default-keybindings
 
 (global-set-key (kbd "C-x h") #'windmove-left)
 (global-set-key (kbd "C-x j") #'windmove-down)

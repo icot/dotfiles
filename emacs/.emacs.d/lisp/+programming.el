@@ -246,7 +246,7 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 
-(use-package haskell-mode
+(use-package haskell-mode)
 
 (use-package swift-mode
   :ensure t)
