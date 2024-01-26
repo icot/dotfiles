@@ -17,7 +17,11 @@
   (setq denote-prompts '(title keywords))
   (setq denote-link-fontify-backlinks t))
 
+
+(global-set-key (kbd "C-n") nil) ; Override next-line binding to free prefix
+
 (use-package consult-notes
+  :after denote
   :commands (consult-notes
              consult-notes-search-in-all-notes)
   :custom
@@ -34,7 +38,6 @@
    (denote--title-prompt)
    '("journal")))
 
-(global-set-key (kbd "C-n") nil) ; Override next-line binding to free prefix
 (global-set-key (kbd "C-n n") #'denote)
 (global-set-key (kbd "C-n s") #'denote-subdirectory)
 (global-set-key (kbd "C-n i") #'denote-link)
@@ -43,13 +46,14 @@
 (global-set-key (kbd "C-n b") #'denote-link-backlinks)
 (global-set-key (kbd "C-n d") #'(lambda () (interactive) (dired-other-window denote-directory)))
 
-(evil-define-key 'normal 'global (kbd "<leader>nn") #'denote)
-(evil-define-key 'normal 'global (kbd "<leader>ns") #'denote-subdirectory)
-(evil-define-key 'normal 'global (kbd "<leader>ni") #'denote-link)
-(evil-define-key 'normal 'global (kbd "<leader>nI") #'denote-link-add-links)
-(evil-define-key 'normal 'global (kbd "<leader>nl") #'denote-link-find-file)
-(evil-define-key 'normal 'global (kbd "<leader>nb") #'denote-link-backlinks)
-(evil-define-key 'normal 'global (kbd "<leader>no") #'consult-notes)
-(evil-define-key 'normal 'global (kbd "<leader>ns") #'consult-notes-search-in-all-notes)
-(evil-define-key 'normal 'global (kbd "<leader>nd") #'(lambda () (interactive) (dired-other-window denote-directory)))
+(with-eval-after-load 'evil
+ (evil-define-key 'normal 'global (kbd "<leader>nn") #'denote)
+ (evil-define-key 'normal 'global (kbd "<leader>ns") #'denote-subdirectory)
+ (evil-define-key 'normal 'global (kbd "<leader>ni") #'denote-link)
+ (evil-define-key 'normal 'global (kbd "<leader>nI") #'denote-link-add-links)
+ (evil-define-key 'normal 'global (kbd "<leader>nl") #'denote-link-find-file)
+ (evil-define-key 'normal 'global (kbd "<leader>nb") #'denote-link-backlinks)
+ (evil-define-key 'normal 'global (kbd "<leader>no") #'consult-notes)
+ (evil-define-key 'normal 'global (kbd "<leader>ns") #'consult-notes-search-in-all-notes)
+ (evil-define-key 'normal 'global (kbd "<leader>nd") #'(lambda () (interactive) (dired-other-window denote-directory))))
 
