@@ -176,6 +176,15 @@
 ;; From Emacs From Scratch #10 - Effortless File Management with Dired
 ;; https://www.youtube.com/watch?v=PMWwM8QJAtU
 
+(use-package vertico-posframe
+  :after vertico
+  :init
+  :config
+  (setq vertico-posframe-parameters
+      '((left-fringe . 10)
+        (right-fringe . 10)))
+  (vertico-posframe-mode))
+
 (use-package dired
   :ensure t
   :straight (:type built-in)
