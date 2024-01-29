@@ -180,6 +180,7 @@
   :defer t)
 
 (add-to-list 'exec-path "~/.sdkman/candidates/leiningen/current/bin")
+(add-to-list 'exec-path "~/.asdf/shims/")
 
 ;; scheme
 (use-package geiser
