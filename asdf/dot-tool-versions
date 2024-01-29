@@ -5,3 +5,5 @@ starship 1.16.0
 maven 3.9.6
 ripgrep 14.1.0
 golang 1.21.6
+leiningen 2.11.1
+sbcl 2.4.1
