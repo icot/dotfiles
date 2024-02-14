@@ -9,7 +9,7 @@
 (use-package hl-todo
   :ensure t
   :config
-  (hl-todo-mode))
+  (global-hl-todo-mode))
 
 (defun icot/toggle-hide-mode-line ()
   "Toggle mode-line visibility in current buffer."
