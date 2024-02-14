@@ -409,6 +409,16 @@
   :config
   (setq which-key-idle-delay 0.3))
 
+;; expand-region
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
+;; drag-stuff
+(use-package drag-stuff
+  :config
+  (drag-stuff-global-mode 1)
+  (drag-stuff-define-keys)) 
+
 ;; TODO
 ;; (use-package emacs-rotate
 ;;  :straight (:type git :host github :repo "daichirata/emacs-rotate"))
