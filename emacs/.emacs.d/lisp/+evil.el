@@ -34,7 +34,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
   (evil-define-key 'normal 'global (kbd "<leader>fr") 'counsel-recentf)
   (evil-define-key 'normal 'global (kbd "<leader>fp") (lambda () (interactive) (counsel-find-file "~/.emacs.d")))
-  
+
   ;; toggles
   (evil-define-key 'normal 'global (kbd "<leader>tl") 'global-display-line-numbers-mode)
   (evil-define-key 'normal 'global (kbd "<leader>ts") 'eshell)
@@ -59,4 +59,4 @@
   (evil-define-key 'normal 'global (kbd "<leader>/") #'swiper)
   (evil-define-key 'normal 'global (kbd "<leader>\\") #'counsel-rg))
 
- 
+(evil-mode) 

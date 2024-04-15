@@ -55,7 +55,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
+;; (package-initialize) ;; TODO Remove: Warning as not needed
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -129,7 +129,7 @@
   ;; Undecorated frames
   (add-to-list 'default-frame-alist '(undecorated . t)))
 
-(if (eq system-type 'darwin)
+(if (eq system-type 'darwin) ;; berkeley-unix
     (my/customize-mac)
     (my/customize-linux))
 
@@ -176,21 +176,23 @@
 ;; From Emacs From Scratch #10 - Effortless File Management with Dired
 ;; https://www.youtube.com/watch?v=PMWwM8QJAtU
 
-(use-package vertico-posframe
-  :after vertico
-  :init
-  :config
-  (setq vertico-posframe-parameters
-      '((left-fringe . 10)
-        (right-fringe . 10)))
-  (vertico-posframe-mode))
+;; (use-package vertico-posframe
+;;   :after vertico
+;;   :init
+;;   :config
+;;   (setq vertico-posframe-parameters
+;;       '((left-fringe . 10)
+;;         (right-fringe . 10)))
+;;   (vertico-posframe-mode))
 
 (use-package dired
   :ensure t
   :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first")))
+  :custom ((insert-directory-program "gls")
+	   (dired-use-ls-dired t)
+	   (dired-listing-switches "-agho --group-directories-first")))
 
 
 (use-package dired-single
@@ -478,8 +480,7 @@
 
 ;;(load "+blog.el")
 
-(load "+irc.el")
-
+;;(load "+irc.el") 
 
 (load "+programming.el")
 

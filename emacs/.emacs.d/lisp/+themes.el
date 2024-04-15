@@ -1,4 +1,7 @@
 ;; Install lambda-themes
+
+(global-hl-line-mode)
+
 (use-package lambda-themes
   :straight (:type git :host github :repo "lambda-emacs/lambda-themes") 
   :custom
@@ -8,17 +11,18 @@
 
 ;; Install ef-themes
 (use-package ef-themes
-  :straight (:host nil :repo "https://git.sr.ht/~protesilaos/ef-themes"))
+  :straight (:host nil :repo "https://github.com/protesilaos/ef-themes"))
 
 (use-package modus-themes
   :ensure t
+  :straight (:host nil :repo "https://github.com/protesilaos/modus-themes")
   :config
   (setq modus-themes-bold-constructs t)
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-common-palette-overrides
-	'((fringe unspecified
-		  (border-mode-line-active unspecified)
-		  (border-mode-line-inactive unspecified)))))
+	'((fringe unspecified)
+	  (border-mode-line-active bg-mode-line-active)
+	  (border-mode-line-inactive bg-mode-line-inactive))))
 
 (add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 ;; modus theme customizations
@@ -50,4 +54,19 @@
   (minions-mode))
 
 
+;; Nano testing
+(straight-use-package
+ '(nano :type git :host github :repo "rougier/nano-emacs"))
 
+;; (require 'nano)
+
+(menu-bar-mode -1) ; disable menu
+(tool-bar-mode -1) ; disable tool-bar
+(scroll-bar-mode -1) ; disable scroll-bar
+(tab-bar-mode t) ; Enable tab-bar
+
+(setq tab-bar-separator "|")
+
+
+(set-fringe-mode 10)
+(global-prettify-symbols-mode 1)

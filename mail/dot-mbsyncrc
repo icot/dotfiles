@@ -12,7 +12,7 @@ User ignacio.coterillo@gmail.com
 PassCmd "pass gmail/apptoken"
 SSLType IMAPS
 AuthMechs LOGIN
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile /usr/local/etc/ssl/cert.pem
 Timeout 60
 
 IMAPStore gmail-remote
@@ -41,14 +41,10 @@ Channel gmail-user
 IMAPAccount CERN
 Host outlook.office365.com
 User ignacio.coterillo.coz@cern.ch
-<<<<<<< Updated upstream
-PassCmd "/usr/bin/oauth2ms"
-=======
-PassCmd "/home/icoteril/.guix-profile/bin/oauth2ms"
->>>>>>> Stashed changes
+PassCmd "~/bin/myoauth2ms"
 SSLType IMAPS
 AuthMechs XOAUTH2
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile /usr/local/etc/ssl/cert.pem
 
 IMAPStore cern-remote
 Account CERN
@@ -63,53 +59,9 @@ Channel INBOX
 Far :cern-remote:INBOX
 Near :cern-local:INBOX
 
-Channel AccountManagement
-Far ":cern-remote:ACCOUNT MANAGEMENT"
-Near :cern-local:Accounts
-
-Channel Archive
-Far ":cern-remote:Archives/2020"
-Near ":cern-local:Archives/2020"
-
-channel DBOD
-Far :cern-remote:DBOD
-Near :cern-local:DBOD
-
-Channel Trash
-Far ":cern-remote:Deleted Items"
-Near :cern-local:Trash
-
 Channel Drafts
 Far ":cern-remote:Drafts"
 Near :cern-local:Drafts
-
-Channel SNOW
-Far ":cern-remote:CERN Service Desk"
-Near :cern-local:SNOW
-
-Channel GNI
-Far ":cern-remote:GNI"
-Near :cern-local:GNI
-
-Channel root
-Far ":cern-remote:root"
-Near :cern-local:root
-
-Channel OSS
-Far ":cern-remote:OSS-Security"
-Near :cern-local:OSS
-
-Channel racmon
-Far ":cern-remote:RACMon2"
-Near :cern-local:RACMon
-
-Channel DBR
-Far ":cern-remote:DBR"
-Near :cern-local:DBR
-
-Channel JIRA
-Far ":cern-remote:CERN-JIRA"
-Near :cern-local:JIRA
 
 Channel Sent
 Far :cern-remote:Sent
@@ -119,29 +71,73 @@ Channel Sent-Items
 Far ":cern-remote:Sent Items"
 Near ":cern-local:SentItems"
 
-Channel Gitlab
-Far :cern-remote:Gitlab
-Near :cern-local:Gitlab
-
-Channel Hardware
-Far ":cern-remote:Hardware"
-Near :cern-local:Hardware
+Channel Trash
+Far ":cern-remote:Deleted Items"
+Near :cern-local:Trash
 
 Channel Junk
-Far ":cern-remote:Junk E-mail"
-Near :cern-local:JUNK
+Far ":cern-remote:Junk Email"
+Near :cern-local:Junk
 
-Channel protodune
-Far :cern-remote:ProtoDUNE
-Near :cern-local:Protodune
+Channel AccountManagement
+Far ":cern-remote:ACCOUNT MANAGEMENT"
+Near :cern-local:Accounts
+
+Channel Archives
+Far ":cern-remote:Archives"
+Near ":cern-local:Archives"
+
+Channel JIRA
+Far ":cern-remote:JIRA"
+Near :cern-local:JIRA
+
+channel DBOD
+Far :cern-remote:DBOD
+Near :cern-local:DBOD
+
+channel DIR
+Far :cern-remote:DIR
+Near :cern-local:DIR
+
+channel MSOutlook
+Far ":cern-remote:Microsoft Outlook"
+Near :cern-local:MSOutlook
+
+channel MIG
+Far :cern-remote:MIG
+Near :cern-local:MIG
+
+channel MONIT
+Far :cern-remote:MONIT
+Near :cern-local:MONIT
+
+channel Notifications
+Far :cern-remote:Notifications
+Near :cern-local:Notifications
+
+channel OracleAdmin
+Far ":cern-remote:Oracle Admin"
+Near :cern-local:OracleAdmin
+
+Channel OSS
+Far ":cern-remote:OSS-Security"
+Near :cern-local:OSS
 
 Channel RedHat
 Far :cern-remote:RedHat
 Near :cern-local:RedHat
 
-Channel ResourcePortal
-Far :cern-remote:ResourcePortal
-Near :cern-local:ResourcePortal
+Channel root
+Far ":cern-remote:root"
+Near :cern-local:root
+
+Channel SNOW
+Far ":cern-remote:CERN Service Desk"
+Near :cern-local:SNOW
+
+Channel SmartRecruiters
+Far ":cern-remote:SmartRecruiters"
+Near :cern-local:SmartRecruiters
 
 Channel Storage
 Far :cern-remote:Storage
@@ -154,29 +150,25 @@ Near :cern-local:TODELETE
 ## Group Definition
 Group cern
 Channel INBOX
-Channel AccountManagement
-Channel Archive
-Channel SNOW
-Channel JIRA
-Channel DBOD
-Channel DBR
 Channel Drafts
-# EDH
-# EM
-Channel GNI
-Channel Gitlab
-Channel Hardware
-Channel Junk
-# Junk
-Channel OSS
-# Outbox
-Channel protodune
-Channel racmon
-Channel RedHat
-Channel ResourcePortal
 Channel Sent
 Channel Sent-Items
+Channel Trash
+Channel Junk
+Channel AccountManagement
+Channel Archives
+Channel JIRA
+Channel DBOD
+Channel DIR
+Channel MSOutlook
+Channel MIG
+Channel MONIT
+Channel Notifications
+Channel OracleAdmin
+Channel OSS
+Channel RedHat
+Channel root
+Channel SNOW
 Channel Storage
 Channel TODELETE
-Channel Trash
 

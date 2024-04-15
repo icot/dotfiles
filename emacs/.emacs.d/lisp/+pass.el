@@ -26,8 +26,10 @@
       nil) ; should return nil if we're the current paste owner
   (shell-command-to-string "wl-paste -n | tr -d \r"))
 
-(setq interprogram-cut-function 'wl-copy)
-(setq interprogram-paste-function 'wl-paste)
+
+(cond ((eq system-type 'linux) (setq interprogram-cut-function 'wl-copy
+				     interprogram-paste-function 'wl-paste))
+      ((eq system-type 'berkeley-unix) nil))
 
 ;; External callee 
 (defun icot/passmenu ()

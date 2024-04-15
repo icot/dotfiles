@@ -169,8 +169,13 @@ export KEYTIMEOUT=1
 
 # ENVIRONMENT
 export PATH=$PATH:$HOME/Android/Sdk/platform-tools
-export GOPATH=~/workspace/go
-export PATH=$PATH:$GOPATH/bin
+
+# GOLANG
+if [[ -d /usr/local/go ]];then
+    export GOROOT=/usr/local/go
+    export PATH=$PATH:$GOROOT/bin
+fi
+
 #export PATH=$PATH:/home/$USER/apps/graalvm-ce-java11-20.3.0/bin
 
 bindkey '^R' history-incremental-search-backward

@@ -1,10 +1,11 @@
 ;; Misc configuration
 
+(require 'mu4e)
 
 (setq mail-user-agent 'mu4e-user-agent
       message-send-mail-function 'message-send-mail-with-sendmail
       message-sendmail-envelope-from 'header
-      sendmail-program "/usr/bin/msmtp")
+      sendmail-program "/usr/local/bin/msmtp")
 
 ;;; Set up some common mu4e variables
 (setq mu4e-maildir "~/mail"
@@ -27,10 +28,10 @@
       '(
         ("CERN"
          (mu4e-sent-messages-behavior sent)
-         (mu4e-sent-folder "/CERN/SentItems")
-         (mu4e-drafts-folder "/CERN/Drafts")
-         (mu4e-trash-folder "/CERN/Trash")
-         (mu4e-refile-folder "/CERN/Archives/2020")
+         (mu4e-sent-folder "Sent")
+         (mu4e-drafts-folder "Drafts")
+         (mu4e-trash-folder "Trash")
+         (mu4e-refile-folder "Archives/2024")
          (user-mail-address "ignacio.coterillo.coz@cern.ch")
          (user-full-name "Ignacio Coterillo Coz"))
         ("gmail"
@@ -42,7 +43,7 @@
          (mu4e-refile-folder "/gmail/[Gmail]/All Mail")
          (user-mail-address "ignacio.coterillo@gmail.com")
          (user-full-name "Ignacio Coterillo Coz"))
-       ))
+	))
 
 ;; https://www.djcbsoftware.nl/code/mu/mu4e/Contexts-example.html
 (setq mu4e-contexts
@@ -126,7 +127,7 @@
 ;; Thread folding
 ;; https://github.com/rougier/mu4e-thread-folding
 
-(load! "mail/mu4e-thread-folding")
+(load "mu4e/mu4e-thread-folding")
 
 (add-to-list 'mu4e-header-info-custom
              '(:empty . (:name "Empty"

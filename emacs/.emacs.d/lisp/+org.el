@@ -54,16 +54,20 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
         +org-capture-notes-file (expand-file-name +org-capture-notes-file org-directory))
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((ditaa . t)
-     (dot . t)
-     (plantuml . t)))
+   '((dot . t)))
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
   :config
   (setq org-edit-src-content-indentation 0
-        org-confirm-babel-evaluate nil
-        org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"
-        org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar"))
+        org-confirm-babel-evaluate nil))
+
+(use-package plantuml-mode
+  :after org
+  :ensure t
+  :init
+  (setq org-plantuml-jar-path (expand-file-name "/home/spike/apps/plantuml/plantuml-1.2024.3.jar"))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml .t ))))
 
 ;; To prevent conflicst with quick vterm binding
 (define-key org-mode-map (kbd "C-,") nil)
@@ -81,11 +85,12 @@ Is relative to `org-directory', unless it is absolute. Is used in Doom's default
   :config
   (setq org-journal-directory org-directory))
 
-(use-package org-noter
-  :ensure t
-  :after org
-  :config
-  (setq org-noter-default-notes-file-names +org-capture-notes-file))
+;; (use-package org-noter
+;;   :ensure t
+;;   :after org
+;;   :config
+;;   (setq org-noter-default-notes-file-names +org-capture-notes-file))
+
 
 (use-package org-pdftools
   :after '(org pdf-tools)
