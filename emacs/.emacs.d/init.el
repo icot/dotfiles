@@ -95,51 +95,6 @@
 ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-;; GUI basics
-(setq inhibit-startup-screen t)
-
-(menu-bar-mode -1) ; disable menu
-(tool-bar-mode -1) ; disable tool-bar
-(scroll-bar-mode -1) ; disable scroll-bar
-(tab-bar-mode t) ; Enable tab-bar
-
-(set-fringe-mode 10)
-(global-prettify-symbols-mode 1)
-
-;; Font size
-(defvar my/font-size)
-
-;; https://www.reddit.com/r/emacs/comments/isl1s5/remapping_the_command_key_on_macos_to_ctrl/
-;; https://www.reddit.com/r/MacOS/comments/ugelbc/tips_for_macos_modifier_key_remapping_emacs/
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
-
-(defun my/customize-mac ()
-  (setq my/font-size 13)
-;	mac-command-modifier 'control
-;	ns-alternative-modifier 'meta
-;	ns-command-modifier 'control
-;	ns-right-alternate-modifier 'meta
-;	ns-right-command-modifier 'super)
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (add-to-list 'default-frame-alist '(undecorated-round . t)))
-
-(defun my/customize-linux ()
-  (setq my/font-size 13)
-  ;; Undecorated frames
-  (add-to-list 'default-frame-alist '(undecorated . t)))
-
-(if (eq system-type 'darwin) ;; berkeley-unix
-    (my/customize-mac)
-    (my/customize-linux))
-
-;; Set font to "JetBrains Mono"
-
-(set-face-attribute 'default nil
-		    :family "Jetbrains Mono"
-		    :height 120)
-(set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
-
 ;;; Help, Completion
 
 ;; marginalia

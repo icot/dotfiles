@@ -2,6 +2,9 @@
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
   :config
   ;; set leader key in all states
   (setq evil-default-state 'insert)
@@ -57,6 +60,13 @@
   (evil-define-key 'normal 'global (kbd "<leader>tl") 'tab-bar-switch-to-next-tab)
   
   (evil-define-key 'normal 'global (kbd "<leader>/") #'swiper)
-  (evil-define-key 'normal 'global (kbd "<leader>\\") #'counsel-rg))
+  (evil-define-key 'normal 'global (kbd "<leader>\\") #'counsel-rg)
+  (evil-define-key 'normal 'global (kbd "<leader>gg") 'magit-status)
+  (evil-mode 1)
+  )
 
-(evil-mode) 
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))

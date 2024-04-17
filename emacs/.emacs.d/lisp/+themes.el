@@ -1,3 +1,34 @@
+;; GUI basics
+
+(setq inhibit-startup-screen t)
+
+;; Font size
+(defvar my/font-size)
+
+;; https://www.reddit.com/r/emacs/comments/isl1s5/remapping_the_command_key_on_macos_to_ctrl/
+;; https://www.reddit.com/r/MacOS/comments/ugelbc/tips_for_macos_modifier_key_remapping_emacs/
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Mac-_002f-GNUstep-Customization.html
+
+(defun my/customize-mac ()
+  (setq my/font-size 13)
+;	mac-command-modifier 'control
+;	ns-alternative-modifier 'meta
+;	ns-command-modifier 'control
+;	ns-right-alternate-modifier 'meta
+;	ns-right-command-modifier 'super)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(undecorated-round . t)))
+
+(defun my/customize-linux ()
+  (setq my/font-size 13)
+  ;; Undecorated frames
+  (add-to-list 'default-frame-alist '(undecorated . t)))
+
+
+;; Extra themes
+
+
 ;; Install lambda-themes
 
 (global-hl-line-mode)
@@ -24,7 +55,7 @@
 	  (border-mode-line-active bg-mode-line-active)
 	  (border-mode-line-inactive bg-mode-line-inactive))))
 
-(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
+;;(add-hook 'after-init-hook (lambda () (load-theme 'modus-operandi)))
 ;; modus theme customizations
 
 ;; Doom themes
@@ -55,18 +86,32 @@
 
 
 ;; Nano testing
-(straight-use-package
- '(nano :type git :host github :repo "rougier/nano-emacs"))
+(use-package nano
+  :straight (:type git :host github :repo "rougier/nano-emacs")
+  :config
+  (setq nano-font-size 13)
+  (setq nano-font-family-monospaced "Jetbrains Mono")
+  (require 'nano))
 
-;; (require 'nano)
+;; This block needs to be after nano loads as it will take over
+
+(if (eq system-type 'darwin) ;; berkeley-unix
+    (my/customize-mac)
+    (my/customize-linux))
+
+;; Set font to "JetBrains Mono"
+
+(set-face-attribute 'default nil
+		    :family "Jetbrains Mono"
+		    :height 130)
+(set-frame-font (format "Jetbrains Mono %s" my/font-size) nil t)
 
 (menu-bar-mode -1) ; disable menu
 (tool-bar-mode -1) ; disable tool-bar
 (scroll-bar-mode -1) ; disable scroll-bar
-(tab-bar-mode t) ; Enable tab-bar
+(tab-bar-mode -1)  ; Enable tab-bar
 
-(setq tab-bar-separator "|")
-
+;; (setq tab-bar-separator "|")
 
 (set-fringe-mode 10)
 (global-prettify-symbols-mode 1)
