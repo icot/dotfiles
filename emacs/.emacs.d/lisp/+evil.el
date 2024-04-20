@@ -38,6 +38,9 @@
   (evil-define-key 'normal 'global (kbd "<leader>fr") 'counsel-recentf)
   (evil-define-key 'normal 'global (kbd "<leader>fp") (lambda () (interactive) (counsel-find-file "~/.emacs.d")))
 
+  (evil-define-key 'normal 'global (kbd "<leader>mm") 'notmuch-mua-mail)
+  (evil-define-key 'normal 'global (kbd "<leader>mo") 'notmuch)
+
   ;; toggles
   (evil-define-key 'normal 'global (kbd "<leader>tl") 'global-display-line-numbers-mode)
   (evil-define-key 'normal 'global (kbd "<leader>ts") 'eshell)
@@ -48,8 +51,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>tm") 'modus-themes-toggle)
   ;;(evil-define-key 'normal 'global (kbd "<leader>te") ')
   (evil-define-key 'normal 'global (kbd "<leader>,") 'multi-vterm-dedicated-toggle)
-  (evil-define-key 'normal 'global (kbd "<leader>tv") 'multi-vterm)
-  
+  (evil-define-key 'normal 'global (kbd "<leader>tv") 'multi-vterm)  
   ;; (kbd "c-t i") #'highlight-indent-guides-mode             
   ;; (kbd "c-t e") #'(lambda () (interactive) (eat "/usr/bin/zsh"))
   
@@ -70,3 +72,4 @@
   :ensure t
   :config
   (evil-collection-init))
+
