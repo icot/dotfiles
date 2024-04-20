@@ -3,14 +3,6 @@
 
 (require 'mu4e)
 
-(use-package svg-tag-mode
-  :ensure t
-  :straight (:host nil :repo "https://github.com/rougier/svg-tag-mode"))
-
-(use-package mu4e-dashboard
-  :ensure t
-  :straight (:host nil :repo "https://github.com/rougier/mu4e-dashboard"))
-
 (setq mail-user-agent 'mu4e-user-agent
       message-send-mail-function 'message-send-mail-with-sendmail
       message-sendmail-envelope-from 'header

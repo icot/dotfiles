@@ -411,24 +411,16 @@
 ;  "C-C p c" projectile-compile-project
 ;  "C-C p K" projectile-package-project
 
-(load "+themes.el")
-
+(load "+themes.el") 
 (load "+focus.el")
-
 (load "+term.el")
-
 (load "+git.el")
-
 (load "+pass.el")
-
 (load "+pdf.el")
-
 (load "+org.el")
-
 (load "+denote.el")
-
 (load "+elfeed.el")
-
+(load "+mail")
 (load "+mail-notmuch.el")
 
 ;;(load "+calendar.el")
