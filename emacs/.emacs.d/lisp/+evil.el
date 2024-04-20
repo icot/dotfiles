@@ -11,7 +11,7 @@
   (evil-set-leader nil (kbd "C-SPC"))
   ;; set leader key in normal state
   (evil-set-leader 'normal (kbd "SPC"))
-  
+
   (evil-define-key 'normal 'global (kbd "<leader>;") 'execute-extended-command)
   (evil-define-key 'normal 'global (kbd "<leader>:") 'eval-expression)
 
@@ -72,4 +72,10 @@
   :ensure t
   :config
   (evil-collection-init))
+
+(use-package evil-easymotion
+  :ensure t
+  :config
+  (evilem-default-keybindings "SPC"))
+
 
