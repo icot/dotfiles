@@ -1,2 +1,15 @@
 matterhorn/.config/matterhorn/last_run_state_*.json
 matterhorn/.config/matterhorn/history.txt
+mail/mail/.notmuch/xapian/
+mail/mail/CERN/
+.#*
+emacs/.emacs.d/#!*
+emacs/.emacs.d/straight/
+emacs/.emacs.d/transient/
+emacs/.emacs.d/elpa/
+emacs/.emacs.d/places
+emacs/.emacs.d/recentf
+emacs/.emacs.d/url
+emacs/.emacs.d/eudc-options
+
+
