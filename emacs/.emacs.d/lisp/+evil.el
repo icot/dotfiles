@@ -78,4 +78,7 @@
   :config
   (evilem-default-keybindings "SPC"))
 
+(add-hook 'notmuch-hello-mode-hook #'turn-off-evil-mode nil)
+
+
 
