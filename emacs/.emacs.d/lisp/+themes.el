@@ -109,7 +109,7 @@
 (menu-bar-mode -1) ; disable menu
 (tool-bar-mode -1) ; disable tool-bar
 (scroll-bar-mode -1) ; disable scroll-bar
-(tab-bar-mode -1)  ; Enable tab-bar
+(tab-bar-mode -1)  ; disable tab-bar (default unthemed on nano themes)
 
 ;; (setq tab-bar-separator "|")
 
