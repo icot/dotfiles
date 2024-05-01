@@ -115,3 +115,20 @@
 
 (set-fringe-mode 10)
 (global-prettify-symbols-mode 1)
+
+(use-package modern-tab-bar
+  :straight (:host github :repo "aaronjensen/emacs-modern-tab-bar")
+  :init
+  (setq tab-bar-show t
+        tab-bar-new-button nil
+        tab-bar-close-button-show nil)
+  (modern-tab-bar-mode))
+
+;; Requires customizization of face (box size to (2.2), doesn't work on dark 
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(modern-tab-bar ((t (:inherit (variable-pitch default) :background "#E0E0E0" :foreground "#000000" :box (:line-width (2 . 2) :style flat-button) :weight light)))))
